@@ -1,7 +1,8 @@
-import {useState} from 'react';
-import React, {useDispatch, useSelector} from 'react-redux';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import * as sessionActions from '../../store/session';
+import './LoginForm.css';
 
 const LoginFormPage = () => {
     const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const LoginFormPage = () => {
         return <Redirect to="/" />
     }
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="background">
             <ul>
                 {errors.map((error,id) => <li key={id}>{error}</li>)}
             </ul>
@@ -40,7 +41,7 @@ const LoginFormPage = () => {
                 Password
                 <input
                 type="password"
-                value={credentials}
+                value={password}
                 onChange = {e => setPassword(e.target.value)}
                 required
                 />

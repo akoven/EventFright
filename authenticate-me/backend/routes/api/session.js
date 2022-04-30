@@ -44,7 +44,7 @@ router.delete('/', (_req, res) => {
 });
 
 router.get('/', restoreUser, (req,res) => {
-    console.log('made it to resoreUser')
+    // console.log('made it to resoreUser')
     const{user} = req;
     console.log(user)
     if(user){
