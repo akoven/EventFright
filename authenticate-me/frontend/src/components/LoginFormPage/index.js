@@ -21,9 +21,8 @@ const LoginFormPage = () => {
         });
     }
 
-    if(sessionUser){
-        return <Redirect to="/" />
-    }
+    if(sessionUser) <Redirect to="/" />;
+
     return(
         <form onSubmit={handleSubmit} className="background">
             <ul>
