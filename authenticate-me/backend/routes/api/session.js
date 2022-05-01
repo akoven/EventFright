@@ -46,7 +46,7 @@ router.delete('/', (_req, res) => {
 router.get('/', restoreUser, (req,res) => {
     // console.log('made it to resoreUser')
     const{user} = req;
-    console.log(user)
+    // console.log(user)
     if(user){
         return res.json({
             user: user.toSafeObject()
