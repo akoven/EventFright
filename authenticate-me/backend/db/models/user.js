@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [4,30],
+        len: [3,30],
         isNotEmail(value){
           if(Validator.isEmail(value)){
             throw new Error('Cannot be an email');
@@ -56,13 +56,13 @@ module.exports = (sequelize, DataTypes) => {
   User.getCurrentUserById = async function(id){
     return await User.scope('currentUser').findByPk(id);
   };
-  User.login = async function({credential, password}){
+  User.login = async function({credentials, password}){
     const {Op} = require('sequelize');
     const user = await User.scope('loginUser').findOne({
       where:{
         [Op.or]: {
-          username: credential,
-          email: credential
+          username: credentials,
+          email: credentials
         }
       }
     });
