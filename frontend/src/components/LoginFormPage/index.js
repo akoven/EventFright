@@ -21,33 +21,40 @@ const LoginFormPage = () => {
         });
     }
 
-    if(sessionUser) <Redirect to="/" />;
+    if(sessionUser) {
 
-    return(
-        <form onSubmit={handleSubmit} className="background">
-            <ul>
-                {errors.map((error,id) => <li key={id}>{error}</li>)}
-            </ul>
-            <label>
-                Username or Email:
-                <input
-                type = "text"
-                value={credentials}
-                onChange={e => setCredentials(e.target.value)}
-                required />
-            </label>
-            <label>
-                Password
-                <input
-                type="password"
-                value={password}
-                onChange = {e => setPassword(e.target.value)}
-                required
-                />
-            </label>
-            <button type='submit'>Log In</button>
-        </form>
-    )
+        <Redirect to="/" />;
+
+    }else{
+
+        return(
+            <form onSubmit={handleSubmit} className="background">
+                <ul>
+                    {errors.map((error,id) => <li key={id}>{error}</li>)}
+                </ul>
+                <label className='username'>
+                    Username or Email:
+                    <input
+                    type = "text"
+                    value={credentials}
+                    onChange={e => setCredentials(e.target.value)}
+                    required />
+                </label>
+                <label className='password'>
+                    Password
+                    <input
+                    type="password"
+                    value={password}
+                    onChange = {e => setPassword(e.target.value)}
+                    required
+                    />
+                </label>
+                <button type='submit'>Log In</button>
+            </form>
+        )
+    }
 }
+
+
 
 export default LoginFormPage;

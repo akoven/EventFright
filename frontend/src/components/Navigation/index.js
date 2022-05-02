@@ -15,8 +15,10 @@ const Navigation = ({isLoaded}) => {
     }else{
         sessionLinks = (
             <nav>
-                <NavLink to='/login'>Log In</NavLink>
-                <NavLink to='/signup'>Sign up</NavLink>
+                <div className='login-signup'>
+                    <NavLink to='/login' className='login'>Log In</NavLink>
+                    <NavLink to='/signup' className='signup'>Sign up</NavLink>
+                </div>
             </nav>
         )
     }
@@ -24,7 +26,7 @@ const Navigation = ({isLoaded}) => {
     return(
         <ul>
             <li>
-                <NavLink exact to='/'>Home</NavLink>
+                <NavLink exact to='/' id='home-link'>EventFright</NavLink>
                 {isLoaded && sessionLinks}
             </li>
         </ul>
