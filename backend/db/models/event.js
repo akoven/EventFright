@@ -9,10 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     capacity: DataTypes.INTEGER
   }, {});
   Event.associate = function(models) {
-    Event.hasMany(models.Ticket, {foreignKey: 'eventId'})
-    Event.belongsTo(models.User, {foreignKey: 'hostId'})
-    Event.belongsTo(models.Venue, {foreignKey: 'venueId'})
-    Event.belongsTo(models.Category, {foreignKey: 'categoryId'})
+    // associations can be defined here
   };
   return Event;
 };

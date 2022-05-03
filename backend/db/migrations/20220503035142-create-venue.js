@@ -9,16 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING
       },
       address: {
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING
       },
       city: {
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING
       },
       state: {
-        type: Sequelize.STRING(2)
+        type: Sequelize.STRING
       },
       zipCode: {
         type: Sequelize.INTEGER
