@@ -10,11 +10,11 @@ module.exports = {
       },
       eventId: {
         type: Sequelize.INTEGER,
-        references:{models:'Events'}
+        references:{model:'Events'}
       },
       userId: {
         type: Sequelize.INTEGER,
-        references:{models:'Users'}
+        references:{model:'Users'}
       },
       createdAt: {
         allowNull: false,

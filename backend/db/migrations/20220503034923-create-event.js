@@ -10,15 +10,18 @@ module.exports = {
       },
       hostId: {
         type: Sequelize.INTEGER,
-        references: {models:'Users'}
+        references: {model:'Users'},
+        allowNull: false
       },
       venueId: {
         type: Sequelize.INTEGER,
-        references: {models:'Events'}
+        references: {model:'Events'},
+        allowNull: false
       },
       categoryId: {
         type: Sequelize.INTEGER,
-        references: {models:'Events'}
+        references: {model:'Categories'},
+        allowNull: false
       },
       name: {
         type: Sequelize.STRING,

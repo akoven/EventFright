@@ -40,7 +40,7 @@ const EventsPage = () => {
                     />
                 </label>
                 <label>
-                    Capacity
+                    Capacity:
                     <input
                     type='integer'
                     value={capacity}
