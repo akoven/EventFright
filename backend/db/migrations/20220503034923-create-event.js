@@ -9,19 +9,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       hostId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {models:'Users'}
       },
       venueId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {models:'Events'}
       },
       categoryId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {models:'Events'}
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       capacity: {
         type: Sequelize.INTEGER

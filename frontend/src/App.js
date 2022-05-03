@@ -4,6 +4,7 @@ import LoginFormPage from './components/LoginFormPage';
 import {useDispatch} from 'react-redux';
 import * as sessionActions from './store/session';
 import SignUpFormPage from './components/SignUpFormPage';
+// import EventsPage from './components/EventsPage';
 import Navigation from './components/Navigation';
 
 
@@ -26,6 +27,9 @@ function App() {
           <Route path = '/signup'>
             <SignUpFormPage />
           </Route>
+          {/* <Route path = '/create-event'>
+            <EventsPage />
+          </Route> */}
         </Switch>
 
       )}

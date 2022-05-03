@@ -10,7 +10,10 @@ const Navigation = ({isLoaded}) => {
     let sessionLinks;
     if(sessionUser){
         sessionLinks = (
-            <ProfileButton user={sessionUser}/>
+            <div className='dropdown-menu'>
+                <ProfileButton user={sessionUser}/>
+                <NavLink to='/event-creator'>Create Event</NavLink>
+            </div>
         )
     }else{
         sessionLinks = (
@@ -24,12 +27,13 @@ const Navigation = ({isLoaded}) => {
     }
 
     return(
-        <ul>
-            <li>
-                <NavLink exact to='/' id='home-link'>EventFright</NavLink>
+        <>
+            <NavLink exact to='/' id='home-link'>EventFright</NavLink>
+            <div>
                 {isLoaded && sessionLinks}
-            </li>
-        </ul>
+            </div>
+        </>
+
     );
 }
 

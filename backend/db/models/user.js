@@ -3,10 +3,11 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: DataTypes.STRING,
     email: DataTypes.STRING,
-    hashedPassword: DataTypes.STRING
+    hashedPassword: DataTypes.STRING.BINARY
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasMany(models.Event, {foreignKey: 'hostId'});
+    user.hasMany(models.Ticket, {foreingKey:'userId'});
   };
   return User;
 };
