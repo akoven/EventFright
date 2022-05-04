@@ -20,7 +20,7 @@ const Home = () => {
                     <p>{event.name}</p>
                     <p>{event.date}</p>
                     <p>{event.capacity}</p>
-                    <button onClick={<Redirect to='/edit-event' />}>Edit</button>
+                    <button type='button' onClick={event => <Redirect to='/edit-event' />}>Edit</button>
                 </>
 
             ))}
