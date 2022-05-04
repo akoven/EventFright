@@ -1,6 +1,7 @@
 import { csrfFetch } from './csrf';
 
 const CREATE_EVENT = 'event/createEventAction';
+const GET_EVENT = 'event/getEventAction';
 
 const createEventAction = (event) => {
     return{
@@ -9,23 +10,44 @@ const createEventAction = (event) => {
     };
 };
 
-export const createEvent = (event) => async(dispatch) => {
-    const {name,date,capacity} = event;
+const getEventAction = (events) => {
+    return{
+        type:GET_EVENT,
+        payload: events //payload: this is what is passed from the thunk
+    };
+};
+
+export const createEventThunk = (event) => async(dispatch) => {
+    // const {name,date,capacity} = event;
     const response = await csrfFetch('/api/events', {
         method: 'POST',
-        body: JSON.stringify({
-            name,
-            date,
-            capacity
-        })
+        body: JSON.stringify(
+            event
+        )
     });
-    const event = await response.json();
-    dispatch(createEventAction(event));
-    return event;
+    if(response.ok){
+        const event = await response.json();
+        dispatch(createEventAction(event));
+        return event;
+    }
+
+    return null;
 
 }
 
-    const initialState = {event: null};
+export const getEventThunk = () => async(dispatch) => {
+    // const {name,date,capacity} = event;
+    const response = await csrfFetch('/api/events');
+    if(response.ok){
+        const events = await response.json();
+        console.log('these are the events from the thunk, ',events);
+        dispatch(getEventAction(events));
+    }
+
+
+}
+
+    const initialState = {};
 
     const eventReducer = (state = initialState, action) => {
         let newState;
@@ -34,6 +56,14 @@ export const createEvent = (event) => async(dispatch) => {
                 newState = Object.assign({}, state);
                 newState[action.payload.id] = action.payload;
                 console.log(newState);
+                return newState;
+            case GET_EVENT:
+                newState = Object.assign({},state);//2nd arg is what you want copied into the first arg
+                // newState[action.payload.id] = action.payload;
+                console.log('this is the action ', action);
+                action.payload.forEach(event => {
+                    newState[event.id] = event
+                })
                 return newState;
             default:
                 return state;

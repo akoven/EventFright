@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const {setTokenCookie, requireAuth} = require('../../utils/auth');
-const {User} = require('../../db/models');
+// const {setTokenCookie, requireAuth} = require('../../utils/auth');
+const {Event} = require('../../db/models');
 const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -20,6 +20,20 @@ const validateEvent = [
 ];
 
 router.post(
-    '/', validateEvent,asyncHandler(async(req,res,next) => {
+    '/', validateEvent,asyncHandler(async(req,res) => {
+        const {hostId,name,date,capacity} =req.body;
+        const event = await Event.create({hostId,name,date,capacity});
+
+        return res.json({
+            event
+        });
+
     })
 );
+
+router.get('/', asyncHandler(async(req,res) => {
+    const getEvents = await Event.findAll();
+    return res.json(getEvents);
+}));
+
+module.exports = router;

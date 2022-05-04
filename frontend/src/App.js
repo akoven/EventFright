@@ -4,8 +4,9 @@ import LoginFormPage from './components/LoginFormPage';
 import {useDispatch} from 'react-redux';
 import * as sessionActions from './store/session';
 import SignUpFormPage from './components/SignUpFormPage';
-// import EventsPage from './components/EventsPage';
+import EventsPage from './components/EventsPage';
 import Navigation from './components/Navigation';
+import Home from './components/Home';
 
 
 function App() {
@@ -29,11 +30,17 @@ function App() {
       <Navigation isLoaded={isLoaded}/>
       {isLoaded && (
         <Switch>
+          <Route path='/homepage'>
+            <Home />
+          </Route>
           <Route path='/login'>
             <LoginFormPage />
           </Route>
           <Route path = '/signup'>
             <SignUpFormPage />
+          </Route>
+          <Route path = '/event-creator'>
+            <EventsPage />
           </Route>
         </Switch>
 
