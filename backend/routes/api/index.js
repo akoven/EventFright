@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sessionRouter = require('./session');
 const usersRouter = require('./users');
-const eventsRouter = require('./events');
+// const eventsRouter = require('./events');
 
 // router.get('/test', (req,res) => res.send('testing'));
 
@@ -14,7 +14,7 @@ const eventsRouter = require('./events');
 // });
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
-router.use('/events', eventsRouter);
+// router.use('/events', eventsRouter);
 
 // router.get('/set-token-cookie', asyncHandler(async (_req, res) => {
 //   const user = await User.findOne({

@@ -13,8 +13,16 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    console.log('made it to useEffect')
+    dispatch(sessionActions.restoreUser())
+    .then((res) => {
+      console.log('inside catch, result: ',res)
+      setIsLoaded(true)
+    })
+    .catch((error) => {console.log('inside catch, error: ',error)});
   }, [dispatch]);
+
+  // console.log(isLoaded)
 
   return(
     <>
@@ -27,9 +35,6 @@ function App() {
           <Route path = '/signup'>
             <SignUpFormPage />
           </Route>
-          {/* <Route path = '/create-event'>
-            <EventsPage />
-          </Route> */}
         </Switch>
 
       )}

@@ -7,17 +7,25 @@ module.exports = {
       {
         email: 'demo@user.io',
         username: 'Demo-lition',
-        hashedPassword: bcrypt.hashSync('password')
+        hashedPassword: bcrypt.hashSync('password'),
+        createdAt: Sequelize.fn('now'),
+        updatedAt: Sequelize.fn('now')
+
+
       },
       {
         email: 'user1@user.io',
         username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync('password2')
+        hashedPassword: bcrypt.hashSync('password2'),
+        createdAt: Sequelize.fn('now'),
+        updatedAt: Sequelize.fn('now')
       },
       {
         email: 'user2@user.io',
         username: 'FakeUser2',
-        hashedPassword: bcrypt.hashSync('password3')
+        hashedPassword: bcrypt.hashSync('password3'),
+        createdAt: Sequelize.fn('now'),
+        updatedAt: Sequelize.fn('now')
       }
     ], {});
   },

@@ -1,11 +1,11 @@
 import { csrfFetch } from './csrf';
 
-const CHECK_USER = 'event/checkUserLogIn';
+const CREATE_EVENT = 'event/createEventAction';
 
-const checkUserLogIn = (user) => {
+const createEventAction = (event) => {
     return{
-        type:CHECK_USER,
-        payload: user
+        type:CREATE_EVENT,
+        payload: event
     };
 };
 
@@ -19,9 +19,9 @@ export const createEvent = (event) => async(dispatch) => {
             capacity
         })
     });
-    const data = await response.json();
-    dispatch(checkUserLogIn(data.user));
-    return response;
+    const event = await response.json();
+    dispatch(createEventAction(event));
+    return event;
 
 }
 
@@ -30,13 +30,15 @@ export const createEvent = (event) => async(dispatch) => {
     const eventReducer = (state = initialState, action) => {
         let newState;
         switch(action.type){
-            case CHECK_USER:
+            case CREATE_EVENT:
                 newState = Object.assign({}, state);
-                newState.event = action.payload;
+                newState[action.payload.id] = action.payload;
+                console.log(newState);
                 return newState;
             default:
                 return state;
         }
+
     };
 
     export default eventReducer;

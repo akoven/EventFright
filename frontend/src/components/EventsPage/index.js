@@ -16,9 +16,11 @@ const EventsPage = () => {
     const handleSubmit = e =>{
         e.preventDefault();
         setErrors([]);
+        if(!session){
+            return alert('You must be logged in to post an event!');
+        }
     }
 
-    if(sessionUser){
         return(
             <form onSubmit={handleSubmit}>
                 <label>
@@ -50,7 +52,6 @@ const EventsPage = () => {
                 </label>
             </form>
         )
-    };
 
 
 }
