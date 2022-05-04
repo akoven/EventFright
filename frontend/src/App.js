@@ -4,6 +4,7 @@ import LoginFormPage from './components/LoginFormPage';
 import {useDispatch} from 'react-redux';
 import * as sessionActions from './store/session';
 import SignUpFormPage from './components/SignUpFormPage';
+// import EventsPage from './components/EventsPage';
 import Navigation from './components/Navigation';
 
 
@@ -12,8 +13,16 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    console.log('made it to useEffect')
+    dispatch(sessionActions.restoreUser())
+    .then((res) => {
+      console.log('inside catch, result: ',res)
+      setIsLoaded(true)
+    })
+    .catch((error) => {console.log('inside catch, error: ',error)});
   }, [dispatch]);
+
+  // console.log(isLoaded)
 
   return(
     <>

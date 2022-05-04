@@ -29,11 +29,19 @@ const ProfileButton = ({user}) => {
         <div>
             <button onClick={openMenu}><i className="fa-solid fa-bars"/></button>
             {menu && (
-                <ul className="dropdown-nav-menu">
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
-                    <li><button onClick={logout}>Log Out</button></li>
-                </ul>
+                <div className="dropdown-menu">
+                    <div>
+                        <div>
+                            {user.username}
+                        </div>
+                        <div>
+                            {user.email}
+                        </div>
+                    </div>
+                    <div>
+                        <button onClick={logout}>Log Out</button>
+                    </div>
+                </div>
             )}
         </div>
     )

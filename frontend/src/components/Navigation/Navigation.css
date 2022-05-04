@@ -1,0 +1,6 @@
+.dropdown-menu{
+    display:flex;
+    justify-content: flex-end;
+    border: solid grey;
+    border-width: 1px;
+}
