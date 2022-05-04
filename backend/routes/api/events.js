@@ -36,4 +36,9 @@ router.get('/', asyncHandler(async(req,res) => {
     return res.json(getEvents);
 }));
 
+// router.put('/', asyncHandler(async(req,res) => {
+//     const getEvents = await Event.findAll();
+//     return res.json(getEvents);
+// }));
+
 module.exports = router;

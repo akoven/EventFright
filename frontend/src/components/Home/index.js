@@ -1,6 +1,7 @@
-import { useState,useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {getEventThunk} from '../../store/event'
+import { Redirect } from "react-router-dom";
 
 const Home = () => {
     const events = useSelector(state => state.events);
@@ -10,7 +11,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getEventThunk())
-    },[])
+    },[dispatch])
     return(
         <>
             <h1>Events!</h1>
@@ -19,6 +20,7 @@ const Home = () => {
                     <p>{event.name}</p>
                     <p>{event.date}</p>
                     <p>{event.capacity}</p>
+                    <button onClick={<Redirect to='/edit-event' />}>Edit</button>
                 </>
 
             ))}

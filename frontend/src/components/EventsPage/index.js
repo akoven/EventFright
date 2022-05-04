@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import * as eventActions from '../../store/event'; //working on a session action for events
 import { useDispatch,useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 
 const EventsPage = () => {
     const history = useHistory();
@@ -67,6 +67,8 @@ const EventsPage = () => {
                 <button>
                     Submit Event!
                 </button>
+                <button onClick={<Redirect to='/homepage' />}>Cancel</button>
+
             </form>
         )
 
