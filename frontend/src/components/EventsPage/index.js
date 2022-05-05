@@ -69,8 +69,6 @@ const EventsPage = () => {
                 </button>
                 <button type='button' onClick={() => window.location.href='/homepage'}>Cancel</button>
 
-
-
             </form>
         )
 

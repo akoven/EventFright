@@ -22,8 +22,6 @@ const EditEventForm = () => {
         if(editedEvent){
             history.push('/homepage')
         }
-
-
     }
 
     return(
