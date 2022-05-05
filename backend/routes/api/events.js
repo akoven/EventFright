@@ -36,9 +36,11 @@ router.get('/', asyncHandler(async(req,res) => {
     return res.json(getEvents);
 }));
 
-// router.put('/', asyncHandler(async(req,res) => {
-//     const getEvents = await Event.findAll();
-//     return res.json(getEvents);
-// }));
+router.put('/', asyncHandler(async(req,res) => {
+    const {id,name,date,capacity} =req.body;
+    const editEvent = await Event.findByPk(id);
+    await editEvent.update({name,date,capacity});
+    return res.json(editEvent);
+}));
 
 module.exports = router;

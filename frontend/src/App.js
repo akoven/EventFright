@@ -5,6 +5,7 @@ import {useDispatch} from 'react-redux';
 import * as sessionActions from './store/session';
 import SignUpFormPage from './components/SignUpFormPage';
 import EventsPage from './components/EventsPage';
+import EditEventForm from './components/EventsPage/EditEventForm';
 import Navigation from './components/Navigation';
 import Home from './components/Home';
 
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path = '/event-creator'>
             <EventsPage />
+          </Route>
+          <Route path = '/edit-event'>
+            <EditEventForm />
           </Route>
         </Switch>
 

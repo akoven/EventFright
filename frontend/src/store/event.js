@@ -29,9 +29,7 @@ export const createEventThunk = (event) => async(dispatch) => {
     // const {name,date,capacity} = event;
     const response = await csrfFetch('/api/events', {
         method: 'POST',
-        body: JSON.stringify(
-            event
-        )
+        body: JSON.stringify(event)
     });
     if(response.ok){
         const event = await response.json();
@@ -55,7 +53,7 @@ export const getEventThunk = () => async(dispatch) => {
 
 export const editEventThunk = (event) => async(dispatch) => {
 
-    const response = await csrfFetch('/api/events', {
+    const response = await csrfFetch(`/api/events/${event.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -65,6 +63,7 @@ export const editEventThunk = (event) => async(dispatch) => {
     if(response.ok){
         const event = await response.json();
         dispatch(editEventAction(event));
+        return event;
     }
 }
 

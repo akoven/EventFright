@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import * as eventActions from '../../store/event'; //working on a session action for events
 import { useDispatch,useSelector } from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const EventsPage = () => {
     const history = useHistory();
@@ -49,7 +49,7 @@ const EventsPage = () => {
                 <label>
                     Date:
                     <input
-                    type='text'
+                    type='date'
                     value={date}
                     onChange={e => setDate(e.target.value)}
                     required
@@ -67,7 +67,9 @@ const EventsPage = () => {
                 <button>
                     Submit Event!
                 </button>
-                <button onClick={<Redirect to='/homepage' />}>Cancel</button>
+                <button type='button' onClick={() => window.location.href='/homepage'}>Cancel</button>
+
+
 
             </form>
         )

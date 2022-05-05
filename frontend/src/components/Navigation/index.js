@@ -28,7 +28,7 @@ const Navigation = ({isLoaded}) => {
 
     return(
         <>
-            <NavLink exact to='/' id='home-link'>EventFright</NavLink>
+            <NavLink exact to='/homepage' id='home-link'>EventFright</NavLink>
             <div>
                 {isLoaded && sessionLinks}
             </div>
