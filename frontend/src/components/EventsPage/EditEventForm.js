@@ -8,11 +8,12 @@ const EditEventForm = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const {id} = useParams();
-    const selectedEvent = useSelector(state => state.events.id)
+    // const {events} = useParams();
+    // const selectedEvent = useSelector(state => state.events.id)
 
-    const [name, setName] = useState(selectedEvent.name);
-    const [date, setDate] = useState(selectedEvent.date);
-    const [capacity, setCapacity] = useState(selectedEvent.capacity);
+    const [name, setName] = useState('');
+    const [date, setDate] = useState('');
+    const [capacity, setCapacity] = useState('');
 
     const handleSubmit = e => {
         e.preventDefault();
