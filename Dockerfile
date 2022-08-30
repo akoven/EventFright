@@ -1,6 +1,6 @@
 # Start with the python:3.9 image
 FROM python:3.9
-# Set the  following enviroment variables
+# Set the  following  enviroment variables
 #
 # REACT_APP_BASE_URL -> Your deployment URL
 ENV REACT_APP_BASE_URL = https://event-fright.herokuapp.com/
