@@ -8,3 +8,11 @@ class Tickets(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     event = db.relationship('Events', back_populates='tickets')
+
+
+    def to_dict(self):
+        return{
+            'event_id':self.event_id,
+            'user_id':self.user_id,
+            'event':self.event
+        }

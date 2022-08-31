@@ -3,11 +3,11 @@ from wtforms import StringField, IntegerField, DateTimeField, SelectField
 from wtforms.validators import DataRequired
 
 class EventForm(FlaskForm):
-    hostId = IntegerField("host_id", validators=[DataRequired()])
-    venueId = IntegerField("venue_id", validators=[DataRequired()])
-    categoryId = IntegerField("category_id", validators=[DataRequired()])
-    name = StringField("name", validators=[DataRequired()])
-    description = StringField("description", validators=[DataRequired()])
-    event_image = StringField("image", validators=[DataRequired()])
-    date = DateTimeField("date_time", validators=[DataRequired()])
-    capacity = IntegerField("capacity", validators=[DataRequired()])
+    host_id = IntegerField("Host_id", validators=[DataRequired()])
+    venue = SelectField("Location", validators=[DataRequired()])
+    category = SelectField("Category", validators=[DataRequired()])
+    event_name = StringField("Event_name", validators=[DataRequired()])
+    description = StringField("Description", validators=[DataRequired()])
+    event_image = StringField("Event_image", validators=[DataRequired()])
+    date = DateTimeField("Date_time", validators=[DataRequired()])
+    capacity = IntegerField("Capacity", validators=[DataRequired()])

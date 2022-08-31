@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField
 from wtforms.validators import DataRequired
+from wtforms import SelectField, IntegerField
 
-class TicketForm(FlaskForm):
-    event_id = IntegerField("event_id", validators=[DataRequired()])
+class CategoryForm(FlaskForm):
     user_id = IntegerField("user_id", validators=[DataRequired()])
+    type = SelectField("type", validators=[DataRequired()])
