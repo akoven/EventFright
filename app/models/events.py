@@ -13,4 +13,7 @@ class Events(db.Model):
     date = db.Column(db.DateTime, timezone=False, nullable=False)
     capacity = db.Column(db.Integer)
 
+    user = db.relationship('User', back_populates='events')
     venue = db.relationship('Venues', back_populates='events')
+    category = db.relationship('Categories', back_populates='events')
+    tickets = db.relationship('Tickets', back_populates='event')
