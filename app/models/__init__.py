@@ -3,3 +3,4 @@ from .user import User
 from .events import Events
 from .venues import Venues
 from .categories import Categories
+from .tickets import Tickets
