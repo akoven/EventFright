@@ -10,3 +10,5 @@ class Venues(db.Model):
     zip_code = db.Column(db.Integer, nullable=False)
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
+
+    events = db.relationship('Events', back_populates='venue')
