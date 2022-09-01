@@ -1,5 +1,5 @@
 from app.models import db, User
-
+import os
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
@@ -23,5 +23,10 @@ def seed_users():
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
 def undo_users():
-    db.session.execute('DELETE FROM users;')
-    db.session.commit()
+    if os.environ.get('FLASK_ENV') == 'development':
+        db.session.execute('DELETE FROM users;')
+        db.session.commit()
+
+    if os.environ.get('FLASK_ENV') == 'production':
+        db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+        db.session.commit()

@@ -1,4 +1,5 @@
 from ..models import db, Venues
+import os
 
 def seed_venues():
     old_penitentiary = Venues(
@@ -30,5 +31,11 @@ def seed_venues():
     db.session.commit()
 
 def undo_venues():
-    db.session.execute('DELETE FROM venues;')
-    db.session.commit()
+
+    if os.environ.get('FLASK_ENV') == 'development':
+        db.session.execute('DELETE FROM venues;')
+        db.session.commit()
+
+    if os.environ.get('FLASK_ENV') == 'production':
+        db.session.execute('TRUNCATE venues RESTART IDENTITY CASCADE;')
+        db.session.commit()

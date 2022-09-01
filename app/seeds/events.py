@@ -1,5 +1,6 @@
 from datetime import datetime
 from ..models import db,Events
+import os
 
 def seed_events():
     haunted_house = Events(
@@ -41,5 +42,11 @@ def seed_events():
     db.session.commit()
 
 def undo_events():
-    db.session.execute('DELETE FROM events;')
-    db.session.commit()
+
+    if os.environ.get('FLASK_ENV') == 'development':
+        db.session.execute('DELETE FROM events;')
+        db.session.commit()
+
+    if os.environ.get('FLASK_ENV') == 'production':
+        db.session.execute('TRUNCATE events RESTART IDENTITY CASCADE;')
+        db.session.commit()
