@@ -5,11 +5,12 @@ from flask_login import current_user
 
 event_routes = Blueprint("events", __name__, url_prefix="/events")
 
-@event_routes.route("/", methods=["GET"])
+@event_routes.route("", methods=["GET"])
 def all_events():
     if current_user:
         all_events = Events.query.all()
         events = [event.to_dict() for event in all_events]
+        print('*********************EVENTS FROM API BACKEND*********************************',events)
         response = {'events':events}
         return response
     else:
