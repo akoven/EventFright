@@ -3,6 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
   // return (
@@ -34,14 +35,20 @@ const NavBar = () => {
   //     </ul>
   //   </nav>
   // );
+
+  const currentUser = useSelector(state => state.session.user)
+
   return(
     <div>
       <header>
           <div className='title'>
-            <p>Event Fright</p>
-            <button className='userBtn'>
-              <i class="fa-solid fa-user" />
-            </button>
+            <h1>Event Fright</h1>
+            <div className='test-btn'>
+              <button className='userBtn'>
+                <i class="fa-solid fa-user" /> {currentUser.email}
+              </button>
+            </div>
+              <button className='createEvent'>Create an event</button>
           </div>
 
       </header>
