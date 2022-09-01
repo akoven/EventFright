@@ -1,0 +1,18 @@
+.userBtn{
+    display: inline-block;
+    /* justify-content: right; */
+    background-color: white;
+    border: none
+
+}
+
+.title{
+    display: inline-block;
+    padding-right: 1050px;
+    margin: 0px;
+}
+
+button{
+    float: right;
+    padding-left: 800px;
+}

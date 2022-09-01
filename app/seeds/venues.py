@@ -30,5 +30,5 @@ def seed_venues():
     db.session.commit()
 
 def undo_venues():
-    db.session.execute('TRUNCATE venues RESTART IDENTITY CASCADE;')
+    db.session.execute('DELETE FROM venues;')
     db.session.commit()

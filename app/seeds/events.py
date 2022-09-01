@@ -41,5 +41,5 @@ def seed_events():
     db.session.commit()
 
 def undo_events():
-    db.session.execute('TRUNCATE events RESTART IDENTITY CASCADE;')
+    db.session.execute('DELETE FROM events;')
     db.session.commit()
