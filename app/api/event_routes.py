@@ -3,10 +3,11 @@ from app.models import Events, db
 from app.forms import EventForm
 from flask_login import current_user
 
-event_routes = Blueprint("events", __name__, url_prefix="/events")
+event_routes = Blueprint("event_routes", __name__)
 
-@event_routes.route("", methods=["GET"])
+@event_routes.route("/")
 def all_events():
+    print('***************CURRENT USER******************** ',current_user)
     if current_user:
         all_events = Events.query.all()
         events = [event.to_dict() for event in all_events]

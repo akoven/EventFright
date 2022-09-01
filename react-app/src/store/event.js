@@ -9,7 +9,7 @@ const getAllEvents = (event) =>{
 }
 
 export const getEventThunk = () => async dispatch =>{
-    const response = await fetch('/api/events')
+    const response = await fetch('/api/events/')
 
     console.log('******************RESPONSE********************** ', response)
     if (response.ok){
