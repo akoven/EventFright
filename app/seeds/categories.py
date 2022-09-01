@@ -1,4 +1,5 @@
 from ..models import db, Categories
+import os
 
 def seed_categories():
     entertainment = Categories(
@@ -19,5 +20,10 @@ def seed_categories():
     db.session.commit()
 
 def undo_categories():
-    db.session.execute('DELETE FROM categories;')
-    db.session.commit()
+    if os.environ.get('FLASK_ENV') == 'development':
+        db.session.execute('DELETE FROM categories;')
+        db.session.commit()
+
+    if os.environ.get('FLASK_ENV') == 'production':
+        db.session.execute('TRUNCATE categories RESTART IDENTITY CASCADE;')
+        db.session.commit()
