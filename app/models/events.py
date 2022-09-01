@@ -21,8 +21,6 @@ class Events(db.Model):
     def to_dict(self):
         return{
             'id':self.id,
-            'venue':self.venue.to_dict(),
-            'category':self.category.to_dict(),
             'event_name':self.event_name,
             'description':self.description,
             'event_image':self.event_image,
@@ -31,3 +29,4 @@ class Events(db.Model):
             'user':self.user.to_dict(),
             'tickets':[ticket.to_dict() for ticket in self.tickets]
         }
+# 'tickets':[ticket.to_dict() for ticket in self.tickets]
