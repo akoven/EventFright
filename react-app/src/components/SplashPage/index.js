@@ -8,16 +8,13 @@ const SplashPage = () =>{
 
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user)
-    const allEvents = useSelector(state => state.event)
+    const allEvents = useSelector(state => Object.values(state.event))
 
     useEffect(() =>{
         dispatch(getEventThunk())
     }, [dispatch])
 
     console.log('ALL EVENTS: ',allEvents)
-    // console.log('CURRENT EVENT STATE: ',state)
-
-
 
     return(
         <div className='main'>
@@ -30,7 +27,7 @@ const SplashPage = () =>{
             <div>
                 <h3>Check out these categories</h3>
                 <h3>Local Events</h3>
-                {allEvents.events?.map(event => <div>
+                {allEvents.map(event => <div>
                     <img src={event.event_image}/>
                     <h3>{event.event_name}</h3>
                     <p>{event.description}</p>

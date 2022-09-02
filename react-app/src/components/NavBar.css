@@ -1,6 +1,9 @@
- .userBtn, .createEvent{
+ .userBtn{
     background-color: white;
-    border: none
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title{
@@ -13,7 +16,6 @@
 .test-btn{
     display: flex;
     flex-direction: row;
-
     border:none;
     /* padding-left: 600px */
 }
