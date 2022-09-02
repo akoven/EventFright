@@ -19,6 +19,7 @@ const CreateEvent = () =>{
     const [eventDate,setEventDate] = useState(new Date())
     const [eventCapacity,setEventCapacity] = useState()
 
+    console.log('current user: ',currentUser.id)
     // console.log('CATEGORIES: ',category)
     // console.log('LOCATION: ', location)
 
