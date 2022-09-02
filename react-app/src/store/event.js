@@ -31,8 +31,8 @@ export const getEventThunk = () => async dispatch =>{
     return 'something went wrong in backend'
 }
 
-export const addEventThunk = (event, userId) => async dispatch =>{
-    const response = await fetch (`/api/events/${userId}`, {
+export const addEventThunk = (event) => async dispatch =>{
+    const response = await fetch (`/api/events`, {
         method:'POST',
         headers:{
             'Content-Type':'application/json'
