@@ -8,6 +8,13 @@ const getAllEvents = (event) =>{
     }
 }
 
+const addNewEvent = (event) =>{
+    return{
+        type: ADD_EVENT,
+        event
+    }
+}
+
 export const getEventThunk = () => async dispatch =>{
     const response = await fetch('/api/events/')
 
@@ -24,6 +31,22 @@ export const getEventThunk = () => async dispatch =>{
     return 'something went wrong in backend'
 }
 
+export const addEventThunk = (event, userId) => async dispatch =>{
+    const response = await fetch (`/api/events/${userId}`, {
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(event)
+    });
+
+    if (response.ok){
+        const newEvent = await response.json();
+        dispatch(addNewEvent(newEvent));
+        return newEvent;
+    }
+    return null;
+}
 
 const eventReducer = (state = {}, action) =>{
     let newState = {};
@@ -32,6 +55,10 @@ const eventReducer = (state = {}, action) =>{
             const events = {};
             action.event.events.forEach(event => events[event.id] = event);
             return events;
+        case ADD_EVENT:
+            let newState={...state};
+            newState[action.event.id] = action.event;
+            return newState;
         default:
             return state;
     }
