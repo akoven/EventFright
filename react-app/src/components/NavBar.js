@@ -48,7 +48,9 @@ const NavBar = () => {
                 <i class="fa-solid fa-user" /> {currentUser.email}
               </button>
             </div>
-              {/* <button className='createEvent'>Create an event</button> */}
+              <NavLink className='createEvent' to={'/create-event'}>
+              <i class="fa-regular fa-plus" /> Create an event
+              </NavLink>
           </div>
 
       </header>
