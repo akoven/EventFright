@@ -2,10 +2,12 @@ import { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useHistory } from "react-router-dom";
 
 
 const CreateEvent = () =>{
     const dispatch = useDispatch();
+    const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
     const category = useSelector(state => state.categories);
     const location = useSelector(state => state.venues)
@@ -70,6 +72,10 @@ const CreateEvent = () =>{
                 <label>Date and Time</label>
                 <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="HH:mm:ss" timeIntervals={15} dateFormat="yyyy-MM-dd"/>
             </div>
+            <span>
+                <button type="submit">Submit</button>
+                <button onClick={() => history.push('/')}>Cancel</button>
+            </span>
         </form>
     )
 }
