@@ -11,7 +11,7 @@ const getAllEvents = (event) =>{
 const addNewEvent = (event) =>{
     return{
         type: ADD_EVENT,
-        event
+        payload: event
     }
 }
 
@@ -32,7 +32,7 @@ export const getEventThunk = () => async dispatch =>{
 }
 
 export const addEventThunk = (event) => async dispatch =>{
-    const response = await fetch (`/api/events`, {
+    const response = await fetch (`/api/events/`, {
         method:'POST',
         headers:{
             'Content-Type':'application/json'

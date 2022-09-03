@@ -20,6 +20,7 @@ def all_events():
 @event_routes.route('/',methods=['POST'])
 def user_events():
     new_event = EventForm()
+    print('REQUEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', request)
 
     new_event['csrf_token'].data = request.cookies['csrf_token']
     host_id = new_event.data['host_id']
@@ -31,7 +32,7 @@ def user_events():
     date = new_event.data['date']
     capacity = new_event.data['capacity']
 
-    if new_event.validate_on_submit() and current_user == host_id:
+    if new_event.validate_on_submit():
         event=Events(
             host_id = host_id,
             venue = venue,
@@ -42,9 +43,10 @@ def user_events():
             date = date,
             capacity = capacity
         )
-
+        print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
         db.session.add(event)
         db.session.commit()
         return event.to_dict()
     else:
-        return '403: Unauthorized User'
+        print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
+        return {'errors':['403: Unauthorized User']}

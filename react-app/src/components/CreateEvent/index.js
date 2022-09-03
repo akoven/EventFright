@@ -9,18 +9,18 @@ const CreateEvent = () =>{
     const dispatch = useDispatch();
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
-    const category = useSelector(state => state.categories);
-    const location = useSelector(state => state.venues)
+    // const category = useSelector(state => state.categories);
+    // const location = useSelector(state => state.venues)
 
-    const [eventImg,setUserImg] = useState()
+    const [eventImg,setUserImg] = useState('')
     // const [host, setHost] = useState()
-    const [eventName,setEventName] = useState()
-    const [selectCategory, setSelectCategory] = useState()
-    const [eventLocation, setEventLocation] = useState()
-    const [eventDescription,setEventDescription] = useState()
-    const [eventImage, setEventImage] = useState()
+    const [eventName,setEventName] = useState('')
+    const [selectCategory, setSelectCategory] = useState('')
+    const [eventLocation, setEventLocation] = useState('')
+    const [eventDescription,setEventDescription] = useState('')
+    const [eventImage, setEventImage] = useState('')
     const [eventDate,setEventDate] = useState(new Date())
-    const [eventCapacity,setEventCapacity] = useState()
+    const [eventCapacity,setEventCapacity] = useState('')
 
     // console.log('current user: ',currentUser.id)
     // console.log('CATEGORIES: ',category)
@@ -31,6 +31,8 @@ const CreateEvent = () =>{
         e.preventDefault();
         const payload = {
             host_id: currentUser.id,
+            eventLocation,
+            selectCategory,
             eventName,
             eventDescription,
             eventImage,
@@ -38,6 +40,7 @@ const CreateEvent = () =>{
             eventCapacity
         }
 
+        console.log('payload being passed to add event thunk ',payload)
         const newEvent = await dispatch(addEventThunk(payload))
         if(newEvent){
             history.push('/')
@@ -89,7 +92,7 @@ const CreateEvent = () =>{
                 </div> */}
                 <div>
                     <label>Category</label>
-                    <select>
+                    <select onChange={e => setSelectCategory(e.target.value)}>
                         <option value="Entertainment">Flim, Media, and Entertainment</option>
                         <option value="Outdoors">Outdoors</option>
                         <option value="Dining">Dining</option>
@@ -97,7 +100,7 @@ const CreateEvent = () =>{
                 </div>
                 <div>
                     <label>Location</label>
-                    <select>
+                    <select onChange={e => setEventLocation(e.target.value)}>
                         <option value="Old Prison">Eastern State Penitentiary</option>
                         <option value="Smyer">Smyer</option>
                         <option value="Hotel">Hart House Hotel</option>
