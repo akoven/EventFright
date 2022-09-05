@@ -10,7 +10,7 @@ const CreateEvent = () =>{
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
     // const category = useSelector(state => state.categories);
-    // const location = useSelector(state => state.venues)
+    const locations = useSelector(state => state.venues);
 
     const [eventImg,setUserImg] = useState('')
     // const [host, setHost] = useState()
@@ -101,9 +101,12 @@ const CreateEvent = () =>{
                 <div>
                     <label>Location</label>
                     <select onChange={e => setEventLocation(e.target.value)}>
-                        <option value="Old Prison">Eastern State Penitentiary</option>
+                        {/* <option value="Old Prison">Eastern State Penitentiary</option>
                         <option value="Smyer">Smyer</option>
-                        <option value="Hotel">Hart House Hotel</option>
+                        <option value="Hotel">Hart House Hotel</option> */}
+                        {locations.map(location =>{
+                            <option>{location.name}</option>
+                        })}
                     </select>
                 </div>
                 <div>

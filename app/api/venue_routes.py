@@ -45,7 +45,7 @@ def add_new_venue():
     else:
         return {'errors':['403: Unauthorized User']}
 
-@venue_routes.route('/<venue_id>', method=['PUT'])
+@venue_routes.route('/<venue_id>', methods=['PUT'])
 def edit_venue(venue_id):
     venue = Venues.query.get(venue_id)
 
@@ -74,7 +74,7 @@ def edit_venue(venue_id):
     db.session.commit()
     return venue.to_dict()
 
-@venue_routes.route('/<venue_id>', method=['DELETE'])
+@venue_routes.route('/<venue_id>', methods=['DELETE'])
 def delete_venues(venue_id):
     venue = Venues.query.get(venue_id)
 
