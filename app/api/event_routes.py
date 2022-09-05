@@ -18,10 +18,11 @@ def all_events():
         return '403: Unauthorized User'
 
 @event_routes.route('/',methods=['POST'])
-def user_events():
+def add_events():
     new_event = EventForm()
+    new_event['csrf_token'].data = request.cookies.get('csrf_token')
+    print('**********************************',new_event['csrf_token'].data)
 
-    new_event['csrf_token'].data = request.cookies['csrf_token']
     host_id = new_event.data['host_id']
     venue = new_event.data['venue']
     category = new_event.data['category']
@@ -31,7 +32,10 @@ def user_events():
     date = new_event.data['date']
     capacity = new_event.data['capacity']
 
-    if new_event.validate_on_submit() and current_user == host_id:
+
+    print('REQUEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', new_event.data)
+
+    if new_event.validate_on_submit():
         event=Events(
             host_id = host_id,
             venue = venue,
@@ -40,11 +44,52 @@ def user_events():
             description = description,
             event_image = event_image,
             date = date,
-            capacity = capacity
-        )
+            capacity = capacity,
 
+        )
+        print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
         db.session.add(event)
         db.session.commit()
         return event.to_dict()
     else:
-        return '403: Unauthorized User'
+        print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
+        return {'errors':['403: Unauthorized User']}
+
+@event_routes.route('/<event_id>', method=['PUT'])
+def edit_event(event_id):
+    event = Events.query.get(event_id)
+
+    if not event:
+        return "Error 404: The event you're looking for couldn't be found"
+
+    updated_event = EventForm()
+
+    updated_event['csrf-token'].data = request.cookies['csrf-token']
+    venue = updated_event.data['venue']
+    category = updated_event.data['category']
+    event_name = updated_event.data['event_name']
+    description = updated_event.data['description']
+    event_image = updated_event.data['event_image']
+    date = updated_event.data['date']
+    capacity = updated_event.data['capacity']
+
+    event.venue = venue,
+    event.category = category,
+    event.event_name = event_name,
+    event.description = description,
+    event.event_image = event_image,
+    event.date = date,
+    event.capacity = capacity
+
+    db.session.commit()
+    return event.to_dict()
+
+@event_routes.route('/<event_id>', method=['DELETE'])
+def delete_events(event_id):
+    event = Events.query.get(event_id)
+
+    if not event:
+        return "Error 404: The event you're looking for couldn't be found"
+
+    db.session.delete(event)
+    db.session.commit()
