@@ -7,7 +7,7 @@ class Venues(db.Model):
     address = db.Column(db.String, nullable=False)
     city = db.Column(db.String)
     state = db.Column(db.String, nullable=False)
-    zip_code = db.Column(db.Integer, nullable=False)
+    zip_code = db.Column(db.String, nullable=False)
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
 

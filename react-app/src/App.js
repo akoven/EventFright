@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage';
 import CreateEvent from './components/CreateEvent';
+import VenuePage from './components/VenuePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +48,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/create-event' exact={true} >
           <CreateEvent />
+        </ProtectedRoute>
+        <ProtectedRoute path='/create-venue' exact={true} >
+          <VenuePage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

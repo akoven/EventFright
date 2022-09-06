@@ -18,13 +18,17 @@ const addNewEvent = (event) =>{
 }
 
 const updateEvent = (event) =>{
-    type: UPDATE_EVENT,
-    event
+    return{
+        type: UPDATE_EVENT,
+        event
+    }
 }
 
 const deleteEvent = (event) =>{
-    type: DELETE_EVENT,
-    event
+    return{
+        type: DELETE_EVENT,
+        event
+    }
 }
 
 export const getEventThunk = () => async dispatch =>{

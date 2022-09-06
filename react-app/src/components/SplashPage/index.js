@@ -9,7 +9,7 @@ const SplashPage = () =>{
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user)
     const allEvents = useSelector(state => Object.values(state.event))
-
+    const allCategories = useSelector(state => Object.values(state.category))
     useEffect(() =>{
         dispatch(getEventThunk())
     }, [dispatch])
@@ -26,6 +26,7 @@ const SplashPage = () =>{
             </div>
             <div>
                 <h3>Check out these categories</h3>
+                {allCategories.map(category =><div>{category.type}</div>)}
                 <h3>Local Events</h3>
                 {allEvents.map(event => <div>
                     <img src={event.event_image}/>

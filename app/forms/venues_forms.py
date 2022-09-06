@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SelectField, DecimalField
+from wtforms import StringField, SelectField, DecimalField
 from wtforms.validators import DataRequired, Length
 
 class VenueForm(FlaskForm):
@@ -7,7 +7,7 @@ class VenueForm(FlaskForm):
    address = StringField("address", validators=[DataRequired()])
    city = StringField("city", validators=[DataRequired()])
    state = SelectField("state", validators=[DataRequired()])
-   zip_code = IntegerField("zip", validators=[DataRequired(), Length(max=5)])
+   zip_code = StringField("zip", validators=[DataRequired(), Length(max=5)])
    latitude = DecimalField("lat")
    longitude = DecimalField("long")
 
