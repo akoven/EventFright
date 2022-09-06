@@ -5,6 +5,7 @@ def seed_venues():
     old_penitentiary = Venues(
        name = 'Eastern State Penitentiary',
        address = '2027 Fairmount Ave' ,
+       city = 'Philadelphia',
        state = 'PA',
        zip_code = '19130'
     )
@@ -38,4 +39,5 @@ def undo_venues():
 
     if os.environ.get('FLASK_ENV') == 'production':
         db.session.execute('TRUNCATE venues RESTART IDENTITY CASCADE;')
+
         db.session.commit()
