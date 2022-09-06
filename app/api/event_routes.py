@@ -55,7 +55,7 @@ def add_events():
         print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
         return {'errors':['403: Unauthorized User']}
 
-@event_routes.route('/<event_id>', method=['PUT'])
+@event_routes.route('/<event_id>', methods=['PUT'])
 def edit_event(event_id):
     event = Events.query.get(event_id)
 
@@ -84,7 +84,7 @@ def edit_event(event_id):
     db.session.commit()
     return event.to_dict()
 
-@event_routes.route('/<event_id>', method=['DELETE'])
+@event_routes.route('/<event_id>', methods=['DELETE'])
 def delete_events(event_id):
     event = Events.query.get(event_id)
 
