@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { addEventThunk } from "../../store/event";
 import { getVenueThunk } from "../../store/venue";
 
-
+// set error check for capacity less than 1, dates that are in the past
 const CreateEvent = () =>{
     const dispatch = useDispatch();
     const history = useHistory();
@@ -127,6 +127,7 @@ const CreateEvent = () =>{
                             type="number"
                             value = {eventCapacity ? eventCapacity:''}
                             onChange={e => setEventCapacity(e.target.value)}
+                            min={1}
                         />
                     </div>
                     <div>
