@@ -44,6 +44,7 @@ export const getEventThunk = () => async dispatch =>{
         return {...allEvents}
     }
 
+
     return 'something went wrong in backend'
 }
 
