@@ -21,7 +21,7 @@ const SplashPage = () =>{
             <div className='banner-div'>
                 <h1>Events and frontpage image will appear here</h1>
                 <div>
-                    <img className='banner-img' src='https://i.ytimg.com/vi/Ah7285f_byI/maxresdefault.jpg' alt='https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/lake-michigan-moonrise-steve-gadomski.jpg'/>
+                    <img className='banner-img' src='https://i.pinimg.com/originals/8c/31/0d/8c310d583f66f16a80331c008068ecd6.jpg'/>
                 </div>
             </div>
             <div>
