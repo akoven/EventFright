@@ -11,7 +11,7 @@ const SplashPage = () =>{
     const currentUser = useSelector(state => state.session.user)
     const allEvents = useSelector(state => Object.values(state.event))
     const allVenues = useSelector(state => Object.values(state.venue))
-    const allCategories = useSelector(state => Object.values(state.category))
+    // const allCategories = useSelector(state => Object.values(state.category))
     // const selectedVenue  = allVenues.filter(venue => venue.id + 1 === event.venue_id)
 
     useEffect(() =>{
@@ -27,8 +27,8 @@ const SplashPage = () =>{
     //     dispatch(getCategoryThunk())
     // }, [dispatch])
 
-    // console.log('ALL EVENTS: ',allEvents)
-    // console.log('ALL VENUES: ',allVenues)
+    console.log('ALL EVENTS: ',allEvents)
+    console.log('ALL VENUES: ',allVenues)
     const selectedVenue = [];
     return(
         <div className='main'>
@@ -40,7 +40,7 @@ const SplashPage = () =>{
             </div>
             <div>
                 <h3>Check out these categories</h3>
-                {allCategories.map(category =><div>{category.type}</div>)}
+                {/* {allCategories.map(category =><div>{category.type}</div>)} */}
                 <h3>Local Events</h3>
                 {allEvents.map(event => <div>
                     <img src={event.event_image}/>

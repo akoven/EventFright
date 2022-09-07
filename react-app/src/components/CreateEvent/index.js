@@ -20,9 +20,9 @@ const CreateEvent = () =>{
         dispatch(getVenueThunk());
     }, [dispatch]);
 
-    // useEffect(() =>{
-    //     dispatch(getCategoryThunk());
-    // }, [dispatch])
+    useEffect(() =>{
+        dispatch(getCategoryThunk());
+    }, [dispatch])
 
     const [eventImg,setUserImg] = useState('')
     // const [host, setHost] = useState()
@@ -36,8 +36,8 @@ const CreateEvent = () =>{
     const [eventCapacity,setEventCapacity] = useState('')
 
     // console.log('current user: ',currentUser.id)
-    // console.log('CATEGORIES: ',category)
-    // console.log('LOCATIONS: ', locations)
+    console.log('CATEGORIES: ',categories)
+    console.log('LOCATIONS: ', venues)
 
 
     const handleSubmit= async e =>{
