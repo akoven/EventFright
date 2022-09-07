@@ -13,6 +13,7 @@ def all_events():
         events = [event.to_dict() for event in all_events]
         print('*********************EVENTS FROM API BACKEND*********************************',events)
         response = {'events':events}
+        print('************************RESPONSE****************** ', response)
         return response
     else:
         return '403: Unauthorized User'

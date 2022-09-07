@@ -38,6 +38,9 @@ const CreateEvent = () =>{
     // console.log('current user: ',currentUser.id)
     console.log('CATEGORIES: ',categories)
     console.log('LOCATIONS: ', venues)
+    console.log('EVENT VENUE: ', eventVenue)
+    console.log('EVENT CATEGORY: ', eventCategory)
+
 
 
     const handleSubmit= async e =>{
@@ -110,7 +113,7 @@ const CreateEvent = () =>{
                     </div> */}
                     <div>
                         <label>Category</label>
-                        <select onChange={e => setSelectCategory(e.target.value)}>
+                        <select onChange={e => setEventCategory(e.target.value)}>
                             <option disabled>select a category</option>
                             {categories.map(category => <option value={eventCategory}>{category.type}</option>)}
                         </select>

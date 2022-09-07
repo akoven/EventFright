@@ -39,9 +39,9 @@ export const getEventThunk = () => async dispatch =>{
         const event = await response.json();
         console.log('******************************EVENT************************',event)
         dispatch(getAllEvents(event));
-        const allEvents = {};
-        event.events.forEach((event) => (allEvents[event.id] = event))
-        return {...allEvents}
+        // const allEvents = {};
+        // event.events.forEach((event) => (allEvents[event.id] = event))
+        // return {...allEvents}
     }
 
 
