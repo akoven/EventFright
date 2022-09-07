@@ -1,6 +1,6 @@
 const GET_ALL_CATEGORIES = 'venues/get_all_categories'
 const ADD_CATEGORY = 'venues/add_category'
-const UPDATE_CATEGORY = 'venues/update_category'
+// const UPDATE_CATEGORY = 'venues/update_category'
 const DELETE_CATEGORY = 'venues/delete_category'
 
 const getAllCategories = (category) =>{

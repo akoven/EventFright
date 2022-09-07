@@ -6,24 +6,30 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useHistory } from "react-router-dom";
 import { addEventThunk } from "../../store/event";
 import { getVenueThunk } from "../../store/venue";
+import { getCategoryThunk } from "../../store/category";
 
 // set error check for capacity less than 1, dates that are in the past
 const CreateEvent = () =>{
     const dispatch = useDispatch();
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
-    // const category = useSelector(state => state.categories);
-    const locations = useSelector(state => Object.values(state.venue));
+    const categories = useSelector(state => Object.values(state.category));
+    const venues = useSelector(state => Object.values(state.venue));
 
     useEffect(() =>{
         dispatch(getVenueThunk());
     }, [dispatch]);
 
+    // useEffect(() =>{
+    //     dispatch(getCategoryThunk());
+    // }, [dispatch])
+
     const [eventImg,setUserImg] = useState('')
     // const [host, setHost] = useState()
-    const [eventName,setEventName] = useState('')
     const [selectCategory, setSelectCategory] = useState('')
-    const [eventLocation, setEventLocation] = useState('')
+    const [eventName, setEventName] = useState('')
+    const [eventVenue, setEventVenue] = useState('')
+    const [eventCategory, setEventCategory] = useState('')
     const [eventDescription,setEventDescription] = useState('')
     const [eventImage, setEventImage] = useState('')
     const [eventDate,setEventDate] = useState(new Date())
@@ -38,8 +44,8 @@ const CreateEvent = () =>{
         e.preventDefault();
         const payload = {
             host_id: currentUser.id,
-            eventLocation,
-            selectCategory,
+            venue_id: eventVenue.id,
+            category_id: eventCategory.id,
             eventName,
             eventDescription,
             eventImage,
@@ -63,7 +69,7 @@ const CreateEvent = () =>{
             <div>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label>Event Title</label>
+                        <label>Event Name</label>
                         <input
                             type="string"
                             placeholder="Be clear and descriptive."
@@ -105,20 +111,16 @@ const CreateEvent = () =>{
                     <div>
                         <label>Category</label>
                         <select onChange={e => setSelectCategory(e.target.value)}>
-                            <option value="Entertainment">Flim, Media, and Entertainment</option>
-                            <option value="Outdoors">Outdoors</option>
-                            <option value="Dining">Dining</option>
+                            <option disabled>select a category</option>
+                            {categories.map(category => <option value={eventCategory}>{category.type}</option>)}
                         </select>
                     </div>
                     <div>
-                        <label>Location</label>
-                        <select onChange={e => setEventLocation(e.target.value)}>
-                            {/* <option value="Old Prison">Eastern State Penitentiary</option>
-                            <option value="Smyer">Smyer</option>
-                            <option value="Hotel">Hart House Hotel</option> */}
+                        <label>Venue</label>
+                        <select onChange={e => setEventVenue(e.target.value)}>
                             <option disabled>select a venue</option>
-                            {locations.map(location =>
-                                <option value={eventLocation}>{location.name}</option>
+                            {venues.map(location =>
+                                <option value={eventVenue}>{location.name}</option>
                             )}
                         </select>
                     </div>

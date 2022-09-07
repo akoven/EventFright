@@ -1,8 +1,8 @@
-"""changing timezone back to false
+"""empty message
 
-Revision ID: 2e97abe3b3f2
+Revision ID: 3cf7d584e2fb
 Revises: 
-Create Date: 2022-09-02 15:46:37.959417
+Create Date: 2022-09-06 18:28:37.834725
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2e97abe3b3f2'
+revision = '3cf7d584e2fb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,7 +33,7 @@ def upgrade():
     sa.Column('address', sa.String(), nullable=False),
     sa.Column('city', sa.String(), nullable=True),
     sa.Column('state', sa.String(), nullable=False),
-    sa.Column('zip_code', sa.Integer(), nullable=False),
+    sa.Column('zip_code', sa.String(), nullable=False),
     sa.Column('latitude', sa.Float(), nullable=True),
     sa.Column('longitude', sa.Float(), nullable=True),
     sa.PrimaryKeyConstraint('id')
@@ -47,7 +47,7 @@ def upgrade():
     )
     op.create_table('events',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('host_id', sa.Integer(), nullable=True),
+    sa.Column('host_id', sa.Integer(), nullable=False),
     sa.Column('venue_id', sa.Integer(), nullable=True),
     sa.Column('category_id', sa.Integer(), nullable=True),
     sa.Column('event_name', sa.String(length=50), nullable=False),
