@@ -3,19 +3,33 @@ import './index.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getEventThunk } from '../../store/event';
-
+// import { getCategoryThunk } from '../../store/category';
+import { getVenueThunk } from '../../store/venue';
 const SplashPage = () =>{
 
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user)
     const allEvents = useSelector(state => Object.values(state.event))
+    const allVenues = useSelector(state => Object.values(state.venue))
     const allCategories = useSelector(state => Object.values(state.category))
+    // const selectedVenue  = allVenues.filter(venue => venue.id + 1 === event.venue_id)
+
     useEffect(() =>{
         dispatch(getEventThunk())
+
     }, [dispatch])
 
-    console.log('ALL EVENTS: ',allEvents)
+    useEffect(() =>{
+        dispatch(getVenueThunk())
+    }, [dispatch])
 
+    // useEffect(() => {
+    //     dispatch(getCategoryThunk())
+    // }, [dispatch])
+
+    // console.log('ALL EVENTS: ',allEvents)
+    // console.log('ALL VENUES: ',allVenues)
+    const selectedVenue = [];
     return(
         <div className='main'>
             <div className='banner-div'>
@@ -34,12 +48,13 @@ const SplashPage = () =>{
                     <p>{event.description}</p>
                     <p>Date and Time: {event.date}</p>
                     <p>Capacity: {event.capacity}</p>
+                    <p>{event.venue_id}</p>
                 </div>)}
-
             </div>
 
         </div>
     )
 }
 
+{/* {allVenues.filter(venue => venue.id + 1 === event.venue_id ? <div>{venue.name}</div>:'')} */}
 export default SplashPage;

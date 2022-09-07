@@ -7,7 +7,7 @@ class Tickets(db.Model):
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    event = db.relationship('Events', back_populates='tickets')
+    events = db.relationship('Events', back_populates='tickets')
 
 
     def to_dict(self):

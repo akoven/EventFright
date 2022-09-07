@@ -16,13 +16,15 @@ class Events(db.Model):
     user = db.relationship('User', back_populates='events')
     venue = db.relationship('Venues', back_populates='events')
     category = db.relationship('Categories', back_populates='events')
-    tickets = db.relationship('Tickets', back_populates='event')
+    tickets = db.relationship('Tickets', back_populates='events')
 
     def to_dict(self):
         return{
             'id':self.id,
             'event_name':self.event_name,
             'description':self.description,
+            'venue':self.venue,
+            'category':self.category,
             'event_image':self.event_image,
             'date':self.date,
             'capacity':self.capacity,

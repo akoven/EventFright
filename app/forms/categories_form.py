@@ -3,5 +3,5 @@ from wtforms.validators import DataRequired
 from wtforms import SelectField, IntegerField
 
 class CategoryForm(FlaskForm):
-    user_id = IntegerField("user_id", validators=[DataRequired()])
+    user_id = IntegerField("user_id")
     type = SelectField("type", validators=[DataRequired()])
