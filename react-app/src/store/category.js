@@ -36,7 +36,7 @@ export const getCategoryThunk = () => async dispatch =>{
 
     if (response.ok){
         const category = await response.json();
-        dispatch(getAllCategories(category));
+        dispatch(getAllCategories(category.categories));
         const allCategories = {};
         category.categories.forEach(category => (allCategories[category.id ] = category));
         return {...allCategories};

@@ -20,36 +20,36 @@ def all_events():
 @event_routes.route('/',methods=['POST'])
 def add_events():
     new_event = EventForm()
-    new_event['csrf_token'].data = request.get_json()
-    new_event['csrf_token'].data['csrf_token'] = request.cookies['csrf_token']
-    # new_event['csrf_token'].data = request.cookies['csrf_token']
+    # new_event.data = request.get_json()
+    # new_event['csrf_token'].data['csrf_token'] = request.cookies['csrf_token']
+    new_event['csrf_token'].data = request.cookies['csrf_token']
 
 
     print('**********************************',new_event['csrf_token'].data)
 
-    # host_id = new_event.data['host_id']
-    # venue = new_event.data['venue']
-    # category = new_event.data['category']
-    # event_name = new_event.data['event_name']
-    # description = new_event.data['description']
-    # event_image = new_event.data['event_image']
-    # date = new_event.data['date']
-    # capacity = new_event.data['capacity']
+    host_id = new_event.data['host_id']
+    venue_id = new_event.data['venue_id']
+    category_id = new_event.data['category_id']
+    event_name = new_event.data['event_name']
+    description = new_event.data['description']
+    event_image = new_event.data['event_image']
+    date = new_event.data['date']
+    capacity = new_event.data['capacity']
 
 
     # print('REQUEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', new_event.data)
 
     if new_event.validate_on_submit():
-        data = new_event.data
+        # data = new_event.data
         event=Events(
-            host_id = data['host_id'],
-            venue_id = data['venue_id'],
-            category_id = data['category_id'],
-            event_name = data['event_name'],
-            description = data['description'],
-            event_image = data['event_image'],
-            date = data['date'],
-            capacity = data['capacity']
+            host_id = host_id,
+            venue_id = venue_id,
+            category_id = category_id,
+            event_name = event_name,
+            description = description,
+            event_image = event_image,
+            date = date,
+            capacity = capacity
 
         )
         print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')

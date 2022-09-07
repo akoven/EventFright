@@ -2,8 +2,8 @@
     background-color: white;
     border: none;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 .title{
