@@ -2,6 +2,8 @@ from flask import Blueprint, request
 from app.models import Events, db
 from app.forms import EventForm
 from flask_login import current_user
+from app.api.auth_routes import validation_errors_to_error_messages
+
 
 event_routes = Blueprint("event_routes", __name__)
 
@@ -13,6 +15,7 @@ def all_events():
         events = [event.to_dict() for event in all_events]
         print('*********************EVENTS FROM API BACKEND*********************************',events)
         response = {'events':events}
+        print('************************RESPONSE****************** ', response)
         return response
     else:
         return '403: Unauthorized User'
@@ -25,7 +28,7 @@ def add_events():
     new_event['csrf_token'].data = request.cookies['csrf_token']
 
 
-    print('**********************************',new_event['csrf_token'].data)
+    # print('**********************************',new_event['csrf_token'].data)
 
     host_id = new_event.data['host_id']
     venue_id = new_event.data['venue_id']
@@ -34,6 +37,7 @@ def add_events():
     description = new_event.data['description']
     event_image = new_event.data['event_image']
     date = new_event.data['date']
+    print('!!!!!!!!!!!!!!!!!!!!!!NEW EVENT FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', new_event.data)
     capacity = new_event.data['capacity']
 
 
@@ -52,13 +56,15 @@ def add_events():
             capacity = capacity
 
         )
-        print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
+        # print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
         db.session.add(event)
         db.session.commit()
         return event.to_dict()
     else:
-        print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
-        return {'errors':['something went wrong']}
+        # print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
+        print('********************************VALIDATION ERRORS*********************',validation_errors_to_error_messages(new_event.errors))
+        return {'errors': validation_errors_to_error_messages(new_event.errors)}, 401
+
 
 @event_routes.route('/<event_id>', methods=['PUT'])
 def edit_event(event_id):

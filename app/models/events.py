@@ -10,7 +10,7 @@ class Events(db.Model):
     event_name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(2000), nullable=False)
     event_image = db.Column(db.String, nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.String, nullable=False)
     capacity = db.Column(db.Integer)
 
     user = db.relationship('User', back_populates='events')
@@ -23,8 +23,8 @@ class Events(db.Model):
             'id':self.id,
             'event_name':self.event_name,
             'description':self.description,
-            'venue':self.venue,
-            'category':self.category,
+            'venue':self.venue.to_dict(),
+            'category':self.category.to_dict(),
             'event_image':self.event_image,
             'date':self.date,
             'capacity':self.capacity,

@@ -14,5 +14,5 @@ class Categories(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'type': self.type,
-            'events': [event.to_dict() for event in self.events]
+            # 'events': [event.to_dict() for event in self.events]
         }
