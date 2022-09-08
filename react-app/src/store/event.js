@@ -49,6 +49,7 @@ export const getEventThunk = () => async dispatch =>{
 }
 
 export const addEventThunk = (event) => async dispatch =>{
+    console.log('EVENT FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',event)
     const response = await fetch (`/api/events/`, {
         method:'POST',
         headers:{
@@ -56,7 +57,7 @@ export const addEventThunk = (event) => async dispatch =>{
         },
         body: JSON.stringify(event)
     });
-
+    console.log('RESPONSE FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
 
     if (response.ok){
         console.log('!!!!!!!!!!!!!!!!!!!!!!!JSON event !!!!!!!!!!!!!!!!!!!!!!!!',JSON.stringify(event))

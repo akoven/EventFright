@@ -1,7 +1,7 @@
 import { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import React from "react";
-import DatePicker from 'react-datepicker';
+import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import { useHistory } from "react-router-dom";
 import { addEventThunk } from "../../store/event";
@@ -36,10 +36,10 @@ const CreateEvent = () =>{
     const [eventCapacity,setEventCapacity] = useState('')
 
     // console.log('current user: ',currentUser.id)
-    console.log('CATEGORIES: ',categories)
-    console.log('LOCATIONS: ', venues)
-    console.log('EVENT VENUE: ', eventVenue)
-    console.log('EVENT CATEGORY: ', eventCategory)
+    // console.log('CATEGORIES: ',categories)
+    // console.log('LOCATIONS: ', venues)
+    // console.log('EVENT VENUE: ', eventVenue)
+    // console.log('EVENT CATEGORY: ', eventCategory)
 
 
 
@@ -47,16 +47,17 @@ const CreateEvent = () =>{
         e.preventDefault();
         const payload = {
             host_id: currentUser.id,
-            venue_id: eventVenue.id,
-            category_id: eventCategory.id,
-            eventName,
-            eventDescription,
-            eventImage,
-            eventDate,
-            eventCapacity
+            venue_id: +eventVenue,
+            category_id: +eventCategory,
+            event_name: eventName,
+            description: eventDescription,
+            event_image: eventImage,
+            date: `${eventDate}`,
+            capacity: +eventCapacity
         }
 
         console.log('payload being passed to add event thunk ',payload)
+        console.log('selected date ', new Date(eventDate))
         const newEvent = await dispatch(addEventThunk(payload))
         if(newEvent){
             history.push('/')
@@ -115,7 +116,7 @@ const CreateEvent = () =>{
                         <label>Category</label>
                         <select onChange={e => setEventCategory(e.target.value)}>
                             <option disabled>select a category</option>
-                            {categories.map(category => <option value={eventCategory}>{category.type}</option>)}
+                            {categories.map(category => <option value={category.id}>{category.type}</option>)}
                         </select>
                     </div>
                     <div>
@@ -123,7 +124,7 @@ const CreateEvent = () =>{
                         <select onChange={e => setEventVenue(e.target.value)}>
                             <option disabled>select a venue</option>
                             {venues.map(location =>
-                                <option value={eventVenue}>{location.name}</option>
+                                <option value={location.id}>{location.name}</option>
                             )}
                         </select>
                     </div>
