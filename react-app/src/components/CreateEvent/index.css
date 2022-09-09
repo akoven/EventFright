@@ -1,0 +1,35 @@
+.user-events{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.form-field{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.form-body{
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+
+.event-name,.event-img,.description,.category,.venue,.capacity,.date,.submit-cancel{
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.submit-cancel{
+    padding-bottom: 20px;
+}
+
+.submit-btn{
+    padding-right: 20px;
+}

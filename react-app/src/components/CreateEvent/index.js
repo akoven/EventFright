@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import { addEventThunk } from "../../store/event";
 import { getVenueThunk } from "../../store/venue";
 import { getCategoryThunk } from "../../store/category";
+import './index.css';
 
 // set error check for capacity less than 1, dates that are in the past
 const CreateEvent = () =>{
@@ -56,8 +57,8 @@ const CreateEvent = () =>{
             capacity: +eventCapacity
         }
 
-        console.log('payload being passed to add event thunk ',payload)
-        console.log('selected date ', new Date(eventDate))
+        // console.log('payload being passed to add event thunk ',payload)
+        // console.log('selected date ', new Date(eventDate))
         const newEvent = await dispatch(addEventThunk(payload))
         if(newEvent){
             history.push('/')
@@ -69,10 +70,11 @@ const CreateEvent = () =>{
             <header>
                 <span><button onClick={() => history.push('/create-category')}>Create a new category</button></span>
                 <span><button onClick={() => history.push('/create-venue')}>Create a new venue</button></span>
+                <span className="user-events"><button>See your events</button></span>
             </header>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <div>
+            <div className="form-field">
+                <form onSubmit={handleSubmit} className="form-body">
+                    <div className="event-name">
                         <label>Event Name</label>
                         <input
                             type="string"
@@ -82,7 +84,7 @@ const CreateEvent = () =>{
                             required
                             />
                     </div>
-                    <div>
+                    <div className="event-img">
                         <label>Event Image</label>
                         <input
                             type="string"
@@ -92,7 +94,7 @@ const CreateEvent = () =>{
                             required
                         />
                     </div>
-                    <div>
+                    <div className="description">
                         <label>Description</label>
                         <textarea
                             type = "text"
@@ -112,14 +114,14 @@ const CreateEvent = () =>{
                             required
                             />
                     </div> */}
-                    <div>
+                    <div className="category">
                         <label>Category</label>
                         <select onChange={e => setEventCategory(e.target.value)}>
                             <option disabled>select a category</option>
                             {categories.map(category => <option value={category.id}>{category.type}</option>)}
                         </select>
                     </div>
-                    <div>
+                    <div className="venue">
                         <label>Venue</label>
                         <select onChange={e => setEventVenue(e.target.value)}>
                             <option disabled>select a venue</option>
@@ -128,7 +130,7 @@ const CreateEvent = () =>{
                             )}
                         </select>
                     </div>
-                    <div>
+                    <div className="capacity">
                         <label>Capacity</label>
                         <input
                             type="number"
@@ -137,14 +139,18 @@ const CreateEvent = () =>{
                             min={1}
                         />
                     </div>
-                    <div>
+                    <div className="date">
                         <label>Date and Time</label>
                         <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="HH:mm:ss" timeIntervals={15} dateFormat="yyyy-MM-dd"/>
                     </div>
-                    <span>
-                        <button type="submit">Submit</button>
-                        <button onClick={() => history.push('/')}>Cancel</button>
-                    </span>
+                    <div className="submit-cancel">
+                        <span className="submit-btn">
+                            <button type="submit">Submit</button>
+                        </span>
+                        <span className="cancel-btn">
+                            <button onClick={() => history.push('/')}>Cancel</button>
+                        </span>
+                    </div>
                 </form>
             </div>
         </div>

@@ -47,10 +47,13 @@ const NavBar = () => {
               <button className='userBtn'>
                 <i class="fa-solid fa-user" /> {currentUser.email}
               </button>
-            </div>
               <NavLink className='createEvent' to={'/create-event'}>
-              <i class="fa-regular fa-plus" /> Create an event
+                <i class="fa-regular fa-plus" /> Create an event
               </NavLink>
+              <NavLink className='tickets' to={'/tickets'}>
+              <i class="fa-solid fa-ticket" />Get Tickets
+              </NavLink>
+            </div>
           </div>
 
       </header>
