@@ -1,9 +1,11 @@
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+// import LogoutButton from './auth/LogoutButton';
+import { logout } from '../store/session';
 import './NavBar.css'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const NavBar = () => {
   // return (
@@ -37,6 +39,29 @@ const NavBar = () => {
   // );
 
   const currentUser = useSelector(state => state.session.user)
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const [openMenu, setOpenMenu] = useState(false)
+
+  const userMenu = () =>{
+    if(openMenu)return;
+    setOpenMenu(true)
+  }
+
+  useEffect(() =>{
+    if(!openMenu) return;
+    const closeMenu = () =>{
+      setOpenMenu(false)
+    }
+    document.addEventListener('click', closeMenu);
+    return () => document.removeEventListener('click', closeMenu);
+  }, [openMenu]);
+
+  const logoutAction = e =>{
+    e.preventDefault();
+    dispatch(logout());
+    history.push('/login');
+  }
 
   return(
     <div>
@@ -44,13 +69,30 @@ const NavBar = () => {
           <div className='title'>
             <h1>Event Fright</h1>
             <div className='test-btn'>
-              <button className='userBtn'>
+              <button className='userBtn' onClick={userMenu}>
                 <i class="fa-solid fa-user" /> {currentUser.email}
               </button>
-            </div>
+              {
+               openMenu && (
+                <ul className='logoutDiv'>
+                  <li>
+                    <button onClick={logoutAction} className='logoutBtn'>
+                      Log out
+                    </button>
+                  </li>
+                  <li>
+                    <button className='userEventsBtn'>Check out your events</button>
+                  </li>
+                </ul>
+                )
+              }
               <NavLink className='createEvent' to={'/create-event'}>
-              <i class="fa-regular fa-plus" /> Create an event
+                <i class="fa-regular fa-plus" /> Create an event
               </NavLink>
+              <NavLink className='tickets' to={'/tickets'}>
+              <i class="fa-solid fa-ticket" />Get Tickets
+              </NavLink>
+            </div>
           </div>
 
       </header>

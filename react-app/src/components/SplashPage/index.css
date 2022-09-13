@@ -3,6 +3,20 @@
     height: 800px;
 }
 
-/* .banner-div{
+.front-pg-category{
+    display: inline-flex;
+    flex-direction: row;
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
 
-} */
+.banner-div > h1{
+    position: absolute;
+    font-size: 50px;
+    padding-left: 50px;
+    padding-top: 100px;
+}

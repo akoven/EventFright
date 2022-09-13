@@ -33,14 +33,15 @@ const SplashPage = () =>{
     return(
         <div className='main'>
             <div className='banner-div'>
-                <h1>Events and frontpage image will appear here</h1>
+                <h1>Browse our events or create your own!</h1>
                 <div>
                     <img className='banner-img' src='https://i.pinimg.com/originals/8c/31/0d/8c310d583f66f16a80331c008068ecd6.jpg'/>
                 </div>
             </div>
             <div>
+
                 <h3>Check out these categories</h3>
-                {/* {allCategories.map(category =><div>{category.type}</div>)} */}
+                {allCategories.map(category =><div className='front-pg-category'>{category.type}</div>)}
                 <h3>Local Events</h3>
                 {allEvents.map(event => <div>
                     <img src={event.event_image}/>
