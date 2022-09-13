@@ -13,3 +13,10 @@
     padding-right: 10px;
     padding-bottom: 20px;
 }
+
+.banner-div > h1{
+    position: absolute;
+    font-size: 50px;
+    padding-left: 50px;
+    padding-top: 100px;
+}
