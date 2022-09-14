@@ -12,7 +12,7 @@ const SplashPage = () =>{
     const allEvents = useSelector(state => Object.values(state.event))
     const allVenues = useSelector(state => Object.values(state.venue))
     const allCategories = useSelector(state => Object.values(state.category))
-    // const selectedVenue  = allVenues.filter(venue => venue.id + 1 === event.venue_id)
+
 
     useEffect(() =>{
         dispatch(getEventThunk())
@@ -28,12 +28,12 @@ const SplashPage = () =>{
     }, [dispatch])
 
     console.log('ALL EVENTS: ',allEvents)
-    // console.log('ALL VENUES: ',allVenues)
-    const selectedVenue = [];
+    console.log('ALL VENUES: ',allVenues)
+
     return(
         <div className='main'>
             <div className='banner-div'>
-                <h1>Browse our events or create your own!</h1>
+                <h1>Browse our events or post your own event!</h1>
                 <div>
                     <img className='banner-img' src='https://i.pinimg.com/originals/8c/31/0d/8c310d583f66f16a80331c008068ecd6.jpg'/>
                 </div>
@@ -43,13 +43,15 @@ const SplashPage = () =>{
                 <h3>Check out these categories</h3>
                 {allCategories.map(category =><div className='front-pg-category'>{category.type}</div>)}
                 <h3>Local Events</h3>
-                {allEvents.map(event => <div>
-                    <img src={event.event_image}/>
+                {allEvents.map(event => <div className='event-card'>
+                    <img className='image-div' src={event.event_image}/>
                     <h3>{event.event_name}</h3>
                     <p>{event.description}</p>
                     <p>Date and Time: {event.date}</p>
                     <p>Capacity: {event.capacity}</p>
-                    <p>{event.venue_id}</p>
+                    <p>Location: {event.venue.name}</p>
+                    <p>Category: {event.category.type}</p>
+
                 </div>)}
             </div>
 
@@ -57,5 +59,5 @@ const SplashPage = () =>{
     )
 }
 
-{/* {allVenues.filter(venue => venue.id + 1 === event.venue_id ? <div>{venue.name}</div>:'')} */}
+{/* {allVenues.filter(venue => venue.id === event.venue_id ? <p>Location: {venue.name}</p>:null)} */}
 export default SplashPage;

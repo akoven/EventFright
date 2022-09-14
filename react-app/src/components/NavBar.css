@@ -1,9 +1,10 @@
  .userBtn{
-    background-color: white;
+    background-color:rgb(104, 5, 104);
     border: none;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    height: 10px ;
 }
 
 h1{
@@ -26,12 +27,14 @@ h1{
 .createEvent{
     text-decoration: none;
     padding-left: 20px;
+    color: black;
 }
 
 .tickets{
     text-decoration: none;
     display: inline-flex;
     padding-left: 20px;
+    color: red;
 
 }
 
@@ -46,13 +49,14 @@ h1{
 
 .logoutDiv{
     position: absolute;
-    border: 1px solid lightgray;
+    border: 1px solid black;
     width: 150px;
     height: 60px;
     margin-top: 20px;
     padding-left: 10px;
     box-shadow: 2px 16px 24px 2px rgba(0, 0, 0, 0.14);
     background-color: white;
+    border-radius: 10%;
 }
 
 .logoutDiv > li{
@@ -63,4 +67,17 @@ h1{
     background-color: white;
     border: none;
     text-align: left;
+}
+
+.logoutBtn:hover{
+    color:red;
+}
+
+.userEventsBtn:hover{
+    color:red;
+
+}
+
+body{
+    background: linear-gradient(190deg,rgb(104, 5, 104),rgb(6, 6, 155),black);
 }
