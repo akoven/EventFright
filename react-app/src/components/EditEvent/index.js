@@ -14,26 +14,35 @@ const EditEvent = () =>{
     const {id} = useParams();
     const currentUser = useSelector(state => state.session.user);
     const selectedEvent = useSelector(state => state.event);
-    // const categories = useSelector(state => Object.values(state.category));
+    const categories = useSelector(state => Object.values(state.category));
     console.log('selectedEvent results: ',selectedEvent[id])
+    const venues = useSelector(state => Object.values(state.venue));
 
     const [eventName, setEventName] = useState(selectedEvent[id].event_name)
     const [eventImage, setEventImage] = useState(selectedEvent[id].event_image)
     const [eventDescription, setEventDescription] = useState(selectedEvent[id].description)
-    // const [eventCategory, setEventCategory] = useState('')
+    const [eventCategory, setEventCategory] = useState('');
+    const [eventVenue, setEventVenue] = useState('');
+    const [eventCapacity, setEventCapacity] = useState(selectedEvent[id].capacity);
+    const [eventDate, setEventDate] = useState(new Date());
 
     const handleSubmit= async e =>{
         e.preventDefault();
-        // const payload = {
-        //     host_id: currentUser.id,
-        //     venue_id: +eventVenue,
-        //     category_id: +eventCategory,
-        //     event_name: eventName,
-        //     description: eventDescription,
-        //     event_image: eventImage,
-        //     date: `${eventDate}`,
-        //     capacity: +eventCapacity
-        // }
+        const payload = {
+            host_id: currentUser.id,
+            venue_id: +eventVenue,
+            category_id: +eventCategory,
+            event_name: eventName,
+            description: eventDescription,
+            event_image: eventImage,
+            date: `${eventDate}`,
+            capacity: +eventCapacity
+        }
+
+        const editedEvent = await dispatch(editEventThunk(payload, selectedEvent[id].id));
+        if(editedEvent){
+            history.push(`/events/${currentUser.id}`)
+        }
     }
 
     return(
@@ -75,14 +84,14 @@ const EditEvent = () =>{
                             required
                         />
                     </div>
-                    {/* <div className="category">
+                    <div className="category">
                         <label>Category</label>
                         <select onChange={e => setEventCategory(e.target.value)}>
                             <option disabled>select a category</option>
                             {categories.map(category => <option value={category.id}>{category.type}</option>)}
                         </select>
-                    </div> */}
-                    {/* <div className="venue">
+                    </div>
+                    <div className="venue">
                         <label>Venue</label>
                         <select onChange={e => setEventVenue(e.target.value)}>
                             <option disabled>select a venue</option>
@@ -90,8 +99,8 @@ const EditEvent = () =>{
                                 <option value={location.id}>{location.name}</option>
                             )}
                         </select>
-                    </div> */}
-                    {/* <div className="capacity">
+                    </div>
+                    <div className="capacity">
                         <label>Capacity</label>
                         <input
                             type="number"
@@ -99,17 +108,17 @@ const EditEvent = () =>{
                             onChange={e => setEventCapacity(e.target.value)}
                             min={1}
                         />
-                    </div> */}
-                    {/* <div className="date">
+                    </div>
+                    <div className="date">
                         <label>Date and Time</label>
                         <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="HH:mm:ss" timeIntervals={15} dateFormat="yyyy-MM-dd"/>
-                    </div> */}
+                    </div>
                     <div className="submit-cancel">
                         <span className="submit-btn">
                             <button type="submit">Submit</button>
                         </span>
                         <span className="cancel-btn">
-                            <button onClick={() => history.push(`/events/${id}`)}>Cancel</button>
+                            <button onClick={() => history.push(`/events/${currentUser.id}`)}>Cancel</button>
                         </span>
                     </div>
                 </form>

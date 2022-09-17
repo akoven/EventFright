@@ -75,17 +75,17 @@ def edit_event(event_id):
 
     updated_event = EventForm()
 
-    updated_event['csrf-token'].data = request.cookies['csrf-token']
-    venue = updated_event.data['venue']
-    category = updated_event.data['category']
+    updated_event['csrf_token'].data = request.cookies['csrf_token']
+    venue_id = updated_event.data['venue_id']
+    category_id = updated_event.data['category_id']
     event_name = updated_event.data['event_name']
     description = updated_event.data['description']
     event_image = updated_event.data['event_image']
     date = updated_event.data['date']
     capacity = updated_event.data['capacity']
 
-    event.venue = venue,
-    event.category = category,
+    event.venue_id = venue_id,
+    event.category_id = category_id,
     event.event_name = event_name,
     event.description = description,
     event.event_image = event_image,
