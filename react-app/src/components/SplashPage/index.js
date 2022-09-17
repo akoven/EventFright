@@ -5,12 +5,13 @@ import { useEffect } from 'react';
 import { getEventThunk } from '../../store/event';
 import { getCategoryThunk } from '../../store/category';
 import { getVenueThunk } from '../../store/venue';
+
 const SplashPage = () =>{
 
     const dispatch = useDispatch();
-    const currentUser = useSelector(state => state.session.user)
+    // const currentUser = useSelector(state => state.session.user)
     const allEvents = useSelector(state => Object.values(state.event))
-    const allVenues = useSelector(state => Object.values(state.venue))
+    // const allVenues = useSelector(state => Object.values(state.venue))
     const allCategories = useSelector(state => Object.values(state.category))
 
 
@@ -27,8 +28,8 @@ const SplashPage = () =>{
         dispatch(getCategoryThunk())
     }, [dispatch])
 
-    console.log('ALL EVENTS: ',allEvents)
-    console.log('ALL VENUES: ',allVenues)
+    // console.log('ALL EVENTS: ',allEvents)
+    // console.log('ALL VENUES: ',allVenues)
 
     return(
         <div className='main'>
