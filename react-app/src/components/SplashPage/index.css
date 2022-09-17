@@ -1,5 +1,5 @@
 .banner-img{
-    width: 2160px;
+    width: 1897px;
     height: 800px;
 }
 
@@ -19,4 +19,26 @@
     font-size: 50px;
     padding-left: 50px;
     padding-top: 100px;
+}
+
+h3,p{
+    color: white
+}
+
+.image-div{
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    height: 400px;
+    width: 500px;
+}
+
+.event-card{
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 10px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 30px;
 }

@@ -11,6 +11,8 @@ import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage';
 import CreateEvent from './components/CreateEvent';
 import VenuePage from './components/VenuePage';
+import UserEvents from './components/UserEvents';
+import EditEvent from './components/EditEvent';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -51,6 +53,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/create-venue' exact={true} >
           <VenuePage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/events/:id' exact={true} >
+          <UserEvents />
+        </ProtectedRoute>
+        <ProtectedRoute path='/edit-event/:id' exact={true} >
+          <EditEvent />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

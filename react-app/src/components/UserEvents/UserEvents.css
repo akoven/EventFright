@@ -1,0 +1,21 @@
+.image-div{
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    height: 400px;
+    width: 500px;
+}
+
+.event-card{
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 10px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.user-event-header{
+    color: white;
+}

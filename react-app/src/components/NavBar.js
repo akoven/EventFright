@@ -81,7 +81,7 @@ const NavBar = () => {
                     </button>
                   </li>
                   <li>
-                    <button className='userEventsBtn'>Check out your events</button>
+                    <NavLink className='userEventsBtn' to={`/events/${currentUser.id}`}>Check out your events</NavLink>
                   </li>
                 </ul>
                 )
@@ -89,6 +89,7 @@ const NavBar = () => {
               <NavLink className='createEvent' to={'/create-event'}>
                 <i class="fa-regular fa-plus" /> Create an event
               </NavLink>
+
               <NavLink className='tickets' to={'/tickets'}>
               <i class="fa-solid fa-ticket" />Get Tickets
               </NavLink>
