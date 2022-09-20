@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { getEventThunk } from '../../store/event';
@@ -35,8 +35,13 @@ const UserEvents = () =>{
         history.push(`/edit-event/${id}`)
     }
 
+    const handleDelete = async (id) =>{
+       await dispatch(removeEventThunk(id))
+    }
+
     return(
         <div>
+            <header><NavLink to='/'>Event Fright</NavLink></header>
             <h1 className='user-event-header'>Events</h1>
             <div>
                 {selectedEvents.map(event => <div className='event-card'>
@@ -49,7 +54,7 @@ const UserEvents = () =>{
                     <p>Category: {event.category.type}</p>
                     <span>
                         <button className='edit-event' onClick={() => handleEdit(event.id)}>Edit</button>
-                        <button className='delete-event' onClick={() => dispatch(removeEventThunk(event))}>Delete</button>
+                        <button className='delete-event' onClick={() => handleDelete(event.id)}>Delete</button>
                     </span>
                 </div>)}
             </div>

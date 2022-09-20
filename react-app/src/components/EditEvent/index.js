@@ -15,14 +15,24 @@ const EditEvent = () =>{
     const currentUser = useSelector(state => state.session.user);
     const selectedEvent = useSelector(state => state.event);
     const categories = useSelector(state => Object.values(state.category));
-    console.log('selectedEvent results: ',selectedEvent[id])
+    // console.log('selectedEvent results: ',selectedEvent[id])
     const venues = useSelector(state => Object.values(state.venue));
+    // console.log('categories: ', categories);
+    // console.log('venues: ', venues);
+    console.log(typeof(currentUser.id));
+    useEffect(() =>{
+        dispatch(getVenueThunk());
+    }, [dispatch]);
+
+    useEffect(() =>{
+        dispatch(getCategoryThunk());
+    }, [dispatch])
 
     const [eventName, setEventName] = useState(selectedEvent[id].event_name)
     const [eventImage, setEventImage] = useState(selectedEvent[id].event_image)
     const [eventDescription, setEventDescription] = useState(selectedEvent[id].description)
-    const [eventCategory, setEventCategory] = useState('');
-    const [eventVenue, setEventVenue] = useState('');
+    const [eventCategory, setEventCategory] = useState(categories[0].id);
+    const [eventVenue, setEventVenue] = useState(venues[0].id);
     const [eventCapacity, setEventCapacity] = useState(selectedEvent[id].capacity);
     const [eventDate, setEventDate] = useState(new Date());
 
@@ -38,8 +48,11 @@ const EditEvent = () =>{
             date: `${eventDate}`,
             capacity: +eventCapacity
         }
+        // console.log('payload being passed to thunk: ',payload)
+        // console.log(typeof(+eventCapacity))
+        // console.log(typeof(currentUser.id))
 
-        const editedEvent = await dispatch(editEventThunk(payload, selectedEvent[id].id));
+        const editedEvent = await dispatch(editEventThunk(payload, +id));
         if(editedEvent){
             history.push(`/events/${currentUser.id}`)
         }
@@ -50,7 +63,7 @@ const EditEvent = () =>{
             <header>
                 <span><button onClick={() => history.push('/create-category')}>Create a new category</button></span>
                 <span><button onClick={() => history.push('/create-venue')}>Create a new venue</button></span>
-                <span className="user-events"><button onClick={() => history.push(`/events/${id}`)}>See your events</button></span>
+                <span className="user-events"><button onClick={() => history.push(`/events/${currentUser.id}`)}>See your events</button></span>
             </header>
             <div className="form-field">
                 <form onSubmit={handleSubmit} className="form-body">

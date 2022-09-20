@@ -11,6 +11,7 @@ const VenuePage = () =>{
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user)
     const allVenues = useSelector(state => Object.values(state.venue))
+    const states = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WV','WI','WY']
 
     const regex = /^\d{5}$/;
 
@@ -21,7 +22,8 @@ const VenuePage = () =>{
 
     const [venueName, setVenueName] = useState('')
     const [venueAddress, setVenueAdress] = useState('')
-    const [state, setState] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState(states[0])
     const [zipCode, setZipCode] = useState('')
     const [latitude, setLatitude] = useState(0.0000)
     const [longitude, setLongitude] = useState(0.0000)
@@ -29,12 +31,13 @@ const VenuePage = () =>{
     const handleSubmit = async e =>{
         e.preventDefault();
         const payload = {
-            venueName,
-            venueAddress,
-            state,
-            zipCode,
-            latitude,
-            longitude
+            name: venueName,
+            address: venueAddress,
+            city: city,
+            state: state,
+            zip_code: zipCode,
+            latitude: latitude,
+            longitude: longitude
         }
         console.log('payload being passed to add venue thunk ',payload)
         const newVenue = await dispatch(addVenueThunk(payload))
@@ -54,7 +57,8 @@ const VenuePage = () =>{
                     type="string"
                     value={venueName ? venueName:''}
                     onChange={e => setVenueName(e.target.value)}
-                    required/>
+                    required
+                    placeholder="required"/>
                 </div>
                 <div>
                     <label>Venue Address</label>
@@ -62,16 +66,24 @@ const VenuePage = () =>{
                         type="string"
                         value={venueAddress ? venueAddress:''}
                         onChange={e => setVenueAdress(e.target.value)}
-                        required/>
+                        required
+                        placeholder="required"/>
+                </div>
+                <div>
+                    <label>City</label>
+                    <input
+                        type="string"
+                        value={city ? city: ''}
+                        onChange={e => setCity(e.target.value)}
+                        required
+                        />
                 </div>
                 <div>
                     <label>State</label>
-                    <input
-                        type="string"
-                        value={state ? state:''}
-                        onChange ={e => setState(e.target.value)}
-                        placeholder='state abbreviation only'
-                        required/>
+                    <select onChange ={e => setState(e.target.value)}>
+                        <option disabled>select a state</option>
+                        {states.map(state => <option value={state}>{state}</option>)}
+                    </select>
                 </div>
                 <div>
                     <label>Zip Code</label>

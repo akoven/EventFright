@@ -1,7 +1,9 @@
 from flask import Blueprint, request
 from app.models import Venues, db
-from app.forms import VenueForm, event_form
+from app.forms import VenueForm
 from flask_login import current_user
+from app.api.auth_routes import validation_errors_to_error_messages
+
 
 venue_routes = Blueprint('venue_routes', __name__)
 
@@ -43,7 +45,8 @@ def add_new_venue():
         db.session.commit()
         return venue.to_dict()
     else:
-        return {'errors':['403: Unauthorized User']}
+        print('********************************VALIDATION ERRORS*********************',validation_errors_to_error_messages(new_venue.errors))
+        return {'errors': validation_errors_to_error_messages(new_venue.errors)}, 401
 
 @venue_routes.route('/<venue_id>', methods=['PUT'])
 def edit_venue(venue_id):

@@ -24,10 +24,10 @@ const updateEvent = (event) =>{
     }
 }
 
-const deleteEvent = (event) =>{
+const deleteEvent = (eventId) =>{
     return{
         type: DELETE_EVENT,
-        event
+        eventId
     }
 }
 
@@ -69,16 +69,17 @@ export const addEventThunk = (event) => async dispatch =>{
     return null;
 }
 
-export const editEventThunk = (event, eventId) => async dispatch =>{
+export const editEventThunk = (payload, eventId) => async dispatch =>{
     const response = await fetch (`/api/events/${eventId}`, {
         method:'PUT',
         headers:{
             'Content-Type':'application/json'
         },
-        body: JSON.stringify(event)
+        body: JSON.stringify(payload)
     });
-
-
+    // console.log('event id ',eventId)
+    // console.log(typeof(eventId)); number type
+    console.log('RESPONSE FROM EDIT EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
     if (response.ok){
         const newEvent = await response.json();
         dispatch(updateEvent(newEvent));
@@ -87,12 +88,14 @@ export const editEventThunk = (event, eventId) => async dispatch =>{
     return null;
 }
 
-export const removeEventThunk = (event) => async dispatch =>{
-    const response = await fetch (`/api/events/${event.id}`, {
+export const removeEventThunk = (eventId) => async dispatch =>{
+    const response = await fetch (`/api/events/${eventId}`, {
         method:'DELETE'});
-        dispatch(deleteEvent(event));
-        return response;
 
+        if (response.ok){
+            dispatch(deleteEvent(eventId));
+        }
+        return null;
 }
 
 const eventReducer = (state = {}, action) =>{
@@ -112,7 +115,7 @@ const eventReducer = (state = {}, action) =>{
             return newState;
         case DELETE_EVENT:
             newState = {...state}
-            delete newState[action.event.id]
+            delete newState[action.eventId]
             return newState
         default:
             return state;
