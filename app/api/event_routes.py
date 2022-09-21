@@ -37,8 +37,8 @@ def add_events():
     description = new_event.data['description']
     event_image = new_event.data['event_image']
     date = new_event.data['date']
-    print('!!!!!!!!!!!!!!!!!!!!!!NEW EVENT FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', new_event.data)
     capacity = new_event.data['capacity']
+    print('!!!!!!!!!!!!!!!!!!!!!!NEW EVENT FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', new_event.data)
 
 
     # print('REQUEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', new_event.data)
@@ -54,7 +54,6 @@ def add_events():
             event_image = event_image,
             date = date,
             capacity = capacity
-
         )
         # print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
         db.session.add(event)
@@ -68,24 +67,31 @@ def add_events():
 
 @event_routes.route('/<event_id>', methods=['PUT'])
 def edit_event(event_id):
-    event = Events.query.get(event_id)
-
+    event = Events.query.get(int(event_id))
+    print('*******************event from backend**************** ', event.event_name)
+    # print(event_id)
     if not event:
         return "Error 404: The event you're looking for couldn't be found"
 
     updated_event = EventForm()
 
-    updated_event['csrf-token'].data = request.cookies['csrf-token']
-    venue = updated_event.data['venue']
-    category = updated_event.data['category']
+    updated_event['csrf_token'].data = request.cookies['csrf_token']
+
+    # if updated_event.validate_on_submit():
+    # print('*********made it to validate on submit*****************')
+
+    host_id = updated_event.data['host_id']
+    venue_id = updated_event.data['venue_id']
+    category_id = updated_event.data['category_id']
     event_name = updated_event.data['event_name']
     description = updated_event.data['description']
     event_image = updated_event.data['event_image']
     date = updated_event.data['date']
     capacity = updated_event.data['capacity']
 
-    event.venue = venue,
-    event.category = category,
+    event.host_id = host_id,
+    event.venue_id = venue_id,
+    event.category_id = category_id,
     event.event_name = event_name,
     event.description = description,
     event.event_image = event_image,
@@ -93,14 +99,22 @@ def edit_event(event_id):
     event.capacity = capacity
 
     db.session.commit()
+    print('*************made it past session.commit***************************')
     return event.to_dict()
+    # else:
+    #     print('********************************VALIDATION ERRORS*********************',validation_errors_to_error_messages(updated_event.errors))
+    #     return {'errors': validation_errors_to_error_messages(updated_event.errors)}, 401
+
 
 @event_routes.route('/<event_id>', methods=['DELETE'])
 def delete_events(event_id):
     event = Events.query.get(event_id)
-
+    print('*****************EVENT ID*********************:', event_id)
+    print('*************************EVENT TO BE DELETED***************************: ', event.event_name)
     if not event:
         return "Error 404: The event you're looking for couldn't be found"
 
     db.session.delete(event)
     db.session.commit()
+
+    return 'event has been deleted'

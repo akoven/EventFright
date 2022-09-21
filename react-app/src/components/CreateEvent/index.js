@@ -4,8 +4,8 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import { useHistory } from "react-router-dom";
 import { addEventThunk } from "../../store/event";
-import { getVenueThunk } from "../../store/venue";
-import { getCategoryThunk } from "../../store/category";
+// import { getVenueThunk } from "../../store/venue";
+// import { getCategoryThunk } from "../../store/category";
 import './index.css';
 
 // set error check for capacity less than 1, dates that are in the past
@@ -16,13 +16,13 @@ const CreateEvent = () =>{
     const categories = useSelector(state => Object.values(state.category));
     const venues = useSelector(state => Object.values(state.venue));
 
-    useEffect(() =>{
-        dispatch(getVenueThunk());
-    }, [dispatch]);
+    // useEffect(() =>{
+    //     dispatch(getVenueThunk());
+    // }, [dispatch]);
 
-    useEffect(() =>{
-        dispatch(getCategoryThunk());
-    }, [dispatch])
+    // useEffect(() =>{
+    //     dispatch(getCategoryThunk());
+    // }, [dispatch])
 
     const [eventImg,setUserImg] = useState('')
     // const [host, setHost] = useState()
