@@ -79,6 +79,7 @@ export const editEventThunk = (payload, eventId) => async dispatch =>{
     });
     // console.log('event id ',eventId)
     // console.log(typeof(eventId)); number type
+    console.log('PAYLOAD FROM EDIT EVENT THUNK: ', payload)
     console.log('RESPONSE FROM EDIT EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
     if (response.ok){
         const newEvent = await response.json();

@@ -19,7 +19,7 @@ const EditEvent = () =>{
     const venues = useSelector(state => Object.values(state.venue));
     // console.log('categories: ', categories);
     // console.log('venues: ', venues);
-    console.log(typeof(currentUser.id));
+    // console.log(typeof(currentUser.id));
     useEffect(() =>{
         dispatch(getVenueThunk());
     }, [dispatch]);
@@ -31,22 +31,31 @@ const EditEvent = () =>{
     const [eventName, setEventName] = useState(selectedEvent[id].event_name)
     const [eventImage, setEventImage] = useState(selectedEvent[id].event_image)
     const [eventDescription, setEventDescription] = useState(selectedEvent[id].description)
-    const [eventCategory, setEventCategory] = useState(categories[0].id);
-    const [eventVenue, setEventVenue] = useState(venues[0].id);
+    const [eventCategory, setEventCategory] = useState(selectedEvent[id].category.type);
+    const [eventVenue, setEventVenue] = useState(selectedEvent[id].venue.name);
     const [eventCapacity, setEventCapacity] = useState(selectedEvent[id].capacity);
     const [eventDate, setEventDate] = useState(new Date());
+
+    const venue_id = +eventVenue
+    const category_id = +eventCategory
+    const event_name = eventName
+    const description = eventDescription
+    const event_image = eventImage
+    const date = `${eventDate}`
+    const capacity = eventCapacity
+
 
     const handleSubmit= async e =>{
         e.preventDefault();
         const payload = {
             host_id: currentUser.id,
-            venue_id: +eventVenue,
-            category_id: +eventCategory,
-            event_name: eventName,
-            description: eventDescription,
-            event_image: eventImage,
-            date: `${eventDate}`,
-            capacity: +eventCapacity
+            venue_id,
+            category_id,
+            event_name,
+            description,
+            event_image,
+            date,
+            capacity
         }
         // console.log('payload being passed to thunk: ',payload)
         // console.log(typeof(+eventCapacity))
@@ -135,6 +144,7 @@ const EditEvent = () =>{
                         </span>
                     </div>
                 </form>
+                <img src={`${eventImage}`} alt='image appears here' className="edit-image" />
             </div>
         </div>
 

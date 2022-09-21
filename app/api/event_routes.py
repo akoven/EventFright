@@ -78,7 +78,7 @@ def edit_event(event_id):
     updated_event['csrf_token'].data = request.cookies['csrf_token']
 
     # if updated_event.validate_on_submit():
-    print('*********made it to validate on submit*****************')
+    # print('*********made it to validate on submit*****************')
 
     host_id = updated_event.data['host_id']
     venue_id = updated_event.data['venue_id']
