@@ -69,7 +69,7 @@ const CreateEvent = () =>{
             <header>
                 <span><button onClick={() => history.push('/create-category')}>Create a new category</button></span>
                 <span><button onClick={() => history.push('/create-venue')}>Create a new venue</button></span>
-                <span className="user-events"><button>See your events</button></span>
+                <span className="user-events"><button onClick={() => history.push(`/events/${currentUser.id}`)}>See your events</button></span>
             </header>
             <div className="form-field">
                 <form onSubmit={handleSubmit} className="form-body">
@@ -116,14 +116,14 @@ const CreateEvent = () =>{
                     <div className="category">
                         <label>Category</label>
                         <select onChange={e => setEventCategory(e.target.value)}>
-                            <option disabled>select a category</option>
+                            <option value='' disabled selected>select a category</option>
                             {categories.map(category => <option value={category.id}>{category.type}</option>)}
                         </select>
                     </div>
                     <div className="venue">
                         <label>Venue</label>
                         <select onChange={e => setEventVenue(e.target.value)}>
-                            <option disabled>select a venue</option>
+                            <option value='' disabled selected>select a venue</option>
                             {venues.map(location =>
                                 <option value={location.id}>{location.name}</option>
                             )}

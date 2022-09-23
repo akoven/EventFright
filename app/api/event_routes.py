@@ -66,10 +66,11 @@ def add_events():
 
 
 @event_routes.route('/<event_id>', methods=['PUT'])
+
 def edit_event(event_id):
-    event = Events.query.get(int(event_id))
+    event = Events.query.get(event_id)
     print('*******************event from backend**************** ', event.event_name)
-    # print(event_id)
+    # print(type(event_id))
     if not event:
         return "Error 404: The event you're looking for couldn't be found"
 
@@ -88,6 +89,10 @@ def edit_event(event_id):
     event_image = updated_event.data['event_image']
     date = updated_event.data['date']
     capacity = updated_event.data['capacity']
+
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!host id datatype!!!!!!!!!!!!!!!!!!!!!! ', type(host_id))
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!venue id datatype!!!!!!!!!!!!!!!!!!!!!! ', type(venue_id))
+
 
     event.host_id = host_id,
     event.venue_id = venue_id,
