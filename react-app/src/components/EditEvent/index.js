@@ -36,6 +36,7 @@ const EditEvent = () =>{
     const [eventCapacity, setEventCapacity] = useState(selectedEvent[id].capacity);
     const [eventDate, setEventDate] = useState(new Date());
 
+    const host_id = currentUser.id
     const venue_id = +eventVenue
     const category_id = +eventCategory
     const event_name = eventName
@@ -48,7 +49,7 @@ const EditEvent = () =>{
     const handleSubmit= async e =>{
         e.preventDefault();
         const payload = {
-            host_id: currentUser.id,
+            host_id,
             venue_id,
             category_id,
             event_name,
@@ -70,8 +71,8 @@ const EditEvent = () =>{
     return(
         <div>
             <header>
-                <span><button onClick={() => history.push('/create-category')}>Create a new category</button></span>
-                <span><button onClick={() => history.push('/create-venue')}>Create a new venue</button></span>
+                <span><button onClick={() => history.push('/categories')}>See categories</button></span>
+                <span><button onClick={() => history.push('/venues')}>See venues</button></span>
                 <span className="user-events"><button onClick={() => history.push(`/events/${currentUser.id}`)}>See your events</button></span>
             </header>
             <div className="form-field">

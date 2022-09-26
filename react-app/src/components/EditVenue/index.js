@@ -1,62 +1,61 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import {useEffect,useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { getVenueThunk } from "../../store/venue";
-import { useHistory } from "react-router-dom";
-import { addVenueThunk } from "../../store/venue";
-//set error check for zip code length, state abbreviations, regex.test
+import { useHistory, useParams } from 'react-router-dom';
+import { editVenueThunk } from '../../store/venue';
 
-const VenuePage = () =>{
+const EditVenue = () =>{
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const currentUser = useSelector(state => state.session.user)
+    const {id} = useParams();
     const allVenues = useSelector(state => Object.values(state.venue))
+    const selectedVenue = useSelector(state => state.venue)
     const states = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WV','WI','WY']
 
-    const regex = /^\d{5}$/;
 
     useEffect(() =>{
         dispatch(getVenueThunk())
-        // console.log(regex.test(zipCode)) true
-    },[dispatch])
+        // console.log(+id.id-1)
+        // console.log(selectedVenue[id].name)
+    }, [dispatch])
 
-    const [venueName, setVenueName] = useState('')
-    const [venueAddress, setVenueAdress] = useState('')
-    const [city, setCity] = useState('')
+    const [name, setName] = useState(selectedVenue[id].name)
+    const [address, setAdress] = useState(selectedVenue[id].address)
+    const [city, setCity] = useState(selectedVenue[id].city)
     const [state, setState] = useState(states[0])
-    const [zipCode, setZipCode] = useState('')
-    const [latitude, setLatitude] = useState(0.0000)
-    const [longitude, setLongitude] = useState(0.0000)
+    const [zipCode, setZipCode] = useState(selectedVenue[id].zip_code)
+    const [latitude, setLatitude] = useState(selectedVenue[id].latitude)
+    const [longitude, setLongitude] = useState(selectedVenue[id].longitude)
 
-    const handleSubmit = async e =>{
+    const handleEdit = async e =>{
         e.preventDefault();
         const payload = {
-            name: venueName,
-            address: venueAddress,
-            city: city,
-            state: state,
+            name,
+            address,
+            city,
+            state,
             zip_code: zipCode,
-            latitude: latitude,
-            longitude: longitude
+            latitude,
+            longitude
         }
-        console.log('payload being passed to add venue thunk ',payload)
-        const newVenue = await dispatch(addVenueThunk(payload))
-        if(newVenue){
-            history.push('/')
+
+        const editedVenue = await dispatch(editVenueThunk());
+        if(editedVenue){
+            history.push('/create-event')
         }
-    }
+    };
+
 
     return(
         <div>
-            <h3>Available Venues</h3>
-            {allVenues.map(venue => <div><span><p>{venue.name}</p></span><span><button onClick={() => history.push(`/venues/${venue.id}`)}>Edit</button></span><span><button>Delete</button></span></div>)}
-            <form onSubmit={handleSubmit}>
-                <div>
+            <form className='edit-venue-form-field' onSubmit={handleEdit}>
+            <div>
                     <label>Venue Name</label>
                     <input
                     type="string"
-                    value={venueName ? venueName:''}
-                    onChange={e => setVenueName(e.target.value)}
+                    value={name ? name:''}
+                    onChange={e => setName(e.target.value)}
                     required
                     placeholder="required"/>
                 </div>
@@ -64,8 +63,8 @@ const VenuePage = () =>{
                     <label>Venue Address</label>
                     <input
                         type="string"
-                        value={venueAddress ? venueAddress:''}
-                        onChange={e => setVenueAdress(e.target.value)}
+                        value={address ? address:''}
+                        onChange={e => setAdress(e.target.value)}
                         required
                         placeholder="required"/>
                 </div>
@@ -81,7 +80,7 @@ const VenuePage = () =>{
                 <div>
                     <label>State</label>
                     <select onChange ={e => setState(e.target.value)}>
-                        <option value = '' disabled selected>select a state</option>
+                        <option value='' disabled selected>select a state</option>
                         {states.map(state => <option value={state}>{state}</option>)}
                     </select>
                 </div>
@@ -119,8 +118,7 @@ const VenuePage = () =>{
 
             </form>
         </div>
-
     )
 }
 
-export default VenuePage;
+export default EditVenue;

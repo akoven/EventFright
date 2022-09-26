@@ -13,6 +13,7 @@ import CreateEvent from './components/CreateEvent';
 import VenuePage from './components/VenuePage';
 import UserEvents from './components/UserEvents';
 import EditEvent from './components/EditEvent';
+import EditVenue from './components/EditVenue';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,6 +60,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/edit-event/:id' exact={true} >
           <EditEvent />
+        </ProtectedRoute>
+        <ProtectedRoute path='/venues/:id' exact={true} >
+          <EditVenue />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

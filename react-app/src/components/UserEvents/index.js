@@ -35,8 +35,8 @@ const UserEvents = () =>{
         history.push(`/edit-event/${id}`)
     }
 
-    const handleDelete = async (id) =>{
-       await dispatch(removeEventThunk(id))
+    const handleDelete = async (eventId) =>{
+       await dispatch(removeEventThunk(eventId))
     }
 
     return(

@@ -81,7 +81,7 @@ def edit_event(event_id):
     # if updated_event.validate_on_submit():
     # print('*********made it to validate on submit*****************')
 
-    host_id = updated_event.data['host_id']
+
     venue_id = updated_event.data['venue_id']
     category_id = updated_event.data['category_id']
     event_name = updated_event.data['event_name']
@@ -90,11 +90,14 @@ def edit_event(event_id):
     date = updated_event.data['date']
     capacity = updated_event.data['capacity']
 
-    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!host id datatype!!!!!!!!!!!!!!!!!!!!!! ', type(host_id))
-    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!venue id datatype!!!!!!!!!!!!!!!!!!!!!! ', type(venue_id))
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!venue id datatype!!!!!!!!!!!!!!!!!!!!!! ', type(venue_id))
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!category id datatype!!!!!!!!!!!!!!!!!!!!!! ', type(category_id))
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!event name datatype!!!!!!!!!!!!!!!!!!!!!! ', type(event_name))
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!description datatype!!!!!!!!!!!!!!!!!!!!!! ', type(description))
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!date datatype!!!!!!!!!!!!!!!!!!!!!! ', type(date))
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!capacity datatype!!!!!!!!!!!!!!!!!!!!!! ', type(capacity))
 
 
-    event.host_id = host_id,
     event.venue_id = venue_id,
     event.category_id = category_id,
     event.event_name = event_name,
