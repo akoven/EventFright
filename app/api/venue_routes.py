@@ -66,12 +66,12 @@ def edit_venue(venue_id):
     latitude = updated_venue.data['latitude']
     longitude = updated_venue.data['longitude']
 
-    venue.name = name,
-    venue.address = address,
-    venue.city = city,
-    venue.state = state,
-    venue.zip_code = zip_code,
-    venue.latitude = latitude,
+    venue.name = name
+    venue.address = address
+    venue.city = city
+    venue.state = state
+    venue.zip_code = zip_code
+    venue.latitude = latitude
     venue.longitude = longitude
 
     db.session.commit()

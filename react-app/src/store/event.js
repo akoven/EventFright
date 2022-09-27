@@ -109,7 +109,7 @@ const eventReducer = (state = {}, action) =>{
             action.event.events.forEach(event => events[event.id] = event);
             return events;
         case ADD_EVENT:
-            let newState={...state};
+            newState={...state};
             newState[action.event.id] = action.event;
             return newState;
         case UPDATE_EVENT:

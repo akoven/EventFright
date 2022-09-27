@@ -87,14 +87,14 @@ export const deleteVenueThunk = (venue) => async dispatch =>{
 };
 
 const venueReducer = (state = {}, action) =>{
-    // let newState = {};
+    let newState = {};
     switch(action.type){
         case GET_ALL_VENUES:
             const venues={};
             action.venue.venues.forEach(venue => venues[venue.id] = venue);
             return venues;
         case ADD_VENUE:
-            let newState = {...state};
+            newState = {...state};
             newState[action.venue.id] = action.venue;
             return newState;
         case UPDATE_VENUE:
