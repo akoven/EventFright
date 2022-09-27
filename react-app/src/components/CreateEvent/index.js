@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
@@ -24,7 +24,6 @@ const CreateEvent = () =>{
     //     dispatch(getCategoryThunk());
     // }, [dispatch])
 
-    const [eventImg,setUserImg] = useState('')
     // const [host, setHost] = useState()
     const [selectCategory, setSelectCategory] = useState('')
     const [eventName, setEventName] = useState('')
@@ -42,6 +41,12 @@ const CreateEvent = () =>{
     // console.log('EVENT CATEGORY: ', eventCategory)
 
 
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
 
     const handleSubmit= async e =>{
         e.preventDefault();
@@ -52,17 +57,21 @@ const CreateEvent = () =>{
             event_name: eventName,
             description: eventDescription,
             event_image: eventImage,
-            date: `${eventDate}`,
+            date: eventDate.toLocaleString('en-US'),
             capacity: +eventCapacity
         }
 
+
         // console.log('payload being passed to add event thunk ',payload)
         // console.log('selected date ', new Date(eventDate))
+            // console.log('NEW DATE: ', eventDate.toLocaleString('en-US', options))
+            // console.log('NEW DATE: ', eventDate.toLocaleString('en-US', {hour12: true}))
+
         const newEvent = await dispatch(addEventThunk(payload))
         if(newEvent){
             history.push('/')
         }
-    }
+    };
 
     return(
         <div>

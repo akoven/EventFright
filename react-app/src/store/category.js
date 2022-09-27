@@ -91,7 +91,7 @@ const categoryReducer = (state = {}, action) =>{
             action.category.categories.forEach(category => categories[category.id] = category);
             return categories;
         case ADD_CATEGORY:
-            let newState = {...state};
+            newState = {...state};
             newState[action.category.id] = action.category;
             return newState;
         // case UPDATE_CATEGORY:

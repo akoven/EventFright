@@ -10,10 +10,11 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage';
 import CreateEvent from './components/CreateEvent';
-import VenuePage from './components/VenuePage';
+import CreateVenue from './components/CreateVenue';
 import UserEvents from './components/UserEvents';
 import EditEvent from './components/EditEvent';
 import EditVenue from './components/EditVenue';
+import CreateCategory from './components/CreateCategory';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,7 +54,7 @@ function App() {
           <CreateEvent />
         </ProtectedRoute>
         <ProtectedRoute path='/create-venue' exact={true} >
-          <VenuePage />
+          <CreateVenue />
         </ProtectedRoute>
         <ProtectedRoute path='/events/:id' exact={true} >
           <UserEvents />
@@ -63,6 +64,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/venues/:id' exact={true} >
           <EditVenue />
+        </ProtectedRoute>
+        <ProtectedRoute path='/create-category' exact={true} >
+          <CreateCategory />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

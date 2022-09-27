@@ -30,7 +30,7 @@ const SplashPage = () =>{
 
     // console.log('ALL EVENTS: ',allEvents)
     // console.log('ALL VENUES: ',allVenues)
-
+    // console.log('Time: ', (new Date(allEvents[3].date) - new Date(allEvents[0].date))/86400000)
     return(
         <div className='main'>
             <div className='banner-div'>
