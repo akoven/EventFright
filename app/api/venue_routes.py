@@ -80,9 +80,12 @@ def edit_venue(venue_id):
 @venue_routes.route('/<venue_id>', methods=['DELETE'])
 def delete_venues(venue_id):
     venue = Venues.query.get(venue_id)
+    print('*************************VENUE TO BE DELETED***************************: ', venue.name)
 
     if not venue:
         return "Error 404: The venue you're looking for couldn't be found"
 
     db.session.delete(venue)
     db.session.commit()
+
+    return 'Venue was successfully deleted'

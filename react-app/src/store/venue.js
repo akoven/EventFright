@@ -24,10 +24,10 @@ const editVenue = (venue) =>{
     }
 };
 
-const deleteVenue = (venue) =>{
+const deleteVenue = (venueId) =>{
     return{
         type: DELETE_VENUE,
-        venue
+        venueId
     }
 };
 
@@ -78,11 +78,11 @@ export const editVenueThunk = (payload, venueId) => async dispatch =>{
     return null;
 }
 
-export const deleteVenueThunk = (venue) => async dispatch =>{
-    const response = await fetch(`/api/venues/${venue.id}`, {
+export const deleteVenueThunk = (venueId) => async dispatch =>{
+    const response = await fetch(`/api/venues/${venueId}`, {
         method: 'DELETE'
     });
-    dispatch(deleteVenue(venue));
+    dispatch(deleteVenue(venueId));
     return response;
 };
 
@@ -102,7 +102,7 @@ const venueReducer = (state = {}, action) =>{
             newState[action.venue.id] = action.venue;
             return newState;
         case DELETE_VENUE:
-            delete newState[action.venue.id];
+            delete newState[action.venueId];
             return newState;
         default:
             return state;
