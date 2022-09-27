@@ -35,8 +35,8 @@ const UserEvents = () =>{
         history.push(`/edit-event/${id}`)
     }
 
-    const handleDelete = async (id) =>{
-       await dispatch(removeEventThunk(id))
+    const handleDelete = async (eventId) =>{
+       await dispatch(removeEventThunk(eventId))
     }
 
     return(
@@ -51,6 +51,7 @@ const UserEvents = () =>{
                     <p>Date and Time: {event.date}</p>
                     <p>Capacity: {event.capacity}</p>
                     <p>Location: {event.venue.name}</p>
+                    <p>{event.venue.address} {event.venue.city}, {event.venue.state} {event.venue.zip_code}</p>
                     <p>Category: {event.category.type}</p>
                     <span>
                         <button className='edit-event' onClick={() => handleEdit(event.id)}>Edit</button>

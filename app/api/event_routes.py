@@ -66,10 +66,13 @@ def add_events():
 
 
 @event_routes.route('/<event_id>', methods=['PUT'])
+
 def edit_event(event_id):
-    event = Events.query.get(int(event_id))
-    print('*******************event from backend**************** ', event.event_name)
-    # print(event_id)
+    data = request.json
+    # print('DATA FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', data)
+    event = Events.query.get(event_id)
+    # print('*******************event from backend**************** ', event.event_name)
+    # print(type(event_id))
     if not event:
         return "Error 404: The event you're looking for couldn't be found"
 
@@ -80,26 +83,43 @@ def edit_event(event_id):
     # if updated_event.validate_on_submit():
     # print('*********made it to validate on submit*****************')
 
-    host_id = updated_event.data['host_id']
-    venue_id = updated_event.data['venue_id']
-    category_id = updated_event.data['category_id']
-    event_name = updated_event.data['event_name']
-    description = updated_event.data['description']
-    event_image = updated_event.data['event_image']
-    date = updated_event.data['date']
-    capacity = updated_event.data['capacity']
 
-    event.host_id = host_id,
-    event.venue_id = venue_id,
-    event.category_id = category_id,
-    event.event_name = event_name,
-    event.description = description,
-    event.event_image = event_image,
-    event.date = date,
+    # venue_id = updated_event.data['venue_id']
+    # category_id = updated_event.data['category_id']
+    # event_name = updated_event.data['event_name']
+    # description = updated_event.data['description']
+    # event_image = updated_event.data['event_image']
+    # date = updated_event.data['date']
+    # capacity = updated_event.data['capacity']
+
+    venue_id = data['venue_id']
+    category_id = data['category_id']
+    event_name = data['event_name']
+    description = data['description']
+    event_image = data['event_image']
+    date = data['date']
+    capacity = data['capacity']
+
+
+
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!venue id datatype!!!!!!!!!!!!!!!!!!!!!! ', type(venue_id))
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!category id datatype!!!!!!!!!!!!!!!!!!!!!! ', type(category_id))
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!event name datatype!!!!!!!!!!!!!!!!!!!!!! ', type(event_name))
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!description datatype!!!!!!!!!!!!!!!!!!!!!! ', type(description))
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!date datatype!!!!!!!!!!!!!!!!!!!!!! ', type(date))
+    # print('!!!!!!!!!!!!!!!!!!!!!!!!!!capacity datatype!!!!!!!!!!!!!!!!!!!!!! ', type(capacity))
+
+
+    event.venue_id = venue_id
+    event.category_id = category_id
+    event.event_name = event_name
+    event.description = description
+    event.event_image = event_image
+    event.date = date
     event.capacity = capacity
 
     db.session.commit()
-    print('*************made it past session.commit***************************')
+    # print('*************made it past session.commit***************************')
     return event.to_dict()
     # else:
     #     print('********************************VALIDATION ERRORS*********************',validation_errors_to_error_messages(updated_event.errors))

@@ -57,7 +57,7 @@ def edit_venue(venue_id):
 
     updated_venue = VenueForm()
 
-    updated_venue['csrf_token'].data = request.cookies['csrf-token']
+    updated_venue['csrf_token'].data = request.cookies['csrf_token']
     name = updated_venue.data['name']
     address = updated_venue.data['address']
     city = updated_venue.data['city']
@@ -66,12 +66,12 @@ def edit_venue(venue_id):
     latitude = updated_venue.data['latitude']
     longitude = updated_venue.data['longitude']
 
-    venue.name = name,
-    venue.address = address,
-    venue.city = city,
-    venue.state = state,
-    venue.zip_code = zip_code,
-    venue.latitude = latitude,
+    venue.name = name
+    venue.address = address
+    venue.city = city
+    venue.state = state
+    venue.zip_code = zip_code
+    venue.latitude = latitude
     venue.longitude = longitude
 
     db.session.commit()

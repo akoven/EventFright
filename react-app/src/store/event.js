@@ -80,11 +80,13 @@ export const editEventThunk = (payload, eventId) => async dispatch =>{
     // console.log('event id ',eventId)
     // console.log(typeof(eventId)); number type
     console.log('PAYLOAD FROM EDIT EVENT THUNK: ', payload)
+    console.log('EVENT ID: ',eventId)
+    console.log('event id datatype: ',typeof(eventId))
     console.log('RESPONSE FROM EDIT EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
     if (response.ok){
-        const newEvent = await response.json();
-        dispatch(updateEvent(newEvent));
-        return newEvent;
+        const event = await response.json();
+        dispatch(updateEvent(event));
+        return event;
     }
     return null;
 }
@@ -107,7 +109,7 @@ const eventReducer = (state = {}, action) =>{
             action.event.events.forEach(event => events[event.id] = event);
             return events;
         case ADD_EVENT:
-            let newState={...state};
+            newState={...state};
             newState[action.event.id] = action.event;
             return newState;
         case UPDATE_EVENT:

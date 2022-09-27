@@ -4,8 +4,8 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import { useHistory, useParams } from "react-router-dom";
 import { editEventThunk } from "../../store/event";
-import { getVenueThunk } from "../../store/venue";
-import { getCategoryThunk } from "../../store/category";
+// import { getVenueThunk } from "../../store/venue";
+// import { getCategoryThunk } from "../../store/category";
 import './index.css';
 
 const EditEvent = () =>{
@@ -20,35 +20,36 @@ const EditEvent = () =>{
     // console.log('categories: ', categories);
     // console.log('venues: ', venues);
     // console.log(typeof(currentUser.id));
-    useEffect(() =>{
-        dispatch(getVenueThunk());
-    }, [dispatch]);
+    // useEffect(() =>{
+    //     dispatch(getVenueThunk());
+    // }, [dispatch]);
 
-    useEffect(() =>{
-        dispatch(getCategoryThunk());
-    }, [dispatch])
+    // useEffect(() =>{
+    //     dispatch(getCategoryThunk());
+    // }, [dispatch])
 
     const [eventName, setEventName] = useState(selectedEvent[id].event_name)
     const [eventImage, setEventImage] = useState(selectedEvent[id].event_image)
     const [eventDescription, setEventDescription] = useState(selectedEvent[id].description)
-    const [eventCategory, setEventCategory] = useState(selectedEvent[id].category.type);
-    const [eventVenue, setEventVenue] = useState(selectedEvent[id].venue.name);
+    const [eventCategory, setEventCategory] = useState('');
+    const [eventVenue, setEventVenue] = useState('');
     const [eventCapacity, setEventCapacity] = useState(selectedEvent[id].capacity);
     const [eventDate, setEventDate] = useState(new Date());
 
+    const host_id = currentUser.id
     const venue_id = +eventVenue
     const category_id = +eventCategory
     const event_name = eventName
     const description = eventDescription
     const event_image = eventImage
     const date = `${eventDate}`
-    const capacity = eventCapacity
+    const capacity = +eventCapacity
 
 
     const handleSubmit= async e =>{
         e.preventDefault();
         const payload = {
-            host_id: currentUser.id,
+            host_id,
             venue_id,
             category_id,
             event_name,
@@ -61,7 +62,7 @@ const EditEvent = () =>{
         // console.log(typeof(+eventCapacity))
         // console.log(typeof(currentUser.id))
 
-        const editedEvent = await dispatch(editEventThunk(payload, +id));
+        const editedEvent = await dispatch(editEventThunk(payload, id));
         if(editedEvent){
             history.push(`/events/${currentUser.id}`)
         }
@@ -70,8 +71,8 @@ const EditEvent = () =>{
     return(
         <div>
             <header>
-                <span><button onClick={() => history.push('/create-category')}>Create a new category</button></span>
-                <span><button onClick={() => history.push('/create-venue')}>Create a new venue</button></span>
+                <span><button onClick={() => history.push('/categories')}>See categories</button></span>
+                <span><button onClick={() => history.push('/venues')}>See venues</button></span>
                 <span className="user-events"><button onClick={() => history.push(`/events/${currentUser.id}`)}>See your events</button></span>
             </header>
             <div className="form-field">
@@ -109,14 +110,14 @@ const EditEvent = () =>{
                     <div className="category">
                         <label>Category</label>
                         <select onChange={e => setEventCategory(e.target.value)}>
-                            <option disabled>select a category</option>
+                            <option value='' disabled selected>select a category</option>
                             {categories.map(category => <option value={category.id}>{category.type}</option>)}
                         </select>
                     </div>
                     <div className="venue">
                         <label>Venue</label>
                         <select onChange={e => setEventVenue(e.target.value)}>
-                            <option disabled>select a venue</option>
+                            <option value='' disabled selected>select a venue</option>
                             {venues.map(location =>
                                 <option value={location.id}>{location.name}</option>
                             )}
