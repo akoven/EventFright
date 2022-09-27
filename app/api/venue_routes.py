@@ -57,7 +57,7 @@ def edit_venue(venue_id):
 
     updated_venue = VenueForm()
 
-    updated_venue['csrf_token'].data = request.cookies['csrf-token']
+    updated_venue['csrf_token'].data = request.cookies['csrf_token']
     name = updated_venue.data['name']
     address = updated_venue.data['address']
     city = updated_venue.data['city']

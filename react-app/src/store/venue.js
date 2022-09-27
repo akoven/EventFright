@@ -60,17 +60,20 @@ export const addVenueThunk = (venue) => async dispatch =>{
     return null;
 };
 
-export const editVenueThunk = (venue) => async dispatch =>{
-    const response = await fetch(`/api/venues/${venue.id}`, {
+export const editVenueThunk = (payload, venueId) => async dispatch =>{
+    const response = await fetch(`/api/venues/${venueId}`, {
         method: 'PUT',
-        headers: {'Content-Type/':'application/json'},
-        body: JSON.stringify(venue)
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
     });
 
+    console.log('PAYLOAD FROM EDIT VENUE THUNK: ', payload)
+    console.log('CURRENT VENUE ID: ', venueId)
+
     if (response.ok){
-        const newVenue = await response.json();
-        dispatch(editVenue(newVenue));
-        return newVenue;
+        const venue = await response.json();
+        dispatch(editVenue(venue));
+        return venue;
     }
     return null;
 }

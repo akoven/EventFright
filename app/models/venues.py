@@ -8,8 +8,8 @@ class Venues(db.Model):
     city = db.Column(db.String)
     state = db.Column(db.String, nullable=False)
     zip_code = db.Column(db.String, nullable=False)
-    latitude = db.Column(db.Float)
-    longitude = db.Column(db.Float)
+    latitude = db.Column(db.Integer)
+    longitude = db.Column(db.Integer)
 
     events = db.relationship('Events', back_populates='venue')
 

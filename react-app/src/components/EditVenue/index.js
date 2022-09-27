@@ -40,7 +40,7 @@ const EditVenue = () =>{
             longitude
         }
 
-        const editedVenue = await dispatch(editVenueThunk());
+        const editedVenue = await dispatch(editVenueThunk(payload, id));
         if(editedVenue){
             history.push('/create-event')
         }

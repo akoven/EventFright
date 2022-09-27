@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DecimalField
+from wtforms import StringField, FloatField
 from wtforms.validators import DataRequired, Length
 
 class VenueForm(FlaskForm):
@@ -8,8 +8,8 @@ class VenueForm(FlaskForm):
    city = StringField("city", validators=[DataRequired()])
    state = StringField("state", validators=[DataRequired()])
    zip_code = StringField("zip", validators=[DataRequired(), Length(max=5)])
-   latitude = DecimalField("lat")
-   longitude = DecimalField("long")
+   latitude = FloatField("lat")
+   longitude = FloatField("long")
 
    def to_dict(self):
       return{
