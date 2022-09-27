@@ -35,7 +35,7 @@ const CreateCategory = () =>{
             <h3 className="category-header">Available Categories</h3>
             {allCategories.map(category => <span className="category-label">{category.type}</span>)}
 
-            <form onSubmit={handleSubmit()}>
+            <form onSubmit={handleSubmit}>
                 <div className="category-form">
                     <label>Category Type</label>
                     <input
