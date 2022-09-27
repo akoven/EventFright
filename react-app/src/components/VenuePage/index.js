@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getVenueThunk } from "../../store/venue";
 import { useHistory } from "react-router-dom";
 import { addVenueThunk } from "../../store/venue";
-//set error check for zip code length, state abbreviations, regex.test
+import { deleteVenueThunk } from "../../store/venue";
 
 const VenuePage = () =>{
 
@@ -13,6 +13,7 @@ const VenuePage = () =>{
     const allVenues = useSelector(state => Object.values(state.venue))
     const states = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WV','WI','WY']
 
+    //set error check for zip code length, state abbreviations, regex.test
     const regex = /^\d{5}$/;
 
     useEffect(() =>{
@@ -46,10 +47,15 @@ const VenuePage = () =>{
         }
     }
 
+    const handleDelete = async (venueId) =>{
+        await dispatch(deleteVenueThunk(venueId))
+        history.push('/')
+    }
+
     return(
         <div>
             <h3>Available Venues</h3>
-            {allVenues.map(venue => <div><span><p>{venue.name}</p></span><span><button onClick={() => history.push(`/venues/${venue.id}`)}>Edit</button></span><span><button>Delete</button></span></div>)}
+            {allVenues.map(venue => <div><span><p>{venue.name}</p></span><span><button onClick={() => history.push(`/venues/${venue.id}`)}>Edit</button></span><span><button onClick={() => handleDelete(venue.id)}>Delete</button></span></div>)}
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Venue Name</label>
