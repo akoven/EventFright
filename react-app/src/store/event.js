@@ -24,6 +24,7 @@ const updateEvent = (event) =>{
     }
 }
 
+
 const deleteEvent = (eventId) =>{
     return{
         type: DELETE_EVENT,
