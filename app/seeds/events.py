@@ -1,5 +1,7 @@
-from datetime import datetime
+# from datetime import datetime
+# from zoneinfo import ZoneInfo
 from ..models import db,Events
+# import pytz
 import os
 
 def seed_events():
@@ -10,7 +12,8 @@ def seed_events():
         event_name="Halloween Nights at Eastern State Penitentiary",
         description="Former prison turned halloween attraction",
         event_image="https://whyy.org/wp-content/uploads/2019/10/2018-07-25-e-lee-philadelphia-eastern-state-penitentiary-historic-preservation-training.jpg",
-        date=datetime(2022,10,31,22,00,00),
+        # date=datetime(2022,10,31,22,00,00),
+        date = '10/31/2022, 10:00:00 PM',
         capacity=200
     )
 
@@ -21,7 +24,7 @@ def seed_events():
         event_name="Haunted Woods of Smyer",
         description="Outdoor horror themed attraction",
         event_image="https://s.wsj.net/public/resources/images/BN-KU714_NYSCEN_P_20151018170719.jpg",
-        date=datetime(2022,10,25,22,00,00),
+        date='10/25/2022, 10:00:00 PM',
         capacity=200
     )
     haunted_brunch=Events(
@@ -29,10 +32,11 @@ def seed_events():
         venue_id=3,
         category_id=3,
         event_name="Brunch with Ghosts",
-        description="Outdoor horror themed attraction",
+        description="Have brunch with friends or hotel guests who never checked out",
         event_image="https://www.newyorkupstate.com/resizer/jANAs6ra9sFhzzlrroSGsO8avDI=/800x0/smart/arc-anglerfish-arc2-prod-advancelocal.s3.amazonaws.com/public/H3KR2QJGAVGLRJHFSAV3MVWZ5U.jpg",
-        date=datetime(2022,10,5,12,00,00),
-        capacity=10
+        # date=datetime(2022,10,5,12,00,00),
+        date='10/05/2022 12:00:00 PM',
+        capacity=30
     )
 
     db.session.add(haunted_house)

@@ -5,13 +5,12 @@ import { useHistory } from "react-router-dom";
 import { addVenueThunk } from "../../store/venue";
 import { deleteVenueThunk } from "../../store/venue";
 
-const VenuePage = () =>{
+const CreateVenue = () =>{
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const currentUser = useSelector(state => state.session.user)
-    const allVenues = useSelector(state => Object.values(state.venue))
-    const states = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WV','WI','WY']
+    const allVenues = useSelector(state => Object.values(state.venue));
+    const states = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WV','WI','WY'];
 
     //set error check for zip code length, state abbreviations, regex.test
     const regex = /^\d{5}$/;
@@ -40,7 +39,7 @@ const VenuePage = () =>{
             latitude: latitude,
             longitude: longitude
         }
-        console.log('payload being passed to add venue thunk ',payload)
+        // console.log('payload being passed to add venue thunk ',payload)
         const newVenue = await dispatch(addVenueThunk(payload))
         if(newVenue){
             history.push('/')
@@ -129,4 +128,4 @@ const VenuePage = () =>{
     )
 }
 
-export default VenuePage;
+export default CreateVenue;

@@ -129,8 +129,8 @@ def edit_event(event_id):
 @event_routes.route('/<event_id>', methods=['DELETE'])
 def delete_events(event_id):
     event = Events.query.get(event_id)
-    print('*****************EVENT ID*********************:', event_id)
-    print('*************************EVENT TO BE DELETED***************************: ', event.event_name)
+    # print('*****************EVENT ID*********************:', event_id)
+    # print('*************************EVENT TO BE DELETED***************************: ', event.event_name)
     if not event:
         return "Error 404: The event you're looking for couldn't be found"
 
