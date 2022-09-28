@@ -1,7 +1,7 @@
-const GET_ALL_CATEGORIES = 'venues/get_all_categories'
-const ADD_CATEGORY = 'venues/add_category'
-// const UPDATE_CATEGORY = 'venues/update_category'
-const DELETE_CATEGORY = 'venues/delete_category'
+const GET_ALL_CATEGORIES = 'categories/get_all_categories'
+const ADD_CATEGORY = 'categories/add_category'
+// const UPDATE_CATEGORY = 'categories/update_category'
+const DELETE_CATEGORY = 'categories/delete_category'
 
 const getAllCategories = (category) =>{
     return{
@@ -51,6 +51,8 @@ export const addCategoryThunk = (category) => async dispatch =>{
         },
         body: JSON.stringify(category)
     });
+
+    console.log('!!!!!!!!!!!!PAYLOAD FROM ADD CATEGORY!!!!!!!!!!!!!!!!!!! ',category)
 
     if (response.ok){
         const newCategory = await response.json();

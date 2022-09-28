@@ -46,6 +46,7 @@ const CreateCategory = () =>{
                     placeholder="required"
                     />
                     <span><button type="submit">Submit</button></span>
+                    <span><button onClick={() => history.push('/')}>Cancel</button></span>
                 </div>
             </form>
         </div>
