@@ -8,6 +8,7 @@ const CreateCategory = () =>{
     const dispatch = useDispatch();
     const history = useHistory();
 
+
     const allCategories = useSelector(state => Object.values(state.category));
     const currentUser = useSelector(state => state.session.user);
 
