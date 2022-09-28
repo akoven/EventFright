@@ -38,10 +38,8 @@ def add_events():
     event_image = new_event.data['event_image']
     date = new_event.data['date']
     capacity = new_event.data['capacity']
-    print('!!!!!!!!!!!!!!!!!!!!!!NEW EVENT FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', new_event.data)
 
-
-    # print('REQUEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', new_event.data)
+    # print('!!!!!!!!!!!!!!!!!!!!!!NEW EVENT FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', new_event.data)
 
     if new_event.validate_on_submit():
         # data = new_event.data
