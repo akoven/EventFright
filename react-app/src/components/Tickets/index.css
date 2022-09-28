@@ -1,0 +1,15 @@
+.registration-page{
+    height: 700px;
+
+}
+
+.purchase-button{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.registration-img{
+    height: 400px;
+    width: 500px;
+}

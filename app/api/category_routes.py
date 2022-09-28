@@ -21,14 +21,19 @@ def add_category():
     new_category = CategoryForm()
     new_category['csrf_token'].data = request.cookies['csrf_token']
 
+    # new_category.data = request.json
+    # print('!!!!!!!!!!!!!!!REQUEST!!!!!!!!!!!!!!!!!!!!', new_category.data)
+
     user_id = new_category.data['user_id']
     type = new_category.data['type']
+
 
     if new_category.validate_on_submit():
         category=Categories(
             user_id = user_id,
             type = type
         )
+
         db.session.add(category)
         db.session.commit()
         return category.to_dict()

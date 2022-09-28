@@ -24,10 +24,10 @@ const addCategory = (category) =>{
 //     }
 // };
 
-const deleteCategory = (category) =>{
+const deleteCategory = (categoryId) =>{
     return{
         type: DELETE_CATEGORY,
-        category
+        categoryId
     }
 };
 
@@ -77,11 +77,11 @@ export const addCategoryThunk = (category) => async dispatch =>{
 //     return null;
 // }
 
-export const deleteCategoryThunk = (category) => async dispatch =>{
-    const response = await fetch(`/api/categories/${category.id}`, {
+export const deleteCategoryThunk = (categoryId) => async dispatch =>{
+    const response = await fetch(`/api/categories/${categoryId}`, {
         method: 'DELETE'
     });
-    dispatch(deleteCategory(category));
+    dispatch(deleteCategory(categoryId));
     return response;
 };
 
@@ -101,7 +101,7 @@ const categoryReducer = (state = {}, action) =>{
         //     newState[action.category.id] = action.category;
         //     return newState;
         case DELETE_CATEGORY:
-            delete newState[action.category.id];
+            delete newState[action.categoryId];
             return newState;
         default:
             return state;

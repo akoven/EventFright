@@ -20,13 +20,13 @@ const SplashPage = () =>{
 
     }, [dispatch])
 
-    useEffect(() =>{
-        dispatch(getVenueThunk())
-    }, [dispatch])
+    // useEffect(() =>{
+    //     dispatch(getVenueThunk())
+    // }, [dispatch])
 
-    useEffect(() => {
-        dispatch(getCategoryThunk())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getCategoryThunk())
+    // }, [dispatch])
 
     // console.log('ALL EVENTS: ',allEvents)
     // console.log('ALL VENUES: ',allVenues)

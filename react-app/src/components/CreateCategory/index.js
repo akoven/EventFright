@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addCategoryThunk } from "../../store/category";
+import { getCategoryThunk, addCategoryThunk, deleteCategoryThunk } from "../../store/category";
 import './index.css';
 
 const CreateCategory = () =>{
@@ -14,10 +14,11 @@ const CreateCategory = () =>{
 
     const [type, setType] = useState('')
 
-    // useEffect(() =>{
-    //     dispatch(getCategoryThunk())
-    //     console.log('ALL CATEGORIES: ', allCategories)
-    // },[dispatch]);
+    useEffect(() =>{
+        dispatch(getCategoryThunk())
+        console.log('ALL CATEGORIES: ', allCategories)
+    },[dispatch]);
+
     const handleSubmit = async e =>{
         e.preventDefault();
         const payload = {
@@ -31,14 +32,24 @@ const CreateCategory = () =>{
         }
     };
 
+    const handleDelete = async (categoryId) =>{
+        await dispatch(deleteCategoryThunk(categoryId))
+    }
+
     return(
         <div className="category-pg">
             <h3 className="category-header">Available Categories</h3>
-            {allCategories.map(category => <span className="category-label">{category.type}</span>)}
+            {allCategories.map(category =>
+                <span className="category-bubble">
+                    <span className="category-label">{category.type}</span>
+                    <button onClick={() => handleDelete(category.id)}>Delete</button>
+                </span>
+            )}
 
             <form onSubmit={handleSubmit}>
                 <div className="category-form">
-                    <label>Category Type</label>
+                    <h3 className="category-form-header">Create a new category</h3>
+                    <label className="category-form-label">Category Type</label>
                     <input
                     type='string'
                     value={type ? type:''}

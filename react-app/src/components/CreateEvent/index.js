@@ -41,12 +41,12 @@ const CreateEvent = () =>{
     // console.log('EVENT CATEGORY: ', eventCategory)
 
 
-    const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    };
+    // const options = {
+    //     weekday: 'long',
+    //     year: 'numeric',
+    //     month: 'long',
+    //     day: 'numeric'
+    // };
 
     const handleSubmit= async e =>{
         e.preventDefault();
@@ -74,7 +74,7 @@ const CreateEvent = () =>{
     };
 
     return(
-        <div>
+        <div className="create-event-page">
             <header>
                 <span><button onClick={() => history.push('/create-category')}>Create a new category</button></span>
                 <span><button onClick={() => history.push('/create-venue')}>Create a new venue</button></span>
@@ -83,7 +83,7 @@ const CreateEvent = () =>{
             <div className="form-field">
                 <form onSubmit={handleSubmit} className="form-body">
                     <div className="event-name">
-                        <label>Event Name</label>
+                        <label className="event-name-label">Event Name</label>
                         <input
                             type="string"
                             placeholder="Be clear and descriptive."
@@ -93,7 +93,7 @@ const CreateEvent = () =>{
                             />
                     </div>
                     <div className="event-img">
-                        <label>Event Image</label>
+                        <label className="event-image-label">Event Image</label>
                         <input
                             type="string"
                             placeholder="image formats .jpg, .jpeg, .png only"
@@ -103,7 +103,7 @@ const CreateEvent = () =>{
                         />
                     </div>
                     <div className="description">
-                        <label>Description</label>
+                        <label className="event-description-label">Description</label>
                         <textarea
                             type = "text"
                             placeholder="give a brief event description, 2000 characters or less"
@@ -123,14 +123,14 @@ const CreateEvent = () =>{
                             />
                     </div> */}
                     <div className="category">
-                        <label>Category</label>
+                        <label className="event-category-label">Category</label>
                         <select onChange={e => setEventCategory(e.target.value)}>
                             <option value='' disabled selected>select a category</option>
                             {categories.map(category => <option value={category.id}>{category.type}</option>)}
                         </select>
                     </div>
                     <div className="venue">
-                        <label>Venue</label>
+                        <label className="event-venue-label">Venue</label>
                         <select onChange={e => setEventVenue(e.target.value)}>
                             <option value='' disabled selected>select a venue</option>
                             {venues.map(location =>
@@ -139,7 +139,7 @@ const CreateEvent = () =>{
                         </select>
                     </div>
                     <div className="capacity">
-                        <label>Capacity</label>
+                        <label className="event-capacity-label">Capacity</label>
                         <input
                             type="number"
                             value = {eventCapacity ? eventCapacity:''}
@@ -148,7 +148,7 @@ const CreateEvent = () =>{
                         />
                     </div>
                     <div className="date">
-                        <label>Date and Time</label>
+                        <label className="event-date-label">Date and Time</label>
                         <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="HH:mm:ss" timeIntervals={15} dateFormat="yyyy-MM-dd"/>
                     </div>
                     <div className="submit-cancel">
