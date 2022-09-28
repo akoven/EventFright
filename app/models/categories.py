@@ -5,7 +5,7 @@ class Categories(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    type = db.Column(db.String(50), nullable=False)
+    type = db.Column(db.String(100), nullable=False)
 
     events = db.relationship('Events', back_populates='category')
 
