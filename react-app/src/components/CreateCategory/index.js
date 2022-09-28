@@ -39,14 +39,16 @@ const CreateCategory = () =>{
         <div className="category-pg">
             <h3 className="category-header">Available Categories</h3>
             {allCategories.map(category =>
-                <div>
+                <span className="category-bubble">
                     <span className="category-label">{category.type}</span>
-                    <div><button onClick={() => handleDelete(category.id)}>Delete</button></div>
-                </div>)}
+                    <button onClick={() => handleDelete(category.id)}>Delete</button>
+                </span>
+            )}
 
             <form onSubmit={handleSubmit}>
                 <div className="category-form">
-                    <label>Category Type</label>
+                    <h3 className="category-form-header">Create a new category</h3>
+                    <label className="category-form-label">Category Type</label>
                     <input
                     type='string'
                     value={type ? type:''}
