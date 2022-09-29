@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import { useHistory } from "react-router-dom";
 import { addEventThunk } from "../../store/event";
-// import { getVenueThunk } from "../../store/venue";
-// import { getCategoryThunk } from "../../store/category";
+import { getVenueThunk } from "../../store/venue";
+import { getCategoryThunk } from "../../store/category";
 import './index.css';
 
 // set error check for capacity less than 1, dates that are in the past
@@ -16,23 +16,27 @@ const CreateEvent = () =>{
     const categories = useSelector(state => Object.values(state.category));
     const venues = useSelector(state => Object.values(state.venue));
 
-    // useEffect(() =>{
-    //     dispatch(getVenueThunk());
-    // }, [dispatch]);
+    useEffect(() =>{
+        dispatch(getVenueThunk());
+        dispatch(getCategoryThunk());
+        // console.log('date delta: ',new Date() - new Date(eventDate))
+        // console.log('selected date: ',new Date(eventDate))
+
+    }, [dispatch]);
 
     // useEffect(() =>{
     //     dispatch(getCategoryThunk());
     // }, [dispatch])
 
     // const [host, setHost] = useState()
-    const [selectCategory, setSelectCategory] = useState('')
     const [eventName, setEventName] = useState('')
     const [eventVenue, setEventVenue] = useState('')
     const [eventCategory, setEventCategory] = useState('')
     const [eventDescription,setEventDescription] = useState('')
     const [eventImage, setEventImage] = useState('')
     const [eventDate,setEventDate] = useState(new Date())
-    const [eventCapacity,setEventCapacity] = useState('')
+    const [eventCapacity,setEventCapacity] = useState(0)
+    const [validationErrors, setValidationErrors] = useState([])
 
     // console.log('current user: ',currentUser.id)
     // console.log('CATEGORIES: ',categories)
@@ -48,6 +52,15 @@ const CreateEvent = () =>{
     //     day: 'numeric'
     // };
 
+    // console.log('Time: ', (new Date(allEvents[3].date) - new Date(allEvents[0].date))/86400000)
+
+    let errors = [];
+
+    const filterTime = (date) =>{
+        const isPast = new Date().getTime() < date.getTime();
+        return isPast;
+    };
+
     const handleSubmit= async e =>{
         e.preventDefault();
         const payload = {
@@ -59,8 +72,48 @@ const CreateEvent = () =>{
             event_image: eventImage,
             date: eventDate.toLocaleString('en-US'),
             capacity: +eventCapacity
+        };
+
+        if(eventName.length === 0 && eventName.length <= 50){
+            errors.push('You must provide an event name');
+        };
+
+        if(eventName.length > 50){
+            errors.push('Your event name must be 50 characters long or less')
+        };
+
+        if(eventImage.length === 0){
+            errors.push('You must provide an image url')
         }
 
+        if(!eventImage.includes('.jpg','.jpeg','.png')){
+            errors.push('Your image must be in .jpg, .jpeg, or .png formats')
+        }
+
+        if(eventDescription.length === 0){
+            errors.push('You must provide a brief description')
+        }else if(eventDescription.length > 2000){
+            errors.push('Your description should be 2000 characters or less')
+        }
+
+
+        if(+eventVenue === 0){
+            errors.push('You must select a venue')
+        }
+
+        if(+eventCategory === 0){
+            errors.push('You must select a category')
+        }
+
+        if(eventCapacity === 0){
+            errors.push('You must provide the capacity for your event')
+        }
+
+        // if(new Date(eventDate).getTime() - new Date().getTime() <= 0){
+        //     errors.push('You must select a date in the future')
+        // }
+
+        setValidationErrors(errors);
 
         // console.log('payload being passed to add event thunk ',payload)
         // console.log('selected date ', new Date(eventDate))
@@ -68,9 +121,11 @@ const CreateEvent = () =>{
             // console.log('NEW DATE: ', eventDate.toLocaleString('en-US', {hour12: true}))
 
         const newEvent = await dispatch(addEventThunk(payload))
+
         if(newEvent){
-            history.push('/')
-        }
+                history.push('/')
+            }
+
     };
 
     return(
@@ -82,34 +137,35 @@ const CreateEvent = () =>{
             </header>
             <div className="form-field">
                 <form onSubmit={handleSubmit} className="form-body">
+                    <ul>
+                        {validationErrors.map(error => <li className="error-msgs">{error}</li>)}
+                    </ul>
+                    <h4 className="required-fields">Required fields are in red in marked with an *</h4>
                     <div className="event-name">
-                        <label className="event-name-label">Event Name</label>
+                        <label className="event-name-label">Event Name*</label>
                         <input
                             type="string"
                             placeholder="Be clear and descriptive."
                             value={eventName ? eventName:''}
                             onChange={e => setEventName(e.target.value)}
-                            required
-                            />
+                        />
                     </div>
                     <div className="event-img">
-                        <label className="event-image-label">Event Image</label>
+                        <label className="event-image-label">Event Image*</label>
                         <input
                             type="string"
                             placeholder="image formats .jpg, .jpeg, .png only"
                             value={eventImage ? eventImage:''}
                             onChange={e => setEventImage(e.target.value)}
-                            required
                         />
                     </div>
                     <div className="description">
-                        <label className="event-description-label">Description</label>
+                        <label className="event-description-label">Description*</label>
                         <textarea
                             type = "text"
                             placeholder="give a brief event description, 2000 characters or less"
                             value={eventDescription ? eventDescription:''}
                             onChange={e => setEventDescription(e.target.value)}
-                            required
                         />
                     </div>
                     {/* <div>
@@ -123,14 +179,14 @@ const CreateEvent = () =>{
                             />
                     </div> */}
                     <div className="category">
-                        <label className="event-category-label">Category</label>
+                        <label className="event-category-label">Category*</label>
                         <select onChange={e => setEventCategory(e.target.value)}>
                             <option value='' disabled selected>select a category</option>
                             {categories.map(category => <option value={category.id}>{category.type}</option>)}
                         </select>
                     </div>
                     <div className="venue">
-                        <label className="event-venue-label">Venue</label>
+                        <label className="event-venue-label">Venue*</label>
                         <select onChange={e => setEventVenue(e.target.value)}>
                             <option value='' disabled selected>select a venue</option>
                             {venues.map(location =>
@@ -139,7 +195,7 @@ const CreateEvent = () =>{
                         </select>
                     </div>
                     <div className="capacity">
-                        <label className="event-capacity-label">Capacity</label>
+                        <label className="event-capacity-label">Capacity*</label>
                         <input
                             type="number"
                             value = {eventCapacity ? eventCapacity:''}
@@ -148,8 +204,8 @@ const CreateEvent = () =>{
                         />
                     </div>
                     <div className="date">
-                        <label className="event-date-label">Date and Time</label>
-                        <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="HH:mm:ss" timeIntervals={15} dateFormat="yyyy-MM-dd"/>
+                        <label className="event-date-label">Date and Time*</label>
+                        <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="h:mm aa" timeIntervals={15} dateFormat="MM/dd/yyyy" minDate={new Date()} filterTime={filterTime} showTimeInput/>
                     </div>
                     <div className="submit-cancel">
                         <span className="submit-btn">

@@ -16,8 +16,8 @@ const SplashPage = () =>{
 
 
     useEffect(() =>{
-        dispatch(getEventThunk())
-
+        dispatch(getEventThunk());
+        dispatch(getCategoryThunk())
     }, [dispatch])
 
     // useEffect(() =>{
@@ -34,7 +34,7 @@ const SplashPage = () =>{
     return(
         <div className='main'>
             <div className='banner-div'>
-                <h1>Browse our events or post your own event!</h1>
+                <h1 className='splash-pg-header'>Browse our events or post your own event!</h1>
                 <div>
                     <img className='banner-img' src='https://i.pinimg.com/originals/8c/31/0d/8c310d583f66f16a80331c008068ecd6.jpg'/>
                 </div>
