@@ -72,7 +72,7 @@ const CreateVenue = () =>{
             <div className='form-field'>
                 <form onSubmit={handleSubmit} className='form-body'>
                     <div className="name-div">
-                        <label className="name-label">Venue Name</label>
+                        <label className="name-label">Venue Name*</label>
                         <input
                         type="string"
                         value={venueName ? venueName:''}
@@ -81,7 +81,7 @@ const CreateVenue = () =>{
                         placeholder="required"/>
                     </div>
                     <div className="address-div">
-                        <label className="address-label">Venue Address</label>
+                        <label className="address-label">Venue Address*</label>
                         <input
                             type="string"
                             value={venueAddress ? venueAddress:''}
@@ -90,8 +90,9 @@ const CreateVenue = () =>{
                             placeholder="required"/>
                     </div>
                     <div className="city-div">
-                        <label className="city-label">City</label>
+                        <label className="city-label">City*</label>
                         <input
+                            placeholder="required"
                             type="string"
                             value={city ? city: ''}
                             onChange={e => setCity(e.target.value)}
@@ -99,14 +100,14 @@ const CreateVenue = () =>{
                             />
                     </div>
                     <div className="state-div">
-                        <label className="state-label">State</label>
+                        <label className="state-label">State*</label>
                         <select onChange ={e => setState(e.target.value)}>
                             <option value = '' disabled selected>select a state</option>
                             {states.map(state => <option value={state}>{state}</option>)}
                         </select>
                     </div>
                     <div className="zip-div">
-                        <label className="zip-label">Zip Code</label>
+                        <label className="zip-label">Zip Code*</label>
                         <input
                             type="string"
                             placeholder="5 digit zip codes only"
@@ -117,7 +118,7 @@ const CreateVenue = () =>{
                             maxLength={5}/>
                     </div>
                     <div className="lat-div">
-                        <label className="lat-label">Latitude</label>
+                        <label className="lat-label">Latitude*</label>
                         <input
                             type="decimal"
                             value={latitude ? latitude:''}
@@ -126,7 +127,7 @@ const CreateVenue = () =>{
                         />
                     </div>
                     <div className="long-div">
-                        <label className="long-label">Longitude</label>
+                        <label className="long-label">Longitude*</label>
                         <input
                             type="decimal"
                             value={longitude ? longitude:''}
@@ -134,11 +135,11 @@ const CreateVenue = () =>{
                             placeholder='optional'
                         />
                     </div>
-                    <div>
+                    <div className="submit-cancel-venue-div">
                         <span>
-                            <button type="submit">Submit</button>
+                            <button type="submit" className="submit-venue-btn">Submit</button>
                         </span>
-                        <span>
+                        <span className="cancel-venue-btn">
                             <button onClick={() => history.push('/')}>Cancel</button>
                         </span>
                     </div>
