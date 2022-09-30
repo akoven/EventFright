@@ -48,6 +48,11 @@ const EditEvent = () =>{
 
     let errors = [];
 
+    const filterTime = (date) =>{
+        const isPast = new Date().getTime() < date.getTime();
+        return isPast;
+    };
+
     const handleSubmit= async e =>{
         e.preventDefault();
         const payload = {
@@ -89,9 +94,9 @@ const EditEvent = () =>{
             errors.push('You must provide the capacity for your event')
         }
 
-        if(new Date() === new Date(eventDate) || new Date(eventDate) - new Date() < 0){
-            errors.push('You must select a date and time in the future')
-        }
+        // if(new Date(eventDate) - new Date() <= 0){
+        //     errors.push('You must select a date and time in the future')
+        // }
 
         setValidationErrors(errors);
 
@@ -170,7 +175,7 @@ const EditEvent = () =>{
                     </div>
                     <div className="date">
                         <label>Date and Time</label>
-                        <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="HH:mm:ss" timeIntervals={15} dateFormat="yyyy-MM-dd" minDate={new Date()} />
+                        <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="HH:mm:ss" timeIntervals={15} dateFormat="yyyy-MM-dd" minDate={new Date()} filterTime={filterTime}/>
                     </div>
                     <div className="submit-cancel">
                         <span className="submit-btn">

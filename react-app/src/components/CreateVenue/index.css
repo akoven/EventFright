@@ -1,0 +1,38 @@
+.form-field{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* padding-top: 30px;
+    padding-bottom: 30px; */
+}
+
+.form-body{
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    padding: 20px;
+
+}
+
+.name-label,.address-label,.city-label,.state-label,.zip-label,.lat-label,.long-label{
+    color: white;
+    padding-right: 10px;
+}
+
+.available-venues{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+}
+
+.edit-btn, .delete-btn{
+    padding-top: 15px;
+    padding-left: 10px;
+}
+
+.create-venue-pg{
+    height: 700px;
+
+}

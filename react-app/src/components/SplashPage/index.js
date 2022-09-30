@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getEventThunk } from '../../store/event';
 import { getCategoryThunk } from '../../store/category';
-import { getVenueThunk } from '../../store/venue';
+// import { getVenueThunk } from '../../store/venue';
 
 const SplashPage = () =>{
 
@@ -17,7 +17,7 @@ const SplashPage = () =>{
 
     useEffect(() =>{
         dispatch(getEventThunk());
-        dispatch(getCategoryThunk())
+        dispatch(getCategoryThunk());
     }, [dispatch])
 
     // useEffect(() =>{

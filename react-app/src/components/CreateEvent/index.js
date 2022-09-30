@@ -205,7 +205,7 @@ const CreateEvent = () =>{
                     </div>
                     <div className="date">
                         <label className="event-date-label">Date and Time*</label>
-                        <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="h:mm aa" timeIntervals={15} dateFormat="MM/dd/yyyy" minDate={new Date()} filterTime={filterTime} showTimeInput/>
+                        <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="h:mm aa" timeIntervals={15} dateFormat="MM/dd/yyyy" minDate={new Date()} filterTime={filterTime}/>
                     </div>
                     <div className="submit-cancel">
                         <span className="submit-btn">

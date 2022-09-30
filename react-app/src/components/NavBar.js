@@ -81,8 +81,10 @@ const NavBar = () => {
                     </button>
                   </li>
                   <li>
-                    <NavLink className='userEventsBtn' to={`/events/${currentUser.id}`}>Check out your events</NavLink>
+                    <NavLink className='user-events-btn' to={`/events/${currentUser.id}`}>Check out your events</NavLink>
                   </li>
+                  <li><NavLink className='venue-btn' to={`/create-venue`}>Add a venue</NavLink></li>
+                  <li><NavLink className='category-btn' to={`/create-category`}>Add a category</NavLink></li>
                 </ul>
                 )
               }

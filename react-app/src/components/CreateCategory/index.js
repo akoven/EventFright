@@ -28,7 +28,7 @@ const CreateCategory = () =>{
 
         const newCategory = await dispatch(addCategoryThunk(payload))
         if(newCategory){
-            history.push('/')
+            history.push('/create-category')
         }
     };
 

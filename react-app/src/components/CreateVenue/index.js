@@ -4,6 +4,7 @@ import { getVenueThunk } from "../../store/venue";
 import { useHistory } from "react-router-dom";
 import { addVenueThunk } from "../../store/venue";
 import { deleteVenueThunk } from "../../store/venue";
+import './index.css';
 
 const CreateVenue = () =>{
 
@@ -42,7 +43,7 @@ const CreateVenue = () =>{
         // console.log('payload being passed to add venue thunk ',payload)
         const newVenue = await dispatch(addVenueThunk(payload))
         if(newVenue){
-            history.push('/')
+            history.push('/create-venue')
         }
     }
 
@@ -52,79 +53,98 @@ const CreateVenue = () =>{
     }
 
     return(
-        <div>
+        <div className="create-venue-pg">
             <h3>Available Venues</h3>
-            {allVenues.map(venue => <div><span><p>{venue.name}</p></span><span><button onClick={() => history.push(`/venues/${venue.id}`)}>Edit</button></span><span><button onClick={() => handleDelete(venue.id)}>Delete</button></span></div>)}
-            <form onSubmit={handleSubmit}>
+            {allVenues.map(venue =>
+            <span className="available-venues">
                 <div>
-                    <label>Venue Name</label>
-                    <input
-                    type="string"
-                    value={venueName ? venueName:''}
-                    onChange={e => setVenueName(e.target.value)}
-                    required
-                    placeholder="required"/>
+                    <p>{venue.name}</p>
                 </div>
-                <div>
-                    <label>Venue Address</label>
-                    <input
+                <span className="edit-btn">
+                    <button onClick={() => history.push(`/venues/${venue.id}`)}>Edit</button>
+                </span>
+                <span className="delete-btn">
+                    <button onClick={() => handleDelete(venue.id)}>Delete</button>
+                </span>
+            </span>
+            )}
+
+            <div className='form-field'>
+                <form onSubmit={handleSubmit} className='form-body'>
+                    <div className="name-div">
+                        <label className="name-label">Venue Name</label>
+                        <input
                         type="string"
-                        value={venueAddress ? venueAddress:''}
-                        onChange={e => setVenueAdress(e.target.value)}
+                        value={venueName ? venueName:''}
+                        onChange={e => setVenueName(e.target.value)}
                         required
                         placeholder="required"/>
-                </div>
-                <div>
-                    <label>City</label>
-                    <input
-                        type="string"
-                        value={city ? city: ''}
-                        onChange={e => setCity(e.target.value)}
-                        required
+                    </div>
+                    <div className="address-div">
+                        <label className="address-label">Venue Address</label>
+                        <input
+                            type="string"
+                            value={venueAddress ? venueAddress:''}
+                            onChange={e => setVenueAdress(e.target.value)}
+                            required
+                            placeholder="required"/>
+                    </div>
+                    <div className="city-div">
+                        <label className="city-label">City</label>
+                        <input
+                            type="string"
+                            value={city ? city: ''}
+                            onChange={e => setCity(e.target.value)}
+                            required
+                            />
+                    </div>
+                    <div className="state-div">
+                        <label className="state-label">State</label>
+                        <select onChange ={e => setState(e.target.value)}>
+                            <option value = '' disabled selected>select a state</option>
+                            {states.map(state => <option value={state}>{state}</option>)}
+                        </select>
+                    </div>
+                    <div className="zip-div">
+                        <label className="zip-label">Zip Code</label>
+                        <input
+                            type="string"
+                            placeholder="5 digit zip codes only"
+                            value={zipCode ? zipCode:''}
+                            onChange ={e => setZipCode(e.target.value)}
+                            required
+                            minLength={5}
+                            maxLength={5}/>
+                    </div>
+                    <div className="lat-div">
+                        <label className="lat-label">Latitude</label>
+                        <input
+                            type="decimal"
+                            value={latitude ? latitude:''}
+                            onChange ={e => setLatitude(e.target.value)}
+                            placeholder='optional'
                         />
-                </div>
-                <div>
-                    <label>State</label>
-                    <select onChange ={e => setState(e.target.value)}>
-                        <option value = '' disabled selected>select a state</option>
-                        {states.map(state => <option value={state}>{state}</option>)}
-                    </select>
-                </div>
-                <div>
-                    <label>Zip Code</label>
-                    <input
-                        type="string"
-                        placeholder="5 digit zip codes only"
-                        value={zipCode ? zipCode:''}
-                        onChange ={e => setZipCode(e.target.value)}
-                        required
-                        minLength={5}
-                        maxLength={5}/>
-                </div>
-                <div>
-                    <label>Latitude</label>
-                    <input
-                        type="decimal"
-                        value={latitude ? latitude:''}
-                        onChange ={e => setLatitude(e.target.value)}
-                        placeholder='optional'
-                    />
-                </div>
-                <div>
-                    <label>Longitude</label>
-                    <input
-                        type="decimal"
-                        value={longitude ? longitude:''}
-                        onChange ={e => setLongitude(e.target.value)}
-                        placeholder='optional'
-                    />
-                </div>
-                <button type="submit">Submit</button>
-                <button onClick={() => history.push('/')}>Cancel</button>
-
-            </form>
+                    </div>
+                    <div className="long-div">
+                        <label className="long-label">Longitude</label>
+                        <input
+                            type="decimal"
+                            value={longitude ? longitude:''}
+                            onChange ={e => setLongitude(e.target.value)}
+                            placeholder='optional'
+                        />
+                    </div>
+                    <div>
+                        <span>
+                            <button type="submit">Submit</button>
+                        </span>
+                        <span>
+                            <button onClick={() => history.push('/')}>Cancel</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
-
     )
 }
 
