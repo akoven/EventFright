@@ -17,9 +17,11 @@
 }
 
 .name-label,.address-label,.city-label,.state-label,.zip-label,.lat-label,.long-label{
-    color: white;
+    color: red;
     padding-right: 10px;
 }
+
+
 
 .available-venues{
     display: flex;
@@ -35,4 +37,14 @@
 .create-venue-pg{
     height: 700px;
 
+}
+
+.submit-venue-btn{
+    padding-left: 10px;
+    padding-right: 10px;
+    /* padding-top: 40px; */
+}
+
+.submit-cancel-venue-div{
+    padding-top: 25px;
 }
