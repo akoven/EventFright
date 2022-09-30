@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { addEventThunk } from "../../store/event";
 import { getVenueThunk } from "../../store/venue";
 import { getCategoryThunk } from "../../store/category";
+// import '../DefaultImage/default-image.jpg';
 import './index.css';
 
 // set error check for capacity less than 1, dates that are in the past
@@ -123,6 +124,7 @@ const CreateEvent = () =>{
         const newEvent = await dispatch(addEventThunk(payload))
 
         if(newEvent){
+                alert('New event added successfully!')
                 history.push('/')
             }
 
@@ -216,6 +218,7 @@ const CreateEvent = () =>{
                         </span>
                     </div>
                 </form>
+                <img src={`${eventImage}`} alt='image_appears_here' onError={e => {e.currentTarget.src = 'https://st.depositphotos.com/1026550/4380/i/600/depositphotos_43807431-stock-photo-halloween.jpg'}} className="edit-image"/>
             </div>
         </div>
 

@@ -39,7 +39,7 @@ const SplashPage = () =>{
                     <img className='banner-img' src='https://i.pinimg.com/originals/8c/31/0d/8c310d583f66f16a80331c008068ecd6.jpg'/>
                 </div>
             </div>
-            <div>
+            <div className='splash-pg-div'>
 
                 <h3>Check out these categories</h3>
                 {allCategories.map(category =><div className='front-pg-category'>{category.type}</div>)}

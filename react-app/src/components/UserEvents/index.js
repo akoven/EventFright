@@ -31,9 +31,9 @@ const UserEvents = () =>{
     //    return
     // }
 
-    const handleEdit = (id) =>{
-        history.push(`/edit-event/${id}`)
-    }
+    // const handleEdit = (id) =>{
+    //     history.push(`/edit-event/${id}`)
+    // }
 
     const handleDelete = async (eventId) =>{
        await dispatch(removeEventThunk(eventId))
@@ -54,7 +54,7 @@ const UserEvents = () =>{
                     <p>{event.venue.address} {event.venue.city}, {event.venue.state} {event.venue.zip_code}</p>
                     <p>Category: {event.category.type}</p>
                     <span>
-                        <button className='edit-event' onClick={() => handleEdit(event.id)}>Edit</button>
+                        <button className='edit-event' onClick={() => history.push(`/edit-event/${event.id}`)}>Edit</button>
                         <button className='delete-event' onClick={() => handleDelete(event.id)}>Delete</button>
                     </span>
                 </div>)}

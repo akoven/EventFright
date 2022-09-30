@@ -16,23 +16,17 @@
 
 }
 
-.name-label,.address-label,.city-label,.state-label,.zip-label,.lat-label,.long-label{
+.name-label,.address-label,.city-label,.state-label,.zip-label{
     color: red;
     padding-right: 10px;
 }
 
-
-
-.available-venues{
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 5px;
+.lat-label,.long-label{
+    color: white;
+    padding-right: 10px;
 }
 
-.edit-btn, .delete-btn{
-    padding-top: 15px;
-    padding-left: 10px;
-}
+
 
 .create-venue-pg{
     height: 700px;
@@ -47,4 +41,9 @@
 
 .submit-cancel-venue-div{
     padding-top: 25px;
+}
+
+.venue-err-msgs{
+    color: red;
+    font-size: larger;
 }

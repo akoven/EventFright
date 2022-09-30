@@ -82,8 +82,10 @@ export const deleteVenueThunk = (venueId) => async dispatch =>{
     const response = await fetch(`/api/venues/${venueId}`, {
         method: 'DELETE'
     });
-    dispatch(deleteVenue(venueId));
-    return response;
+    if (response.ok){
+        dispatch(deleteVenue(venueId));
+    }
+    return null;
 };
 
 const venueReducer = (state = {}, action) =>{
