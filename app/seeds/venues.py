@@ -7,7 +7,7 @@ def seed_venues():
        address = '2027 Fairmount Ave' ,
        city = 'Philadelphia',
        state = 'PA',
-       zip_code = '19130',
+       zip_code = 19130,
        latitude=0,
        longitude=0
     )
@@ -17,7 +17,7 @@ def seed_venues():
         address = 'TX-114 Owl Road',
         city = 'Smyer',
         state = 'TX',
-        zip_code='79407',
+        zip_code=79407,
         latitude=0,
         longitude=0
     )
@@ -27,7 +27,7 @@ def seed_venues():
         address = '115 West Center St',
         city  = 'Medina',
         state = 'NY',
-        zip_code = '14103',
+        zip_code = 14103,
         latitude=0,
         longitude=0
     )

@@ -81,8 +81,10 @@ export const deleteCategoryThunk = (categoryId) => async dispatch =>{
     const response = await fetch(`/api/categories/${categoryId}`, {
         method: 'DELETE'
     });
-    dispatch(deleteCategory(categoryId));
-    return response;
+    if(response.ok){
+        dispatch(deleteCategory(categoryId));
+    }
+    return null;
 };
 
 const categoryReducer = (state = {}, action) =>{

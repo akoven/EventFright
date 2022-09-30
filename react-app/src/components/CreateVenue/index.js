@@ -24,10 +24,13 @@ const CreateVenue = () =>{
     const [venueName, setVenueName] = useState('')
     const [venueAddress, setVenueAdress] = useState('')
     const [city, setCity] = useState('')
-    const [state, setState] = useState(states[0])
+    const [state, setState] = useState('')
     const [zipCode, setZipCode] = useState('')
     const [latitude, setLatitude] = useState(0.0000)
     const [longitude, setLongitude] = useState(0.0000)
+    const [validationErrors, setValidationErrors] = useState([])
+
+    const errors = [];
 
     const handleSubmit = async e =>{
         e.preventDefault();
@@ -41,43 +44,58 @@ const CreateVenue = () =>{
             longitude: longitude
         }
         // console.log('payload being passed to add venue thunk ',payload)
-        const newVenue = await dispatch(addVenueThunk(payload))
-        if(newVenue){
-            history.push('/create-venue')
+        if(validationErrors.length === 0){
+            const newVenue = await dispatch(addVenueThunk(payload));
+            if(newVenue){
+                alert('successfully created a new venue')
+                history.push('/all-venues')
+            };
         }
+
+
+        if(venueName.length === 0){
+            errors.push('You must provide a name for your venue')
+        };
+
+        if(venueAddress.length === 0){
+            errors.push('You must provide an address for your venue')
+        }
+
+        if(city.length === 0){
+            errors.push('You must provide a city')
+        };
+
+        if(state.length === 0){
+            errors.push('You must select a state')
+        };
+
+        if(!regex.test(zipCode)){
+            errors.push('The zip code must be a 5 digit number')
+        }
+
+        setValidationErrors(errors);
     }
 
     const handleDelete = async (venueId) =>{
-        await dispatch(deleteVenueThunk(venueId))
-        history.push('/')
+       await dispatch(deleteVenueThunk(venueId))
+       alert('successfully deleted venue')
     }
 
     return(
         <div className="create-venue-pg">
-            <h3>Available Venues</h3>
-            {allVenues.map(venue =>
-            <span className="available-venues">
-                <div>
-                    <p>{venue.name}</p>
-                </div>
-                <span className="edit-btn">
-                    <button onClick={() => history.push(`/venues/${venue.id}`)}>Edit</button>
-                </span>
-                <span className="delete-btn">
-                    <button onClick={() => handleDelete(venue.id)}>Delete</button>
-                </span>
-            </span>
-            )}
 
+            <h3>Create a venue</h3>
             <div className='form-field'>
                 <form onSubmit={handleSubmit} className='form-body'>
+                    <ul>
+                        {validationErrors.map(error => <li className="venue-err-msgs">{error}</li>)}
+                    </ul>
                     <div className="name-div">
                         <label className="name-label">Venue Name*</label>
                         <input
                         type="string"
                         value={venueName ? venueName:''}
                         onChange={e => setVenueName(e.target.value)}
-                        required
                         placeholder="required"/>
                     </div>
                     <div className="address-div">
@@ -86,7 +104,6 @@ const CreateVenue = () =>{
                             type="string"
                             value={venueAddress ? venueAddress:''}
                             onChange={e => setVenueAdress(e.target.value)}
-                            required
                             placeholder="required"/>
                     </div>
                     <div className="city-div">
@@ -96,7 +113,6 @@ const CreateVenue = () =>{
                             type="string"
                             value={city ? city: ''}
                             onChange={e => setCity(e.target.value)}
-                            required
                             />
                     </div>
                     <div className="state-div">
@@ -109,16 +125,15 @@ const CreateVenue = () =>{
                     <div className="zip-div">
                         <label className="zip-label">Zip Code*</label>
                         <input
-                            type="string"
+                            type="integer"
                             placeholder="5 digit zip codes only"
                             value={zipCode ? zipCode:''}
                             onChange ={e => setZipCode(e.target.value)}
-                            required
                             minLength={5}
                             maxLength={5}/>
                     </div>
                     <div className="lat-div">
-                        <label className="lat-label">Latitude*</label>
+                        <label className="lat-label">Latitude</label>
                         <input
                             type="decimal"
                             value={latitude ? latitude:''}
@@ -127,7 +142,7 @@ const CreateVenue = () =>{
                         />
                     </div>
                     <div className="long-div">
-                        <label className="long-label">Longitude*</label>
+                        <label className="long-label">Longitude</label>
                         <input
                             type="decimal"
                             value={longitude ? longitude:''}
