@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getVenueThunk } from "../../store/venue";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { deleteVenueThunk } from "../../store/venue";
 import './index.css';
 
@@ -22,6 +22,9 @@ const AllVenues = () =>{
 
     return(
         <>
+            <header>
+                <NavLink to='/create-venue' className={'nav-link-venue'}>{'<< Back to create venues page'}</NavLink>
+            </header>
             <h3>Available Venues</h3>
             {allVenues.map(venue =>
                 <span className="available-venues">

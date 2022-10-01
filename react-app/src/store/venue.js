@@ -84,8 +84,10 @@ export const deleteVenueThunk = (venueId) => async dispatch =>{
     });
     if (response.ok){
         dispatch(deleteVenue(venueId));
+        return 'successfully deleted venue'
     }
-    return null;
+    return 'cannot delete this venue at this time';
+
 };
 
 const venueReducer = (state = {}, action) =>{
@@ -104,6 +106,7 @@ const venueReducer = (state = {}, action) =>{
             newState[action.venue.id] = action.venue;
             return newState;
         case DELETE_VENUE:
+            newState = {...state};
             delete newState[action.venueId];
             return newState;
         default:
