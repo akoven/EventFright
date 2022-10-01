@@ -1,0 +1,15 @@
+.available-venues{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+}
+
+.edit-btn, .delete-btn{
+    padding-top: 15px;
+    padding-left: 10px;
+}
+
+.nav-link-venue{
+    color: white;
+    text-decoration: none;
+}
