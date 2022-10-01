@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getVenueThunk } from "../../store/venue";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { addVenueThunk } from "../../store/venue";
 import { deleteVenueThunk } from "../../store/venue";
 import './index.css';
@@ -33,7 +33,9 @@ const CreateVenue = () =>{
     const errors = [];
 
     const handleSubmit = async e =>{
+
         e.preventDefault();
+
         const payload = {
             name: venueName,
             address: venueAddress,
@@ -44,14 +46,6 @@ const CreateVenue = () =>{
             longitude: longitude
         }
         // console.log('payload being passed to add venue thunk ',payload)
-        if(validationErrors.length === 0){
-            const newVenue = await dispatch(addVenueThunk(payload));
-            if(newVenue){
-                alert('successfully created a new venue')
-                history.push('/all-venues')
-            };
-        }
-
 
         if(venueName.length === 0){
             errors.push('You must provide a name for your venue')
@@ -74,17 +68,39 @@ const CreateVenue = () =>{
         }
 
         setValidationErrors(errors);
+
+        if(validationErrors.length === 0){
+            const newVenue = await dispatch(addVenueThunk(payload));
+            if(newVenue){
+                alert('successfully created a new venue')
+                history.push('/create-venue')
+            };
+        }
     }
 
     const handleDelete = async (venueId) =>{
-       await dispatch(deleteVenueThunk(venueId))
-       alert('successfully deleted venue')
+       const response = await dispatch(deleteVenueThunk(venueId))
+       alert(response)
     }
 
     return(
         <div className="create-venue-pg">
+            <h3 className="available-venue-label">Available Venues</h3>
+            {allVenues.map(venue =>
+                <span className="available-venues">
+                    <div className="single-venue">
+                        <p>{venue.name}</p>
+                    </div>
+                    <span className="edit-btn">
+                        <button onClick={() => history.push(`/venues/${venue.id}`)}>Edit</button>
+                    </span>
+                    <span className="delete-btn">
+                        <button onClick={() => handleDelete(venue.id)}>Delete</button>
+                    </span>
+                </span>
 
-            <h3>Create a venue</h3>
+            )}
+            <h3 className="create-venue-label">Create a venue</h3>
             <div className='form-field'>
                 <form onSubmit={handleSubmit} className='form-body'>
                     <ul>
@@ -125,7 +141,7 @@ const CreateVenue = () =>{
                     <div className="zip-div">
                         <label className="zip-label">Zip Code*</label>
                         <input
-                            type="integer"
+                            type="string"
                             placeholder="5 digit zip codes only"
                             value={zipCode ? zipCode:''}
                             onChange ={e => setZipCode(e.target.value)}

@@ -11,7 +11,6 @@ import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage';
 import CreateEvent from './components/CreateEvent';
 import CreateVenue from './components/CreateVenue';
-import AllVenues from './components/AllVenues';
 import UserEvents from './components/UserEvents';
 import EditEvent from './components/EditEvent';
 import EditVenue from './components/EditVenue';
@@ -66,9 +65,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/venues/:id' exact={true} >
           <EditVenue />
-        </ProtectedRoute>
-        <ProtectedRoute path='/all-venues' exact={true} >
-          <AllVenues />
         </ProtectedRoute>
         <ProtectedRoute path='/create-category' exact={true} >
           <CreateCategory />

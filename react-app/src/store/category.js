@@ -103,6 +103,7 @@ const categoryReducer = (state = {}, action) =>{
         //     newState[action.category.id] = action.category;
         //     return newState;
         case DELETE_CATEGORY:
+            newState = {...state};
             delete newState[action.categoryId];
             return newState;
         default:
