@@ -88,15 +88,14 @@ const CreateVenue = () =>{
             <h3 className="available-venue-label">Available Venues</h3>
             {allVenues.map(venue =>
                 <span className="available-venues">
-                    <div className="single-venue">
-                        <p>{venue.name}</p>
-                    </div>
-                    <span className="edit-btn">
+                    <p className="single-venue">{venue.name}</p>
+
+                    {/* <span className="edit-btn">
                         <button onClick={() => history.push(`/venues/${venue.id}`)}>Edit</button>
                     </span>
                     <span className="delete-btn">
                         <button onClick={() => handleDelete(venue.id)}>Delete</button>
-                    </span>
+                    </span> */}
                 </span>
 
             )}
@@ -106,8 +105,9 @@ const CreateVenue = () =>{
                     <ul>
                         {validationErrors.map(error => <li className="venue-err-msgs">{error}</li>)}
                     </ul>
+                    <h4 className="required-venue-fields">Required fields are red and marked with an *</h4>
                     <div className="name-div">
-                        <label className="name-label">Venue Name*</label>
+                        <label className="name-label">Venue Name *</label>
                         <input
                         type="string"
                         value={venueName ? venueName:''}
@@ -115,7 +115,7 @@ const CreateVenue = () =>{
                         placeholder="required"/>
                     </div>
                     <div className="address-div">
-                        <label className="address-label">Venue Address*</label>
+                        <label className="address-label">Venue Address *</label>
                         <input
                             type="string"
                             value={venueAddress ? venueAddress:''}
@@ -123,7 +123,7 @@ const CreateVenue = () =>{
                             placeholder="required"/>
                     </div>
                     <div className="city-div">
-                        <label className="city-label">City*</label>
+                        <label className="city-label">City *</label>
                         <input
                             placeholder="required"
                             type="string"
@@ -132,21 +132,20 @@ const CreateVenue = () =>{
                             />
                     </div>
                     <div className="state-div">
-                        <label className="state-label">State*</label>
+                        <label className="state-label">State *</label>
                         <select onChange ={e => setState(e.target.value)}>
                             <option value = '' disabled selected>select a state</option>
                             {states.map(state => <option value={state}>{state}</option>)}
                         </select>
                     </div>
                     <div className="zip-div">
-                        <label className="zip-label">Zip Code*</label>
+                        <label className="zip-label">Zip Code *</label>
                         <input
-                            type="string"
+                            type="integer"
                             placeholder="5 digit zip codes only"
                             value={zipCode ? zipCode:''}
                             onChange ={e => setZipCode(e.target.value)}
-                            minLength={5}
-                            maxLength={5}/>
+                        />
                     </div>
                     <div className="lat-div">
                         <label className="lat-label">Latitude</label>
