@@ -71,6 +71,9 @@
 /* .single-venue{
     color: aqua;
 } */
+.submit-span{
+    padding-right: 30px;
+}
 
 .required-venue-fields{
     color: red;
@@ -79,4 +82,9 @@
 
 .name-div,.address-div,.city-div,.state-div,.zip-div,.lat-div,.long-div{
     padding-bottom: 10px;
+}
+
+.edit-btn,.delete-btn{
+    margin-top: 15px;
+    margin-left: 7px
 }

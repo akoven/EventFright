@@ -29,6 +29,7 @@ const CreateVenue = () =>{
     const [latitude, setLatitude] = useState(0.0000)
     const [longitude, setLongitude] = useState(0.0000)
     const [validationErrors, setValidationErrors] = useState([])
+    const [openMenu, setOpenMenu] = useState(false)
 
     const errors = [];
 
@@ -78,10 +79,10 @@ const CreateVenue = () =>{
         }
     }
 
-    // const handleDelete = async (venueId) =>{
-    //    const response = await dispatch(deleteVenueThunk(venueId))
-    //    alert(response)
-    // }
+    const handleDelete = async (venueId) =>{
+       const response = await dispatch(deleteVenueThunk(venueId))
+       alert(response)
+    }
 
     return(
         <div className="create-venue-pg">
@@ -89,13 +90,12 @@ const CreateVenue = () =>{
             {allVenues.map(venue =>
                 <span className="available-venues">
                     <p className="single-venue">{venue.name}</p>
-
-                    {/* <span className="edit-btn">
-                        <button onClick={() => history.push(`/venues/${venue.id}`)}>Edit</button>
+                    <span className="edit-btn">
+                        <button onClick={() => history.push(`/edit-venue/${venue.id}`)}>Edit</button>
                     </span>
                     <span className="delete-btn">
                         <button onClick={() => handleDelete(venue.id)}>Delete</button>
-                    </span> */}
+                    </span>
                 </span>
 
             )}
@@ -166,11 +166,11 @@ const CreateVenue = () =>{
                         />
                     </div>
                     <div className="submit-cancel-venue-div">
-                        <span>
+                        <span className="submit-span">
                             <button type="submit" className="submit-venue-btn">Submit</button>
                         </span>
-                        <span className="cancel-venue-btn">
-                            <button onClick={() => history.push('/')}>Cancel</button>
+                        <span className="cancel-span">
+                            <button className="cancel-venue-btn" onClick={() => history.push('/')}>Cancel</button>
                         </span>
                     </div>
                 </form>

@@ -1,8 +1,9 @@
 import {useEffect,useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getVenueThunk } from "../../store/venue";
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, NavLink } from 'react-router-dom';
 import { editVenueThunk } from '../../store/venue';
+import './index.css'
 
 const EditVenue = () =>{
 
@@ -42,13 +43,15 @@ const EditVenue = () =>{
 
         const editedVenue = await dispatch(editVenueThunk(payload, id));
         if(editedVenue){
-            history.push('/create-event')
+            history.push('/create-venue')
         }
     };
 
 
     return(
-        <div>
+        <div className='edit-venue-div'>
+            <header><NavLink to={'/create-venue'}>{'<< Back to venues'}</NavLink></header>
+            <h3 className='edit-venue-label'>Edit Venue</h3>
             <form className='edit-venue-form-field' onSubmit={handleEdit}>
             <div>
                     <label>Venue Name</label>
@@ -113,8 +116,10 @@ const EditVenue = () =>{
                         placeholder='optional'
                     />
                 </div>
-                <button type="submit">Submit</button>
-                <button onClick={() => history.push('/')}>Cancel</button>
+                <span className='submit-cancel-span'>
+                    <button type="submit">Submit</button>
+                    <button onClick={() => history.push('/create-venue')}>Cancel</button>
+                </span>
 
             </form>
         </div>
