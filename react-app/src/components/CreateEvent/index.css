@@ -50,7 +50,7 @@
 }
 
 .error-msgs{
-    color: red;
+    color: rgb(197, 9, 197);
     font-size: larger;
     padding-right: 10px;
 }

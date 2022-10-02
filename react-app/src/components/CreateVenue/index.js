@@ -78,10 +78,10 @@ const CreateVenue = () =>{
         }
     }
 
-    const handleDelete = async (venueId) =>{
-       const response = await dispatch(deleteVenueThunk(venueId))
-       alert(response)
-    }
+    // const handleDelete = async (venueId) =>{
+    //    const response = await dispatch(deleteVenueThunk(venueId))
+    //    alert(response)
+    // }
 
     return(
         <div className="create-venue-pg">
@@ -100,7 +100,7 @@ const CreateVenue = () =>{
 
             )}
             <h3 className="create-venue-label">Create a venue</h3>
-            <div className='form-field'>
+            <div className='venue-form-field'>
                 <form onSubmit={handleSubmit} className='form-body'>
                     <ul>
                         {validationErrors.map(error => <li className="venue-err-msgs">{error}</li>)}
