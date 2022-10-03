@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getVenueThunk } from "../../store/venue";
-import { useHistory, NavLink } from "react-router-dom";
+import { useHistory, NavLink, useParams } from "react-router-dom";
 import { addVenueThunk } from "../../store/venue";
 import { deleteVenueThunk } from "../../store/venue";
 import './index.css';
@@ -12,13 +12,18 @@ const CreateVenue = () =>{
     const history = useHistory();
     const allVenues = useSelector(state => Object.values(state.venue));
     const states = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WV','WI','WY'];
-    // const customVenues = filter(allVenues)
+
+    const userId = useParams();
+    const currentUser = useSelector(state => state.session.user);
+    const customVenues = allVenues.filter(venue => venue.user_id === +userId.id)
     //set error check for zip code length, state abbreviations, regex.test
     const regex = /^\d{5}$/;
 
     useEffect(() =>{
         dispatch(getVenueThunk())
         // console.log(regex.test(zipCode)) true
+        console.log('custom venues ', customVenues)
+        // console.log('user id ',userId.id)
     },[dispatch])
 
     const [venueName, setVenueName] = useState('')
@@ -37,6 +42,7 @@ const CreateVenue = () =>{
         e.preventDefault();
 
         const payload = {
+            user_id: currentUser.id,
             name: venueName,
             address: venueAddress,
             city: city,
@@ -73,7 +79,7 @@ const CreateVenue = () =>{
             const newVenue = await dispatch(addVenueThunk(payload));
             if(newVenue){
                 alert('successfully created a new venue')
-                history.push('/create-venue')
+                history.push(`/create-venue/${currentUser.id}`)
             };
         }
     }
@@ -86,7 +92,7 @@ const CreateVenue = () =>{
     return(
         <div className="create-venue-pg">
             <h3 className="available-venue-label">Your Custom Venues</h3>
-            {allVenues.map(venue =>
+            {customVenues.map(venue =>
                 <span className="available-venues">
                     <p className="single-venue">{venue.name}</p>
                     <span className="edit-btn">

@@ -10,8 +10,8 @@ const EditVenue = () =>{
     const dispatch = useDispatch();
     const history = useHistory();
     const {id} = useParams();
-    // const allVenues = useSelector(state => Object.values(state.venue))
-    const selectedVenue = useSelector(state => state.venue)
+    const currentUser = useSelector(state => state.session.user);
+    const selectedVenue = useSelector(state => state.venue);
     const states = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WV','WI','WY']
     const regex = /^\d{5}$/;
 
@@ -71,7 +71,7 @@ const EditVenue = () =>{
             const editedVenue = await dispatch(editVenueThunk(payload, id));
             if(editedVenue){
                 alert('successfully created edited venue')
-                history.push('/create-venue')
+                history.push('/create-venue/${}')
                 // console.log('validation error length: ', errors)
             };
         }
@@ -148,7 +148,7 @@ const EditVenue = () =>{
                 </div>
                 <span className='submit-cancel-span'>
                     <button type="submit" className='edit-venue-submit'>Submit</button>
-                    <button onClick={() => history.push('/create-venue')}>Cancel</button>
+                    <button onClick={() => history.push(`/create-venue/${currentUser.id}`)}>Cancel</button>
                 </span>
 
             </form>

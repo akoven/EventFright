@@ -8,7 +8,7 @@ import './UserEvents.css'
 
 const UserEvents = () =>{
     const userEvents = useSelector(state => Object.values(state.event));
-    const currentUser = useSelector(state => state.session.user);
+    // const currentUser = useSelector(state => state.session.user);
 
     const dispatch = useDispatch();
     const history = useHistory();

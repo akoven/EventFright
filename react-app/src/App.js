@@ -54,7 +54,7 @@ function App() {
         <ProtectedRoute path='/create-event' exact={true} >
           <CreateEvent />
         </ProtectedRoute>
-        <ProtectedRoute path='/create-venue' exact={true} >
+        <ProtectedRoute path='/create-venue/:id' exact={true} >
           <CreateVenue />
         </ProtectedRoute>
         <ProtectedRoute path='/events/:id' exact={true} >
