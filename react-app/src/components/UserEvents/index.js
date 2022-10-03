@@ -41,7 +41,7 @@ const UserEvents = () =>{
 
     return(
         <div>
-            <header><NavLink to='/'>Event Fright</NavLink></header>
+            <header><NavLink to='/' className='home-pg-link-user-events'>Event Fright</NavLink></header>
             <h1 className='user-event-header'>Events</h1>
             <div>
                 {selectedEvents.map(event => <div className='event-card'>

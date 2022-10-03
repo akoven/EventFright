@@ -91,6 +91,9 @@ const CreateVenue = () =>{
 
     return(
         <div className="create-venue-pg">
+            <header>
+                <div className="create-venue-home-pg-div"><NavLink to={'/'} className='create-venue-home-pg-link'>Event Fright</NavLink></div>
+            </header>
             <h3 className="available-venue-label">Your Custom Venues</h3>
             {customVenues.map(venue =>
                 <span className="available-venues">

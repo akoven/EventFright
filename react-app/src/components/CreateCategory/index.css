@@ -12,7 +12,9 @@
 
 .category-header{
     padding-bottom: 20px;
-
+    padding-left: 18px;
+    font-size: 35px;
+    font-family: 'Caveat Brush', cursive;
 }
 
 .category-pg{
@@ -27,6 +29,7 @@
 
 .category-bubble{
     padding-right: 20px;
+    padding-left: 15px;
 }
 
 .category-form-label{
@@ -35,9 +38,57 @@
 }
 
 .create-category-submit-btn{
-    padding-right: 10px;
+    margin-right: 10px;
 }
 
 .handle-delete-btn{
     padding-left: 10px
+}
+
+.home-pg-link-create-category{
+    text-decoration: none;
+    font-size: 25px;
+    color: red;
+    font-family: 'Creepster', cursive;
+}
+
+.home-pg-link-create-category:hover{
+    color: white;
+}
+
+.home-pg-link-div{
+    padding-top: 7px;
+    padding-left: 10px;
+}
+
+.create-category-delete-btn{
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+.create-category-delete-btn:hover{
+    background-color: red;
+    border-color: red;
+    color: black;
+}
+
+.category-submit-btn,.category-cancel-btn{
+    background-color: black;
+    color: white;
+    margin-right: 5px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.category-cancel-btn:hover{
+    border-color: red;
+    background-color: red;
+    color: black;
+}
+
+.category-submit-btn:hover{
+    border-color: rgb(6, 160, 19);
+    background-color: rgb(6, 160, 19);
+    color: black;
 }

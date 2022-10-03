@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 import { getCategoryThunk, addCategoryThunk, deleteCategoryThunk } from "../../store/category";
 import './index.css';
 
@@ -42,12 +42,17 @@ const CreateCategory = () =>{
 
     return(
         <div className="category-pg">
+            <header>
+                <div className="home-pg-link-div">
+                    <NavLink to={'/'} className='home-pg-link-create-category'>Event Fright</NavLink>
+                </div>
+            </header>
             <h3 className="category-header">Custom Categories</h3>
             {customCategories.map(category =>
                 <span className="category-bubble">
                     <span className="category-label">{category.type}</span>
                     <span className="handle-delete-btn">
-                        <button onClick={() => handleDelete(category.id)}>Delete</button>
+                        <button onClick={() => handleDelete(category.id)} className='create-category-delete-btn'>Delete</button>
                     </span>
                 </span>
             )}
@@ -63,8 +68,8 @@ const CreateCategory = () =>{
                     required
                     placeholder="required"
                     />
-                    <span className="create-category-sumbit-btn"><button type="submit">Submit</button></span>
-                    <span><button onClick={() => history.push('/')}>Cancel</button></span>
+                    <span className="create-category-sumbit-btn"><button type="submit" className="category-submit-btn">Submit</button></span>
+                    <span><button className='category-cancel-btn' onClick={() => history.push('/')}>Cancel</button></span>
                 </div>
             </form>
         </div>
