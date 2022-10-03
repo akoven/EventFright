@@ -83,8 +83,9 @@ export const deleteCategoryThunk = (categoryId) => async dispatch =>{
     });
     if(response.ok){
         dispatch(deleteCategory(categoryId));
+        return 'successfully deleted category';
     }
-    return null;
+    return 'cannot delete this category at this time';
 };
 
 const categoryReducer = (state = {}, action) =>{

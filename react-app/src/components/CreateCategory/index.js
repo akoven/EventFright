@@ -29,12 +29,15 @@ const CreateCategory = () =>{
 
         const newCategory = await dispatch(addCategoryThunk(payload))
         if(newCategory){
+            alert('successfully created a new category')
             history.push(`/create-category/${currentUser.id}`)
         }
     };
 
     const handleDelete = async (categoryId) =>{
-        await dispatch(deleteCategoryThunk(categoryId))
+        const response = await dispatch(deleteCategoryThunk(categoryId))
+        alert(response)
+
     }
 
     return(
