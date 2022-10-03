@@ -1,16 +1,17 @@
 import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getCategoryThunk, addCategoryThunk, deleteCategoryThunk } from "../../store/category";
 import './index.css';
 
 const CreateCategory = () =>{
     const dispatch = useDispatch();
     const history = useHistory();
-
+    const userId = useParams();
 
     const allCategories = useSelector(state => Object.values(state.category));
     const currentUser = useSelector(state => state.session.user);
+    const customCategories = allCategories.filter(category => category.user_id === +userId.id)
 
     const [type, setType] = useState('')
 
@@ -28,7 +29,7 @@ const CreateCategory = () =>{
 
         const newCategory = await dispatch(addCategoryThunk(payload))
         if(newCategory){
-            history.push('/create-category')
+            history.push(`/create-category/${currentUser.id}`)
         }
     };
 
@@ -38,11 +39,13 @@ const CreateCategory = () =>{
 
     return(
         <div className="category-pg">
-            <h3 className="category-header">Available Categories</h3>
-            {allCategories.map(category =>
+            <h3 className="category-header">Custom Categories</h3>
+            {customCategories.map(category =>
                 <span className="category-bubble">
                     <span className="category-label">{category.type}</span>
-                    <button onClick={() => handleDelete(category.id)}>Delete</button>
+                    <span className="handle-delete-btn">
+                        <button onClick={() => handleDelete(category.id)}>Delete</button>
+                    </span>
                 </span>
             )}
 
@@ -57,7 +60,7 @@ const CreateCategory = () =>{
                     required
                     placeholder="required"
                     />
-                    <span><button type="submit">Submit</button></span>
+                    <span className="create-category-sumbit-btn"><button type="submit">Submit</button></span>
                     <span><button onClick={() => history.push('/')}>Cancel</button></span>
                 </div>
             </form>

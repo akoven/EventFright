@@ -133,8 +133,8 @@ const CreateEvent = () =>{
     return(
         <div className="create-event-page">
             <header>
-                <span><button onClick={() => history.push('/create-category')}>Create a new category</button></span>
-                <span><button onClick={() => history.push('/create-venue')}>Create a new venue</button></span>
+                <span><button onClick={() => history.push(`/create-category/${currentUser.id}`)}>Create a new category</button></span>
+                <span><button onClick={() => history.push(`/create-venue/${currentUser.id}`)}>Create a new venue</button></span>
                 <span className="user-events"><button onClick={() => history.push(`/events/${currentUser.id}`)}>See your events</button></span>
             </header>
             <div className="form-field">

@@ -33,3 +33,11 @@
     color: white;
     padding-right: 5px;
 }
+
+.create-category-submit-btn{
+    padding-right: 10px;
+}
+
+.handle-delete-btn{
+    padding-left: 10px
+}

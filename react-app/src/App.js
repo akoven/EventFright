@@ -66,7 +66,7 @@ function App() {
         <ProtectedRoute path='/edit-venue/:id' exact={true} >
           <EditVenue />
         </ProtectedRoute>
-        <ProtectedRoute path='/create-category' exact={true} >
+        <ProtectedRoute path='/create-category/:id' exact={true} >
           <CreateCategory />
         </ProtectedRoute>
         <ProtectedRoute path='/tickets' exact={true} >
