@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    padding-right: 10px;
+    align-self: center;
 }
 
 .form-field{
@@ -18,31 +20,57 @@
     flex-direction: column;
     background-color: black;
     padding-bottom: 20px;
+}
 
-    /* justify-content: center; */
+.all-links-create-event-pg{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 10px;
 }
 
 .event-name,.event-img,.description,.category,.venue,.capacity,.date,.submit-cancel{
     color: red;
-
 }
 
 .event-image-label, .event-name-label, .event-description-label, .event-category-label, .event-venue-label, .event-capacity-label{
     padding-right: 10px;
     padding-left: 5px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 18px;
 }
 
 .event-date-label{
     padding-left: 5px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 18px;
 }
 
 .submit-cancel{
     padding-bottom: 25px;
 }
 
-.submit-btn{
+.create-event-submit-btn-span{
     padding-right: 20px;
     padding-bottom: 25px;
+}
+
+.create-event-submit-btn, .create-event-cancel-btn{
+    background-color: blueviolet;
+    color: white;
+    border-radius: 5px;
+}
+
+.create-event-submit-btn:hover{
+    border-color: rgb(6, 160, 19);
+    background-color: rgb(6, 160, 19);
+    color: black;
+}
+
+.create-event-cancel-btn:hover{
+    border-color: red;
+    background-color: red;
+    color: black;
 }
 
 .create-event-page{
@@ -51,7 +79,7 @@
 
 .error-msgs{
     color: rgb(197, 9, 197);
-    font-size: larger;
+    font-size: large;
     padding-right: 10px;
 }
 
@@ -59,4 +87,32 @@
     color: red;
     padding-left: 20px;
     padding-right: 20px;
+    /* font-size: large; */
+    font-size: 17px;
+}
+
+.home-pg-link-create-event{
+    text-decoration: none;
+    font-size: 30px;
+    color: red;
+    font-family: 'Creepster', cursive;
+    padding-left: 10px;
+}
+
+.home-pg-link-create-event:hover{
+    color: white;
+}
+
+.create-category-btn,.create-venue-btn,.user-events-link{
+    background-color: rgba(85, 85, 223);
+    border: 1px solid  rgb(85, 85, 223);
+    border-radius: 5px;
+}
+
+.create-category-btn:hover,.create-venue-btn:hover,.user-events-link:hover{
+    background-color: rgba(85, 85, 223, 0.6);
+    color: rgb(43, 0, 56);
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Shadows Into Light', cursive;
 }

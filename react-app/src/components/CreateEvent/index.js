@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import { useHistory } from "react-router-dom";
@@ -121,21 +122,25 @@ const CreateEvent = () =>{
             // console.log('NEW DATE: ', eventDate.toLocaleString('en-US', options))
             // console.log('NEW DATE: ', eventDate.toLocaleString('en-US', {hour12: true}))
 
-        const newEvent = await dispatch(addEventThunk(payload))
-
-        if(newEvent){
-                alert('New event added successfully!')
-                history.push('/')
-            }
+        if(errors.length === 0){
+            const newEvent = await dispatch(addEventThunk(payload))
+            if(newEvent){
+                    alert('New event added successfully!')
+                    history.push('/')
+                }
+        };
 
     };
 
     return(
         <div className="create-event-page">
             <header>
-                <span><button onClick={() => history.push('/create-category')}>Create a new category</button></span>
-                <span><button onClick={() => history.push('/create-venue')}>Create a new venue</button></span>
-                <span className="user-events"><button onClick={() => history.push(`/events/${currentUser.id}`)}>See your events</button></span>
+                <div><NavLink to={'/'} className='home-pg-link-create-event'>Event Fright</NavLink></div>
+                <span className="all-links-create-event-pg">
+                    <button onClick={() => history.push(`/create-category/${currentUser.id}`)} className='create-category-btn'>Create a new category</button>
+                    <button onClick={() => history.push(`/create-venue/${currentUser.id}`)} className='create-venue-btn'>Create a new venue</button>
+                    <button onClick={() => history.push(`/events/${currentUser.id}`)} className='user-events-link'>See your events</button>
+                </span>
             </header>
             <div className="form-field">
                 <form onSubmit={handleSubmit} className="form-body">
@@ -144,7 +149,7 @@ const CreateEvent = () =>{
                     </ul>
                     <h4 className="required-fields">Required fields are in red in marked with an *</h4>
                     <div className="event-name">
-                        <label className="event-name-label">Event Name*</label>
+                        <label className="event-name-label">Event Name *</label>
                         <input
                             type="string"
                             placeholder="Be clear and descriptive."
@@ -153,7 +158,7 @@ const CreateEvent = () =>{
                         />
                     </div>
                     <div className="event-img">
-                        <label className="event-image-label">Event Image*</label>
+                        <label className="event-image-label">Event Image *</label>
                         <input
                             type="string"
                             placeholder="image formats .jpg, .jpeg, .png only"
@@ -162,7 +167,7 @@ const CreateEvent = () =>{
                         />
                     </div>
                     <div className="description">
-                        <label className="event-description-label">Description*</label>
+                        <label className="event-description-label">Description *</label>
                         <textarea
                             type = "text"
                             placeholder="give a brief event description, 2000 characters or less"
@@ -181,14 +186,14 @@ const CreateEvent = () =>{
                             />
                     </div> */}
                     <div className="category">
-                        <label className="event-category-label">Category*</label>
+                        <label className="event-category-label">Category *</label>
                         <select onChange={e => setEventCategory(e.target.value)}>
                             <option value='' disabled selected>select a category</option>
                             {categories.map(category => <option value={category.id}>{category.type}</option>)}
                         </select>
                     </div>
                     <div className="venue">
-                        <label className="event-venue-label">Venue*</label>
+                        <label className="event-venue-label">Venue *</label>
                         <select onChange={e => setEventVenue(e.target.value)}>
                             <option value='' disabled selected>select a venue</option>
                             {venues.map(location =>
@@ -197,28 +202,29 @@ const CreateEvent = () =>{
                         </select>
                     </div>
                     <div className="capacity">
-                        <label className="event-capacity-label">Capacity*</label>
+                        <label className="event-capacity-label">Capacity *</label>
                         <input
                             type="number"
                             value = {eventCapacity ? eventCapacity:''}
                             onChange={e => setEventCapacity(e.target.value)}
+                            placeholder='required'
                             min={1}
                         />
                     </div>
                     <div className="date">
-                        <label className="event-date-label">Date and Time*</label>
+                        <label className="event-date-label">Date and Time *</label>
                         <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="h:mm aa" timeIntervals={15} dateFormat="MM/dd/yyyy" minDate={new Date()} filterTime={filterTime}/>
                     </div>
                     <div className="submit-cancel">
-                        <span className="submit-btn">
-                            <button type="submit">Submit</button>
+                        <span className="create-event-submit-btn-span">
+                            <button type="submit" className="create-event-submit-btn">Submit</button>
                         </span>
-                        <span className="cancel-btn">
-                            <button onClick={() => history.push('/')}>Cancel</button>
+                        <span className="create-event-cancel-btn-span">
+                            <button onClick={() => history.push('/')} className='create-event-cancel-btn'>Cancel</button>
                         </span>
                     </div>
                 </form>
-                <img src={`${eventImage}`} alt='image_appears_here' onError={e => {e.currentTarget.src = 'https://st.depositphotos.com/1026550/4380/i/600/depositphotos_43807431-stock-photo-halloween.jpg'}} className="edit-image"/>
+                <img src={`${eventImage}`} alt='https://st.depositphotos.com/1026550/4380/i/600/depositphotos_43807431-stock-photo-halloween.jpg' onError={e => {e.currentTarget.src = 'https://st.depositphotos.com/1026550/4380/i/600/depositphotos_43807431-stock-photo-halloween.jpg'}} className="edit-image"/>
             </div>
         </div>
 

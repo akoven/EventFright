@@ -22,6 +22,7 @@ def add_new_venue():
     new_venue = VenueForm()
     new_venue['csrf_token'].data = request.cookies['csrf_token']
 
+    user_id = new_venue.data['user_id']
     name = new_venue.data['name']
     address = new_venue.data['address']
     city = new_venue.data['city']
@@ -32,6 +33,7 @@ def add_new_venue():
 
     if new_venue.validate_on_submit():
         venue=Venues(
+            user_id = user_id,
             name = name,
             address = address,
             city = city,

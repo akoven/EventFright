@@ -11,7 +11,7 @@ class Events(db.Model):
     description = db.Column(db.String(2000), nullable=False)
     event_image = db.Column(db.String, nullable=False)
     date = db.Column(db.String, nullable=False)
-    capacity = db.Column(db.Integer)
+    capacity = db.Column(db.Integer, nullable=False)
 
     user = db.relationship('User', back_populates='events')
     venue = db.relationship('Venues', back_populates='events')

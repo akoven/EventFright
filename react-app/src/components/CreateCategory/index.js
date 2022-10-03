@@ -1,16 +1,17 @@
 import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 import { getCategoryThunk, addCategoryThunk, deleteCategoryThunk } from "../../store/category";
 import './index.css';
 
 const CreateCategory = () =>{
     const dispatch = useDispatch();
     const history = useHistory();
-
+    const userId = useParams();
 
     const allCategories = useSelector(state => Object.values(state.category));
     const currentUser = useSelector(state => state.session.user);
+    const customCategories = allCategories.filter(category => category.user_id === +userId.id)
 
     const [type, setType] = useState('')
 
@@ -28,21 +29,31 @@ const CreateCategory = () =>{
 
         const newCategory = await dispatch(addCategoryThunk(payload))
         if(newCategory){
-            history.push('/create-category')
+            alert('successfully created a new category')
+            history.push(`/create-category/${currentUser.id}`)
         }
     };
 
     const handleDelete = async (categoryId) =>{
-        await dispatch(deleteCategoryThunk(categoryId))
+        const response = await dispatch(deleteCategoryThunk(categoryId))
+        alert(response)
+
     }
 
     return(
         <div className="category-pg">
-            <h3 className="category-header">Available Categories</h3>
-            {allCategories.map(category =>
+            <header>
+                <div className="home-pg-link-div">
+                    <NavLink to={'/'} className='home-pg-link-create-category'>Event Fright</NavLink>
+                </div>
+            </header>
+            <h3 className="category-header">Custom Categories</h3>
+            {customCategories.map(category =>
                 <span className="category-bubble">
                     <span className="category-label">{category.type}</span>
-                    <button onClick={() => handleDelete(category.id)}>Delete</button>
+                    <span className="handle-delete-btn">
+                        <button onClick={() => handleDelete(category.id)} className='create-category-delete-btn'>Delete</button>
+                    </span>
                 </span>
             )}
 
@@ -57,8 +68,8 @@ const CreateCategory = () =>{
                     required
                     placeholder="required"
                     />
-                    <span><button type="submit">Submit</button></span>
-                    <span><button onClick={() => history.push('/')}>Cancel</button></span>
+                    <span className="create-category-sumbit-btn"><button type="submit" className="category-submit-btn">Submit</button></span>
+                    <span><button className='category-cancel-btn' onClick={() => history.push('/')}>Cancel</button></span>
                 </div>
             </form>
         </div>

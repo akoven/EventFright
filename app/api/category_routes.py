@@ -49,3 +49,5 @@ def delete_category(category_id):
 
     db.session.delete(category)
     db.session.commit()
+
+    return 'sucessfully deleted category'

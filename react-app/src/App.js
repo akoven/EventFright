@@ -54,7 +54,7 @@ function App() {
         <ProtectedRoute path='/create-event' exact={true} >
           <CreateEvent />
         </ProtectedRoute>
-        <ProtectedRoute path='/create-venue' exact={true} >
+        <ProtectedRoute path='/create-venue/:id' exact={true} >
           <CreateVenue />
         </ProtectedRoute>
         <ProtectedRoute path='/events/:id' exact={true} >
@@ -63,10 +63,10 @@ function App() {
         <ProtectedRoute path='/edit-event/:id' exact={true} >
           <EditEvent />
         </ProtectedRoute>
-        <ProtectedRoute path='/venues/:id' exact={true} >
+        <ProtectedRoute path='/edit-venue/:id' exact={true} >
           <EditVenue />
         </ProtectedRoute>
-        <ProtectedRoute path='/create-category' exact={true} >
+        <ProtectedRoute path='/create-category/:id' exact={true} >
           <CreateCategory />
         </ProtectedRoute>
         <ProtectedRoute path='/tickets' exact={true} >
