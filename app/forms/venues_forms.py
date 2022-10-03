@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, FloatField
+from wtforms import StringField, FloatField, IntegerField
 from wtforms.validators import DataRequired, Length
 
 class VenueForm(FlaskForm):
+   # user_id = IntegerField("user_id")
    name = StringField("name", validators=[DataRequired()])
    address = StringField("address", validators=[DataRequired()])
    city = StringField("city", validators=[DataRequired()])

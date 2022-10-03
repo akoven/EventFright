@@ -12,7 +12,7 @@ const CreateVenue = () =>{
     const history = useHistory();
     const allVenues = useSelector(state => Object.values(state.venue));
     const states = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WV','WI','WY'];
-
+    // const customVenues = filter(allVenues)
     //set error check for zip code length, state abbreviations, regex.test
     const regex = /^\d{5}$/;
 
@@ -29,7 +29,6 @@ const CreateVenue = () =>{
     const [latitude, setLatitude] = useState(0.0000)
     const [longitude, setLongitude] = useState(0.0000)
     const [validationErrors, setValidationErrors] = useState([])
-    const [openMenu, setOpenMenu] = useState(false)
 
     const errors = [];
 
@@ -70,7 +69,7 @@ const CreateVenue = () =>{
 
         setValidationErrors(errors);
 
-        if(validationErrors.length === 0){
+        if(errors.length === 0){
             const newVenue = await dispatch(addVenueThunk(payload));
             if(newVenue){
                 alert('successfully created a new venue')
@@ -86,7 +85,7 @@ const CreateVenue = () =>{
 
     return(
         <div className="create-venue-pg">
-            <h3 className="available-venue-label">Available Venues</h3>
+            <h3 className="available-venue-label">Your Custom Venues</h3>
             {allVenues.map(venue =>
                 <span className="available-venues">
                     <p className="single-venue">{venue.name}</p>
