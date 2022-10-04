@@ -8,6 +8,7 @@
     padding-bottom: 20px;
     color: white;
     width: fit-content;
+    font-size: 16px;
 }
 
 .category-header{
@@ -35,6 +36,7 @@
 .category-form-label{
     color: white;
     padding-right: 5px;
+    font-size: 18px
 }
 
 .create-category-submit-btn{
@@ -91,4 +93,8 @@
     border-color: rgb(6, 160, 19);
     background-color: rgb(6, 160, 19);
     color: black;
+}
+
+.category-form-header{
+    font-size: 24px;
 }

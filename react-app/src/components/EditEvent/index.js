@@ -90,6 +90,14 @@ const EditEvent = () =>{
             errors.push('Your description should be 2000 characters or less')
         }
 
+        if(+eventVenue === 0){
+            errors.push('You must select a venue')
+        }
+
+        if(+eventCategory === 0){
+            errors.push('You must select a category')
+        }
+
         if(eventCapacity === 0){
             errors.push('You must provide the capacity for your event')
         }
@@ -100,36 +108,41 @@ const EditEvent = () =>{
 
         setValidationErrors(errors);
 
-        const editedEvent = await dispatch(editEventThunk(payload, id));
-        if(editedEvent){
-            history.push(`/events/${currentUser.id}`)
+        if(errors.length === 0){
+            const editedEvent = await dispatch(editEventThunk(payload, id));
+            if(editedEvent){
+                alert('successfully created edited event')
+                history.push(`/events/${currentUser.id}`)
+            }
         }
     }
 
     return(
-        <div>
-            <header>
-                <span><button onClick={() => history.push('/categories')}>See categories</button></span>
-                <span><button onClick={() => history.push('/venues')}>See venues</button></span>
-                <span className="user-events"><button onClick={() => history.push(`/events/${currentUser.id}`)}>See your events</button></span>
+        <div className="edit-event-pg">
+            <header className='category-venue-header'>
+                <span className='see-category-span'><button className='see-category-btn' onClick={() => history.push(`/create-category/${currentUser.id}`)}>See categories</button></span>
+                <span className='see-venue-span'><button className='see-venue-btn' onClick={() => history.push(`/create-venue/${currentUser.id}`)}>See venues</button></span>
+                <span className="user-events"><button className='user-events-btn' onClick={() => history.push(`/events/${currentUser.id}`)}>See your events</button></span>
             </header>
+            <h3 className="edit-event-label">Edit Event</h3>
             <div className="form-field">
                 <form onSubmit={handleSubmit} className="form-body">
                     <ul>
                         {validationErrors.map(error => <li className="error-msgs">{error}</li>)}
                     </ul>
+                    <h4 className="required-fields">Required fields are in red in marked with an *</h4>
                     <div className="event-name">
-                        <label>Event Name</label>
+                        <label className="event-name-label">Event Name *</label>
                         <input
                             type="string"
                             placeholder="Be clear and descriptive."
                             value={eventName ? eventName:''}
                             onChange={e => setEventName(e.target.value)}
                             required
-                            />
+                        />
                     </div>
                     <div className="event-img">
-                        <label>Event Image</label>
+                        <label className="event-img-label">Event Image *</label>
                         <input
                             type="string"
                             placeholder="image formats .jpg, .jpeg, .png only"
@@ -139,7 +152,7 @@ const EditEvent = () =>{
                         />
                     </div>
                     <div className="description">
-                        <label>Description</label>
+                        <label className="description-label">Description *</label>
                         <textarea
                             type = "text"
                             placeholder="give a brief event description, 2000 characters or less"
@@ -149,14 +162,14 @@ const EditEvent = () =>{
                         />
                     </div>
                     <div className="category">
-                        <label>Category</label>
+                        <label className="event-category-label">Category *</label>
                         <select onChange={e => setEventCategory(e.target.value)}>
                             <option value='' disabled selected>select a category</option>
                             {categories.map(category => <option value={category.id}>{category.type}</option>)}
                         </select>
                     </div>
                     <div className="venue">
-                        <label>Venue</label>
+                        <label className="venue-label">Venue *</label>
                         <select onChange={e => setEventVenue(e.target.value)}>
                             <option value='' disabled selected>select a venue</option>
                             {venues.map(location =>
@@ -165,7 +178,7 @@ const EditEvent = () =>{
                         </select>
                     </div>
                     <div className="capacity">
-                        <label>Capacity</label>
+                        <label className="capacity-label">Capacity *</label>
                         <input
                             type="number"
                             value = {eventCapacity ? eventCapacity:''}
@@ -174,15 +187,15 @@ const EditEvent = () =>{
                         />
                     </div>
                     <div className="date">
-                        <label>Date and Time</label>
-                        <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="HH:mm:ss" timeIntervals={15} dateFormat="yyyy-MM-dd" minDate={new Date()} filterTime={filterTime}/>
+                        <label className="date-time-label">Date and Time *</label>
+                        <DatePicker selected={eventDate} onChange={eventDate =>setEventDate(eventDate)} showTimeSelect timeFormat="h:mm aa" timeIntervals={15} dateFormat="MM/dd/yyy" minDate={new Date()} filterTime={filterTime}/>
                     </div>
                     <div className="submit-cancel">
                         <span className="submit-btn">
-                            <button type="submit">Submit</button>
+                            <button type="submit" className="edit-event-submit-btn">Submit</button>
                         </span>
                         <span className="cancel-btn">
-                            <button onClick={() => history.push(`/events/${currentUser.id}`)}>Cancel</button>
+                            <button onClick={() => history.push(`/events/${currentUser.id}`)} className='edit-event-cancel-btn'>Cancel</button>
                         </span>
                     </div>
                 </form>

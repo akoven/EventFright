@@ -39,6 +39,27 @@
 .submit-venue-btn{
     padding-left: 10px;
     padding-right: 10px;
+    background-color: blueviolet;
+    color: white;
+    border-radius: 5px;
+}
+
+.cancel-venue-btn{
+    background-color: blueviolet;
+    color: white;
+    border-radius: 5px;
+}
+
+.submit-venue-btn:hover{
+    border-color: rgb(6, 160, 19);
+    background-color: rgb(6, 160, 19);
+    color: black;
+}
+
+.cancel-venue-btn:hover{
+    border-color: red;
+    background-color: red;
+    color:black
 }
 
 .submit-cancel-venue-div{
@@ -58,8 +79,9 @@
 }
 
 .available-venue-label{
-    font-size: 20px;
-    padding-left: 10px;
+    font-size: 35px;
+    padding-left: 20px;
+    font-family: 'Caveat Brush', cursive;
 }
 
 .available-venues{
@@ -67,9 +89,14 @@
     width: fit-content;
     display: inline-flex;
     padding-right: 20px;
-    padding-left: 10px;
+    padding-left: 15px;
     flex-wrap: wrap;
 }
+
+.single-venue{
+    font-size: 18px;
+}
+
 .create-venue-home-pg-link{
     text-decoration: none;
     font-size: 30px;
@@ -88,14 +115,31 @@
 
 .required-venue-fields{
     color: red;
-
 }
 
 .name-div,.address-div,.city-div,.state-div,.zip-div,.lat-div,.long-div{
     padding-bottom: 10px;
 }
 
-.edit-btn,.delete-btn{
+.create-venue-edit-btn-span,.create-venue-delete-btn-span{
     margin-top: 15px;
-    margin-left: 7px
+    margin-left: 7px;
+}
+
+.create-venue-edit-btn,.create-venue-delete-btn{
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+.create-venue-edit-btn:hover{
+    border-color: rgb(6, 160, 19);
+    background-color: rgb(6, 160, 19);
+    color: black;
+}
+
+.create-venue-delete-btn:hover{
+    border-color: red;
+    background-color: red;
+    color: black;
 }

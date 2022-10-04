@@ -43,9 +43,10 @@ const CreateCategory = () =>{
     return(
         <div className="category-pg">
             <header>
-                <div className="home-pg-link-div">
+                <span className="home-pg-link-div">
                     <NavLink to={'/'} className='home-pg-link-create-category'>Event Fright</NavLink>
-                </div>
+                </span>
+                <span className="new-event-span"><NavLink className='new-event-nav-link' to={'/create-event'}>{'<< Back to create new event page'}</NavLink></span>
             </header>
             <h3 className="category-header">Custom Categories</h3>
             {customCategories.map(category =>

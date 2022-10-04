@@ -92,17 +92,18 @@ const CreateVenue = () =>{
     return(
         <div className="create-venue-pg">
             <header>
-                <div className="create-venue-home-pg-div"><NavLink to={'/'} className='create-venue-home-pg-link'>Event Fright</NavLink></div>
+                <span className="create-venue-home-pg-div"><NavLink to={'/'} className='create-venue-home-pg-link'>Event Fright</NavLink></span>
+                <span className="new-event-span"><NavLink className='new-event-nav-link' to={'/create-event'}>{'<< Back to create new event page'}</NavLink></span>
             </header>
             <h3 className="available-venue-label">Your Custom Venues</h3>
             {customVenues.map(venue =>
                 <span className="available-venues">
                     <p className="single-venue">{venue.name}</p>
-                    <span className="edit-btn">
-                        <button onClick={() => history.push(`/edit-venue/${venue.id}`)}>Edit</button>
+                    <span className="create-venue-edit-btn-span">
+                        <button className='create-venue-edit-btn' onClick={() => history.push(`/edit-venue/${venue.id}`)}>Edit</button>
                     </span>
-                    <span className="delete-btn">
-                        <button onClick={() => handleDelete(venue.id)}>Delete</button>
+                    <span className="create-venue-delete-btn-span">
+                        <button className="create-venue-delete-btn" onClick={() => handleDelete(venue.id)}>Delete</button>
                     </span>
                 </span>
 

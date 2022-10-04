@@ -18,8 +18,52 @@
 
 .user-event-header{
     color: white;
+    font-family: 'Caveat Brush', cursive;
+    font-size: 37px;
 }
 
 .home-pg-link-user-events{
     text-decoration: none;
+    font-family: 'Creepster', cursive;
+    font-size: 30px;
+    color: red;
+}
+
+.user-event-header{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.homepage-link{
+    padding-left: 10px;
+}
+
+.edit-event-btn:hover{
+    background-color: rgb(6, 160, 19);
+    border-color: rgb(6, 160, 19);
+
+}
+.delete-event-btn:hover{
+    background-color: red;
+    border-color: red;
+
+}
+
+.edit-event-btn, .delete-event-btn{
+    border-radius: 5px;
+    margin-right: 10px ;
+}
+
+.span-to-create-event{
+    padding-left: 50px;
+}
+
+.link-to-create-event{
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+}
+
+.link-to-create-event:hover{
+    color:red;
 }

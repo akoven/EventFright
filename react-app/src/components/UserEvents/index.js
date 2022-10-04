@@ -41,8 +41,11 @@ const UserEvents = () =>{
 
     return(
         <div>
-            <header><NavLink to='/' className='home-pg-link-user-events'>Event Fright</NavLink></header>
-            <h1 className='user-event-header'>Events</h1>
+            <header className='homepage-link'>
+                <NavLink to='/' className='home-pg-link-user-events'>Event Fright</NavLink>
+                <span className='span-to-create-event'><NavLink to='/create-event' className='link-to-create-event'><i class="fa-regular fa-plus" />Create a new event</NavLink></span>
+            </header>
+            <h1 className='user-event-header'>Your Events</h1>
             <div>
                 {selectedEvents.map(event => <div className='event-card'>
                     <img className='image-div' src={event.event_image}/>
@@ -54,8 +57,8 @@ const UserEvents = () =>{
                     <p>{event.venue.address} {event.venue.city}, {event.venue.state} {event.venue.zip_code}</p>
                     <p>Category: {event.category.type}</p>
                     <span>
-                        <button className='edit-event' onClick={() => history.push(`/edit-event/${event.id}`)}>Edit</button>
-                        <button className='delete-event' onClick={() => handleDelete(event.id)}>Delete</button>
+                        <span className='edit-event-btn-span'><button className='edit-event-btn' onClick={() => history.push(`/edit-event/${event.id}`)}>Edit</button></span>
+                        <span className='delete-event-btn-span'><button className='delete-event-btn' onClick={() => handleDelete(event.id)}>Delete</button></span>
                     </span>
                 </div>)}
             </div>
