@@ -67,3 +67,7 @@
 .link-to-create-event:hover{
     color:red;
 }
+
+.user-events-pg{
+    height: 3500px;
+}
