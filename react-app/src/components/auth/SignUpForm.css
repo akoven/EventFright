@@ -7,6 +7,10 @@ height: 1000px;
     color: white;
 }
 
+.email-sign-up-div,.password-sign-up-div,.repeat-password-sign-up-div{
+    padding-top: 10px;
+}
+
 .sign-up-form-pg-div{
     display: flex;
     flex-direction: row;
@@ -20,6 +24,7 @@ height: 1000px;
     height: fit-content;
     padding-left: 40px;
     padding-right: 40px;
+    padding-bottom: 30px;
     background-color: black;
 }
 
@@ -30,9 +35,24 @@ height: 1000px;
 }
 
 .sign-up-submit-cancel-btn{
-    padding-left: 20px;
-    padding-top: 15px;
     padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.sign-up-submit-btn{
+    margin-right: 50px;
+}
+
+.signup-btn:hover{
+    border-color: rgb(6, 160, 19);
+    background-color: rgb(6, 160, 19);
+    font-weight: bold;
+}
+
+.cancel-signup-btn:hover{
+    border-color: red;
+    background-color: red;
+    font-weight: bold;
 }
 
 .sign-up-header-div > h1{

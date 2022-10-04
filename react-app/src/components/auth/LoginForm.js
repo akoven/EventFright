@@ -67,16 +67,16 @@ const LoginForm = () => {
             />
             <div className='login-btns-div'>
               <span className='login-btn-span'>
-                <button type='submit'>Login</button>
+                <button className='login-btn' type='submit'>Login</button>
               </span>
               <span className='demo-login-btn-span'>
-                <button type='button' onClick={() => {dispatch(demoUserLogin())}}>Demo User</button>
+                <button type='button' className='demo-btn' onClick={() => {dispatch(demoUserLogin())}}>Demo User</button>
               </span>
               <div className='sign-up-text-div'>
                 <p>New to the Event Fright? Sign up!</p>
               </div>
               <div>
-                <button onClick={() => history.push('/sign-up')}>Sign Up</button>
+                <button className='sign-up-btn' onClick={() => history.push('/sign-up')}>Sign Up</button>
               </div>
             </div>
           </div>

@@ -62,7 +62,7 @@ const SignUpForm = () => {
                 <li className='error-msgs' key={ind}>{error}</li>
               ))}
             </ul>
-            <div>
+            <div className='username-sign-up-div'>
               <label className='username-label'>Username</label>
               <input
                 type='text'
@@ -72,7 +72,7 @@ const SignUpForm = () => {
                 placeholder='required'
               ></input>
             </div>
-            <div>
+            <div className='email-sign-up-div'>
               <label className='sign-up-email-label'>Email</label>
               <input
                 type='text'
@@ -82,7 +82,7 @@ const SignUpForm = () => {
                 placeholder='required'
               ></input>
             </div>
-            <div>
+            <div className='password-sign-up-div'>
               <label className='sign-up-password-label'>Password</label>
               <input
                 type='password'
@@ -92,7 +92,7 @@ const SignUpForm = () => {
                 placeholder='required'
               ></input>
             </div>
-            <div>
+            <div className='repeat-password-sign-up-div'>
               <label className='repeat-password-label'>Repeat Password</label>
               <input
                 type='password'
@@ -103,10 +103,14 @@ const SignUpForm = () => {
                 required={true}
               ></input>
             </div>
-            <span className='sign-up-submit-cancel-btn'>
-              <button type='submit'>Sign Up</button>
-              <button onClick={() => history.push('/')}>Cancel</button>
-            </span>
+            <div className='sign-up-submit-cancel-btn'>
+              <span className='sign-up-submit-btn'>
+                <button type='submit' className='signup-btn'>Sign Up</button>
+              </span>
+              <span className='sign-up-cancel-btn'>
+                <button className='cancel-signup-btn' onClick={() => history.push('/')}>Cancel</button>
+              </span>
+            </div>
           </form>
         </div>
       </div>

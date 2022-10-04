@@ -55,6 +55,11 @@
     font-size: 30px;
 }
 
+.login-btn:hover, .demo-btn:hover, .sign-up-btn:hover{
+    border-color: rgb(6, 160, 19);
+    background-color: rgb(6, 160, 19);
+}
+
 .sign-up-text-div > p{
     font-weight: bold;
 }
