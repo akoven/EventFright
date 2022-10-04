@@ -62,7 +62,7 @@
     border-radius: 10%;
 }
 
-.user-events-btn:hover,.venue-btn:hover,.category-btn:hover{
+.user-events-nav-bar-btn:hover,.venue-btn:hover,.category-btn:hover{
     color: purple;
     font-weight: bold;
 }
@@ -71,7 +71,7 @@
     list-style: none;
 }
 
-.user-events-btn,.venue-btn,.category-btn{
+.user-events-nav-bar-btn,.venue-btn,.category-btn{
     /* background-color: white;
     border: none; */
     text-decoration: none;

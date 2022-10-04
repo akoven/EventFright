@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { getEventThunk } from '../../store/event';
 import { removeEventThunk } from '../../store/event';
+import defaultImage from '../../images/defaultImage.jpg';
 import './UserEvents.css'
 
 const UserEvents = () =>{
@@ -48,7 +49,12 @@ const UserEvents = () =>{
             <h1 className='user-event-header'>Your Events</h1>
             <div>
                 {selectedEvents.map(event => <div className='event-card'>
-                    <img className='image-div' src={event.event_image}/>
+                    <img className='image-div' src={event.event_image} onError={e =>{
+                        if(event.event_image){
+                            e.currentTarget.src='https://st.depositphotos.com/1026550/4380/i/600/depositphotos_43807431-stock-photo-halloween.jpg'
+                        }
+                    }}
+                    />
                     <h3>{event.event_name}</h3>
                     <p>{event.description}</p>
                     <p>Date and Time: {event.date}</p>
