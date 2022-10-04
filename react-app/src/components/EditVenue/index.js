@@ -71,7 +71,7 @@ const EditVenue = () =>{
             const editedVenue = await dispatch(editVenueThunk(payload, id));
             if(editedVenue){
                 alert('successfully created edited venue')
-                history.push('/create-venue/${}')
+                history.push(`/create-venue/${currentUser.id}`)
                 // console.log('validation error length: ', errors)
             };
         }
@@ -80,7 +80,10 @@ const EditVenue = () =>{
 
     return(
         <div className='edit-venue-div'>
-            <header className='edit-venue-header'><NavLink to={'/create-venue'} className='edit-venue-nav-link'>{'<< Back to venues'}</NavLink></header>
+            <header className='edit-venue-header'>
+                <span className="create-venue-home-pg-div"><NavLink to={'/'} className='create-venue-home-pg-link'>Event Fright</NavLink></span>
+                <span><NavLink to={`/create-venue/${currentUser.id}`} className='edit-venue-nav-link'>{'<< Back to venues'}</NavLink></span>
+            </header>
             <h3 className='edit-venue-label'>Edit Venue</h3>
             <form className='edit-venue-form-field' onSubmit={handleEdit}>
                 <ul>
@@ -148,7 +151,7 @@ const EditVenue = () =>{
                 </div>
                 <span className='submit-cancel-span'>
                     <button type="submit" className='edit-venue-submit'>Submit</button>
-                    <button onClick={() => history.push(`/create-venue/${currentUser.id}`)}>Cancel</button>
+                    <button className='edit-venue-cancel' onClick={() => history.push(`/create-venue/${currentUser.id}`)}>Cancel</button>
                 </span>
 
             </form>

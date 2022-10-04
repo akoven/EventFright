@@ -21,14 +21,30 @@
     padding-left: 10px;
 }
 
-.edit-venue-submit{
+.edit-venue-submit,.edit-venue-cancel{
     margin-right: 20px;
+    background-color: blueviolet;
+    color: white;
+    border-radius: 5px;
+}
+
+.edit-venue-submit:hover{
+    border-color: rgb(6, 160, 19);
+    background-color: rgb(6, 160, 19);
+    color: black;
+}
+
+.edit-venue-cancel:hover{
+    border-color: red;
+    background-color: red;
+    color:black
 }
 
 .edit-venue-label{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    font-size: 30px;
 }
 
 .edit-venue-nav-link{

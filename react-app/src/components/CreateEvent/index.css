@@ -73,8 +73,22 @@
     color: black;
 }
 
+.new-event-span{
+    margin-left: 50px;
+}
+
+.new-event-nav-link{
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+}
+
+.new-event-nav-link:hover{
+    color: red;
+}
+
 .create-event-page{
-    height: 900px;
+    height: 1000px;
 }
 
 .error-msgs{
@@ -115,4 +129,12 @@
     font-weight: bold;
     font-size: 16px;
     font-family: 'Shadows Into Light', cursive;
+}
+
+.edit-venue-nav-link{
+    padding-left: 50px;
+}
+
+.edit-venue-nav-link:hover{
+    color: red;
 }

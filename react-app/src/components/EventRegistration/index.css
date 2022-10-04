@@ -1,0 +1,22 @@
+.coming-soon{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.registration-pg{
+    height: 1000px;
+}
+
+.registration-homepage-link{
+    text-decoration: none;
+    font-family: 'Creepster', cursive;
+    font-size: 27px;
+    color: red;
+}
+
+.registration-header{
+    padding-left: 10px;
+    padding-top: 7px;
+}

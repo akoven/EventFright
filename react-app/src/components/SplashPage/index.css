@@ -16,10 +16,11 @@
 
 .banner-div > h1{
     position: absolute;
-    font-size: 50px;
+    font-size: 60px;
     padding-left: 50px;
     padding-top: 100px;
     color: rgb(207,7,7);
+    font-family: 'Caveat Brush', cursive;
 }
 
 h3,p,.front-pg-category{
