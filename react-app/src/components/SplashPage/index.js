@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getEventThunk } from '../../store/event';
 import { getCategoryThunk } from '../../store/category';
+import defaultImage from '../../images/defaultImage.jpg';
 // import { getVenueThunk } from '../../store/venue';
 
 const SplashPage = () =>{

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { getEventThunk } from '../../store/event';
 import { removeEventThunk } from '../../store/event';
+import defaultImage from '../../images/defaultImage.jpg';
 import './UserEvents.css'
 
 const UserEvents = () =>{

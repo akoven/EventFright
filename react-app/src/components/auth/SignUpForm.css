@@ -1,0 +1,54 @@
+.sign-up-form-pg-div{
+height: 1000px;
+}
+
+.username-label,.sign-up-email-label,.sign-up-password-label,.repeat-password-label{
+    padding-right: 10px;
+    color: white;
+}
+
+.sign-up-form-pg-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.sign-up-form-field{
+    border: 2px solid black;
+    width: fit-content;
+    height: fit-content;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: black;
+}
+
+.sign-up-form-field > h3{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sign-up-submit-cancel-btn{
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.sign-up-header-div > h1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Creepster', cursive;
+    color: rgb(207,7,7);
+    font-size: 40px;
+}
+
+.sign-up-header-div > h2{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 30px;
+    font-family: 'Creepster', cursive;
+
+}
