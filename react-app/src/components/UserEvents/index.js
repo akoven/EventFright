@@ -41,7 +41,7 @@ const UserEvents = () =>{
     }
 
     return(
-        <div>
+        <div className='user-events-pg'>
             <header className='homepage-link'>
                 <NavLink to='/' className='home-pg-link-user-events'>Event Fright</NavLink>
                 <span className='span-to-create-event'><NavLink to='/create-event' className='link-to-create-event'><i class="fa-regular fa-plus" />Create a new event</NavLink></span>
