@@ -18,7 +18,19 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
 
-    if (password === repeatPassword) {
+    if(!email.includes('@') && !email.includes('.')){
+      setErrors(['email must be in the correct format'])
+    }
+
+    if(username.length === 0){
+      setErrors['must provide a username']
+    }
+
+    // if(username.length === 0){
+    //   setErrors['must provide a username']
+    // } change to password
+
+    if (password === repeatPassword && errors.length === 0) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
