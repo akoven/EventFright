@@ -41,8 +41,9 @@ const Tickets = () =>{
                 <p>{event.venue.address} {event.venue.city}, {event.venue.state} {event.venue.zip_code}</p>
                 <p>Category: {event.category.type}</p>
                 <button className="purchase-ticket-btn" onClick={() => history.push('/tickets/new')}>Purchase Tickets</button>
-            </div>)
-            }
+            </div>
+            )
+        }
 
         </div>
 
