@@ -115,7 +115,7 @@ const SignUpForm = () => {
                 <button type='submit' className='signup-btn'>Sign Up</button>
               </span>
               <span className='sign-up-cancel-btn'>
-                <button className='cancel-signup-btn' onClick={() => history.push('/')}>Cancel</button>
+                <button className='back-to-login' onClick={() => history.push('/')}>Login</button>
               </span>
             </div>
           </form>
