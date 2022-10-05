@@ -18,7 +18,15 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
 
-    if (password === repeatPassword) {
+    if(!email.includes('@') && !email.includes('.')){
+      setErrors(['email must be in the proper format'])
+    }
+
+    if(password !== repeatPassword){
+      setErrors(['passwords must match'])
+    }
+
+    if (password === repeatPassword && errors.length === 0) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
@@ -100,7 +108,6 @@ const SignUpForm = () => {
                 onChange={updateRepeatPassword}
                 value={repeatPassword}
                 placeholder='required'
-                required={true}
               ></input>
             </div>
             <div className='sign-up-submit-cancel-btn'>
