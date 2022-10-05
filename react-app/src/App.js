@@ -73,7 +73,7 @@ function App() {
         <ProtectedRoute path='/tickets' exact={true} >
           <Tickets />
         </ProtectedRoute>
-        <ProtectedRoute path='/tickets/new' exact={true} >
+        <ProtectedRoute path='/tickets/:id' exact={true} >
           <EventRegistration />
         </ProtectedRoute>
       </Switch>
