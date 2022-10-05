@@ -30,7 +30,7 @@ const EventRegistration = () =>{
                 <h3>About this event:</h3>
                 <p className='selected-event-description'>{selectedEvent[0].description}</p>
             </div>
-            <span>Tickets</span>
+            <h2>Tickets</h2>
         </div>
     )
 }

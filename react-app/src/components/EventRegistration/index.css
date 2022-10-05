@@ -39,3 +39,11 @@
 .selected-event-description{
     padding-left: 70px;
 }
+
+.event-registration-span{
+    color: white;
+    border: 4px yellow solid;
+    padding-left: 100px;
+    width: fit-content;
+    height: fit-content;
+}

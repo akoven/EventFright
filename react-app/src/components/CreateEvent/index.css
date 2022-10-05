@@ -138,3 +138,8 @@
 .edit-venue-nav-link:hover{
     color: red;
 }
+
+.edit-image{
+    height: 500px;
+    width: 500px;
+}
