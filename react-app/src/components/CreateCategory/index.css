@@ -98,3 +98,8 @@
 .category-form-header{
     font-size: 24px;
 }
+
+.category-error{
+    color: red;
+    font-size: 14pt;
+}

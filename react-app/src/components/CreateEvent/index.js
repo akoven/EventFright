@@ -94,7 +94,7 @@ const CreateEvent = () =>{
 
         if(eventDescription.length === 0){
             errors.push('You must provide a brief description')
-        }else if(eventDescription.length >= 2000){
+        }else if(eventDescription.length > 2000){
             errors.push('Your description should be 2000 characters or less')
         }
 

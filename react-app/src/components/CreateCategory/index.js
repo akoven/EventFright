@@ -37,7 +37,7 @@ const CreateCategory = () =>{
         }
 
         setValidationErrors(errors);
-
+        console.log('ERRORS: ',errors);
         if(errors.length === 0){
             const newCategory = await dispatch(addCategoryThunk(payload))
             if(newCategory){
@@ -75,6 +75,9 @@ const CreateCategory = () =>{
             <form onSubmit={handleSubmit}>
                 <div className="category-form">
                     <h3 className="category-form-header">Create a new category</h3>
+                    <ul>
+                        {validationErrors.map(error => <li className="category-error">{error}</li>)}
+                    </ul>
                     <label className="category-form-label">Category Type</label>
                     <input
                     type='string'
