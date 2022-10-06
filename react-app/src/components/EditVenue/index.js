@@ -43,7 +43,7 @@ const EditVenue = () =>{
             zip_code: zipCode,
             latitude,
             longitude
-        }
+        };
 
         if(name.length === 0){
             errors.push('You must provide a name for your venue')
@@ -76,7 +76,9 @@ const EditVenue = () =>{
                 history.push(`/create-venue/${currentUser.id}`)
                 // console.log('validation error length: ', errors)
             };
-        }
+        };
+
+
     };
 
 

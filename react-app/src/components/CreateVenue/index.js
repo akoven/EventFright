@@ -52,6 +52,13 @@ const CreateVenue = () =>{
             longitude: longitude
         }
         // console.log('payload being passed to add venue thunk ',payload)
+        setVenueName('')
+        setVenueAdress('')
+        setCity('')
+        setState('')
+        setZipCode('')
+        setLatitude('')
+        setLongitude('')
 
         if(venueName.length === 0){
             errors.push('You must provide a name for your venue')

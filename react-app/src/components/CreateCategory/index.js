@@ -30,6 +30,8 @@ const CreateCategory = () =>{
             type:type
         }
 
+        setType('')
+
         if(type.length > 100){
             errors.push('category type needs to be 100 characters long or less')
         }
