@@ -15,22 +15,44 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const validEmail = /^[a-zA-z0-9]+@[a-zA-z]+.[a-z]$/
+
   const onSignUp = async (e) => {
     e.preventDefault();
 
-    if(!email.includes('@') && !email.includes('.')){
-      setErrors(['email must be in the proper format'])
-    }
+    const additionalErr = []
+
+    // if(!validEmail.test(email)){
+    //   additionalErr.push('email must be in the proper format')
+    // }
+
+    // if(password !== repeatPassword){
+    //   additionalErr.push('passwords must match')
+    // }
+
+    // console.log(additionalErr)
 
     if(password !== repeatPassword){
       setErrors(['passwords must match'])
+      // alert('passwords must match')
     }
 
-    if (password === repeatPassword && errors.length === 0) {
+    // if(!validEmail.test(email)){
+    //   additionalErr.push('email must be in the proper format')
+    // }
+
+    // if(additionalErr.length > 0){
+    //   setErrors(additionalErr)
+    //   return 'some statement'
+    // }
+
+    if (password === repeatPassword && additionalErr) {
       const data = await dispatch(signUp(username, email, password));
-      if (data) {
+
+        // console.log('sign up data: ', data)
+
         setErrors(data)
-      }
+
     }
 
   };
@@ -83,7 +105,7 @@ const SignUpForm = () => {
             <div className='email-sign-up-div'>
               <label className='sign-up-email-label'>Email</label>
               <input
-                type='text'
+                type='email'
                 name='email'
                 onChange={updateEmail}
                 value={email}

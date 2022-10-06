@@ -88,13 +88,13 @@ const CreateEvent = () =>{
             errors.push('You must provide an image url')
         }
 
-        if(!eventImage.includes('.jpg','.jpeg','.png')){
+        if(!eventImage.includes('.jpg') && !eventImage.includes('.jpeg') && !eventImage.includes('.png')){
             errors.push('Your image must be in .jpg, .jpeg, or .png formats')
         }
 
         if(eventDescription.length === 0){
             errors.push('You must provide a brief description')
-        }else if(eventDescription.length > 2000){
+        }else if(eventDescription.length >= 2000){
             errors.push('Your description should be 2000 characters or less')
         }
 
@@ -209,6 +209,7 @@ const CreateEvent = () =>{
                             onChange={e => setEventCapacity(e.target.value)}
                             placeholder='required'
                             min={1}
+                            max={300}
                         />
                     </div>
                     <div className="date">
