@@ -15,12 +15,12 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const validEmail = /^[a-zA-z0-9]+@[a-zA-z]+.[a-z]$/
+  // const validEmail = /^[a-zA-z0-9]+@[a-zA-z]+.[a-z]$/
 
   const onSignUp = async (e) => {
     e.preventDefault();
 
-    const additionalErr = []
+    // const additionalErr = []
 
     // if(!validEmail.test(email)){
     //   additionalErr.push('email must be in the proper format')
@@ -34,7 +34,6 @@ const SignUpForm = () => {
 
     if(password !== repeatPassword){
       setErrors(['passwords must match'])
-      // alert('passwords must match')
     }
 
     // if(!validEmail.test(email)){
@@ -46,7 +45,7 @@ const SignUpForm = () => {
     //   return 'some statement'
     // }
 
-    if (password === repeatPassword && additionalErr) {
+    if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
 
         // console.log('sign up data: ', data)

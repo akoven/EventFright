@@ -55,6 +55,8 @@ const CreateVenue = () =>{
 
         if(venueName.length === 0){
             errors.push('You must provide a name for your venue')
+        }else if(venueName.length > 50){
+            errors.push('Your venues name needs to be 50 characters or less')
         };
 
         if(venueAddress.length === 0){

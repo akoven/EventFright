@@ -80,7 +80,7 @@ const EditEvent = () =>{
             errors.push('You must provide an image url')
         }
 
-        if(!eventImage.includes('.jpg','.jpeg','.png')){
+        if(!eventImage.includes('.jpg') && !eventImage.includes('.jpeg') && !eventImage.includes('.png')){
             errors.push('Your image must be in .jpg, .jpeg, or .png formats')
         }
 
@@ -184,6 +184,7 @@ const EditEvent = () =>{
                             value = {eventCapacity ? eventCapacity:''}
                             onChange={e => setEventCapacity(e.target.value)}
                             min={1}
+                            max={300}
                         />
                     </div>
                     <div className="date">
