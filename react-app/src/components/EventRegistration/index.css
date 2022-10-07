@@ -47,3 +47,26 @@
     width: fit-content;
     height: fit-content;
 }
+
+.event-info-div{
+    border: 2px lime solid;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.registration-tickets-span{
+    border: 2px yellow solid;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-left: 500px;
+
+}
+
+.event-info-ticket-div{
+    border: 2px red solid;
+    display: inline-flex;
+}
