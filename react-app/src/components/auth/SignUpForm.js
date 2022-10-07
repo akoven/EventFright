@@ -15,26 +15,43 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // const validEmail = /^[a-zA-z0-9]+@[a-zA-z]+.[a-z]$/
+
   const onSignUp = async (e) => {
     e.preventDefault();
 
-    if(!email.includes('@') && !email.includes('.')){
-      setErrors(['email must be in the correct format'])
+    // const additionalErr = []
+
+    // if(!validEmail.test(email)){
+    //   additionalErr.push('email must be in the proper format')
+    // }
+
+    // if(password !== repeatPassword){
+    //   additionalErr.push('passwords must match')
+    // }
+
+    // console.log(additionalErr)
+
+    if(password !== repeatPassword){
+      setErrors(['passwords must match'])
     }
 
-    if(username.length === 0){
-      setErrors['must provide a username']
-    }
+    // if(!validEmail.test(email)){
+    //   additionalErr.push('email must be in the proper format')
+    // }
 
-    // if(username.length === 0){
-    //   setErrors['must provide a username']
-    // } change to password
+    // if(additionalErr.length > 0){
+    //   setErrors(additionalErr)
+    //   return 'some statement'
+    // }
 
-    if (password === repeatPassword && errors.length === 0) {
+    if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
-      if (data) {
+
+        // console.log('sign up data: ', data)
+
         setErrors(data)
-      }
+
     }
 
   };
@@ -87,7 +104,7 @@ const SignUpForm = () => {
             <div className='email-sign-up-div'>
               <label className='sign-up-email-label'>Email</label>
               <input
-                type='text'
+                type='email'
                 name='email'
                 onChange={updateEmail}
                 value={email}
@@ -112,7 +129,6 @@ const SignUpForm = () => {
                 onChange={updateRepeatPassword}
                 value={repeatPassword}
                 placeholder='required'
-                required={true}
               ></input>
             </div>
             <div className='sign-up-submit-cancel-btn'>
@@ -120,7 +136,7 @@ const SignUpForm = () => {
                 <button type='submit' className='signup-btn'>Sign Up</button>
               </span>
               <span className='sign-up-cancel-btn'>
-                <button className='cancel-signup-btn' onClick={() => history.push('/')}>Cancel</button>
+                <button className='back-to-login' onClick={() => history.push('/')}>Back to Login</button>
               </span>
             </div>
           </form>

@@ -31,8 +31,8 @@ const CreateVenue = () =>{
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [zipCode, setZipCode] = useState('')
-    const [latitude, setLatitude] = useState(0.0000)
-    const [longitude, setLongitude] = useState(0.0000)
+    const [latitude, setLatitude] = useState(0)
+    const [longitude, setLongitude] = useState(0)
     const [validationErrors, setValidationErrors] = useState([])
 
     const errors = [];
@@ -82,6 +82,14 @@ const CreateVenue = () =>{
                 history.push(`/create-venue/${currentUser.id}`)
             };
         }
+
+        setVenueName('')
+        setVenueAdress('')
+        setCity('')
+        setState(state[0])
+        setZipCode('')
+        setLatitude(0)
+        setLongitude(0)
     }
 
     const handleDelete = async (venueId) =>{
