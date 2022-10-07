@@ -14,11 +14,14 @@ const CreateCategory = () =>{
     const customCategories = allCategories.filter(category => category.user_id === +userId.id)
 
     const [type, setType] = useState('')
+    const [validationErrors, setValidationErrors] = useState([])
 
     useEffect(() =>{
         dispatch(getCategoryThunk())
         console.log('ALL CATEGORIES: ', allCategories)
     },[dispatch]);
+
+    const errors = [];
 
     const handleSubmit = async e =>{
         e.preventDefault();
@@ -27,10 +30,19 @@ const CreateCategory = () =>{
             type:type
         }
 
-        const newCategory = await dispatch(addCategoryThunk(payload))
-        if(newCategory){
-            alert('successfully created a new category')
-            history.push(`/create-category/${currentUser.id}`)
+        setType('')
+
+        if(type.length > 100){
+            errors.push('category type needs to be 100 characters long or less')
+        }
+        setValidationErrors(errors);
+
+        if(errors.length === 0){
+            const newCategory = await dispatch(addCategoryThunk(payload))
+            if(newCategory){
+                alert('successfully created a new category')
+                history.push(`/create-category/${currentUser.id}`)
+            }
         }
     };
 
@@ -61,6 +73,9 @@ const CreateCategory = () =>{
             <form onSubmit={handleSubmit}>
                 <div className="category-form">
                     <h3 className="category-form-header">Create a new category</h3>
+                    <ul>
+                        {validationErrors.map(error => <li className="category-error">{error}</li>)}
+                    </ul>
                     <label className="category-form-label">Category Type</label>
                     <input
                     type='string'
