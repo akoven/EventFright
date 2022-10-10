@@ -1,3 +1,4 @@
+from email.policy import default
 from .db import db
 
 class Tickets(db.Model):
@@ -6,6 +7,8 @@ class Tickets(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    tickets_sold = db.Column(db.Integer, max=10, default=0)
+    tickets_available = db.Column(db.Integer)
 
     events = db.relationship('Events', back_populates='tickets')
 

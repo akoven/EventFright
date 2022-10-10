@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { getEventThunk } from '../../store/event';
 
 import './index.css';
@@ -11,6 +11,7 @@ const EventRegistration = () =>{
     const dispatch = useDispatch();
     const allEvents = useSelector(state => Object.values(state.event));
     const eventId = useParams();
+    const history = useHistory();
     const selectedEvent = allEvents.filter(event => event.id === +eventId.id)
 
     useEffect(() =>{
@@ -34,7 +35,7 @@ const EventRegistration = () =>{
                     </div>
                     <div className='registration-tickets-span'>
                         <h4>price shows here</h4>
-                        <button className='tickets-btn-on-reg-pg'>Tickets</button>
+                        <button className='tickets-btn-on-reg-pg' onClick={() => history.push(`/purchase-tickets/${selectedEvent[0].id}`)}>Tickets</button>
                     </div>
                 </div>
             </div>
