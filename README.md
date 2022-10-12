@@ -15,6 +15,7 @@ Welcome to EventFright! A clone of the site eventbrite, but catering to all thin
 * HTML
 * CSS
 * PostgreSQL
+* Heroku
 
 ## Event Fright Features:
 * Explore the site as a demo user or sign up with ease: 
