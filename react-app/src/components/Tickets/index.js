@@ -44,7 +44,6 @@ const Tickets = () =>{
             </div>
             )
         }
-        {/* comment! */}
 
         </div>
 
