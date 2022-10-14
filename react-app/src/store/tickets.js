@@ -7,10 +7,17 @@ const getTicketsAction = (tickets) =>{
         type: GET_TICKETS,
         tickets
     }
-}
+};
+
+const addTicketsAction = (ticket) =>{
+    return{
+        type: ADD_TICKETS,
+        ticket
+    }
+};
 
 export const getTicketsThunk = () => async dispatch =>{
-    const response = await fetch('/api/tickets') //finish building tickets route next
+    const response = await fetch('/api/tickets/') //finish building tickets route next
 
     if(response.ok){
         const ticket = await response.json();
@@ -23,8 +30,19 @@ export const getTicketsThunk = () => async dispatch =>{
 
 export const addTicketsThunk = (tickets) => async dispatch =>{
     const response = await('/api/tickets/',{
-        pass
-    })
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(tickets)
+    });
+
+    if(response.ok){
+        const purchasedTicket = await response.json();
+        dispatch(addTicketsAction(purchasedTicket));
+        return purchasedTicket;
+    }
+    return null;
 }
 
 
@@ -43,3 +61,5 @@ const ticketsReducer = (state = {}, action) =>{
             return state;
     }
 }
+
+export default ticketsReducer;

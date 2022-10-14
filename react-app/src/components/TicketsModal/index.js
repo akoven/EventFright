@@ -8,7 +8,7 @@ const TicketsModal = () =>{
 
     return(
         <>
-            <button onClick={() => setShowModal(true)}>Purchase Tickets</button>
+            <button onClick={() => setShowModal(true)}>Tickets</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <TicketsForm />

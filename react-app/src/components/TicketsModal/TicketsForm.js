@@ -26,15 +26,13 @@ const TicketsForm = () =>{
     const availableTickets = userTicketsForEvent.tickets_available;
 
     useEffect(() => {
-        console.log('all event ids: ',eventArray)
+        console.log('all tickets for event: ',ticketArray)
     }, [dispatch])
 
     const handlePurchase = async e =>{
         e.preventDefault();
         const totalTickets = 0;
-        for(ticket in ticketArray){
-            totalTickets += ticket.tickets_sold
-        };
+        ticketArray.map(ticket => totalTickets += ticket.tickets_sold);
 
         const tickets_available = selectedEvent[0].capacity - totalTickets
 

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { getEventThunk } from '../../store/event';
+import TicketsModal from "../TicketsModal";
 
 import './index.css';
 
@@ -19,6 +20,7 @@ const EventRegistration = () =>{
         console.log('ALL EVENTS: ', allEvents)
         // console.log('event id type: ', typeof(eventId.id))
         console.log('SELECTED EVENT: ', selectedEvent[0])
+        console.log('PRICE PER GUEST: ', selectedEvent[0].price)
     }, [dispatch])
 
     return(
@@ -34,13 +36,14 @@ const EventRegistration = () =>{
                         <p className='selected-event-description'>{selectedEvent[0].description}</p>
                     </div>
                     <div className='registration-tickets-span'>
-                        <h4>price shows here</h4>
-                        <button className='tickets-btn-on-reg-pg' onClick={() => history.push(`/purchase-tickets/${selectedEvent[0].id}`)}>Tickets</button>
+                        <h4>Price per guest: {'$ ' + selectedEvent[0].price + '.00'}</h4>
+                        <button className='tickets-btn-on-reg-pg'><TicketsModal /></button>
                     </div>
                 </div>
             </div>
         </div>
     )
 }
+// onClick={() => history.push(`/purchase-tickets/${selectedEvent[0].id}`)}
 
 export default EventRegistration;
