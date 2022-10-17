@@ -84,7 +84,7 @@
     display: inline-flex;
 }
 
-.tickets-btn-on-reg-pg{
+/* .tickets-btn-on-reg-pg{
     background-color: orangered;
     border: orangered;
     width: 200px;
@@ -94,7 +94,7 @@
     font-weight: bold;
     font-size: 14pt;
     margin-left: 65px;
-}
+} */
 
 .tickets-btn-on-reg-pg:hover{
     background-color: rgb(224, 61, 1);

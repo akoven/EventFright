@@ -26,7 +26,10 @@ const EventRegistration = () =>{
     return(
         <div className='registration-pg'>
             <div className='registration-div'>
-                <header className='registration-header'><NavLink to={'/'} className='registration-homepage-link'>Event Fright</NavLink></header>
+                <header className='registration-header'>
+                    <NavLink to={'/'} className='registration-homepage-link'>Event Fright</NavLink>
+                    <NavLink to={'/tickets'}>{'<< Back to Tickets page'}</NavLink>
+                </header>
                 <div className='event-info-ticket-div'>
                     <div className='event-info-div'>
                         <img className='selected-img' src={selectedEvent[0].event_image}/>
@@ -37,7 +40,7 @@ const EventRegistration = () =>{
                     </div>
                     <div className='registration-tickets-span'>
                         <h4>Price per guest: {'$ ' + selectedEvent[0].price + '.00'}</h4>
-                        <button className='tickets-btn-on-reg-pg'><TicketsModal /></button>
+                        <TicketsModal />
                     </div>
                 </div>
             </div>

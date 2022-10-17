@@ -9,7 +9,7 @@ const TicketsForm = () =>{
     const allEvents = useSelector(state => Object.values(state.event))
     const allTickets = useSelector(state => Object.values(state.ticket))
     const selectedEvent = allEvents.filter(event => event.id === +eventId.id)
-    const userTicketsForEvent = allEvents.filter(ticket => ticket.event_id === +eventId.id && ticket.user_id === currentUser.id)
+    const userTicketsForEvent = allTickets?.filter(ticket => ticket.event_id === +eventId.id && ticket.user_id === currentUser.id);
     const eventId = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
@@ -22,17 +22,17 @@ const TicketsForm = () =>{
     const [csv, setCsv] = useState('')
     const [zipCode, setZipCode] = useState('')
 
-    const ticketArray = allTickets.filter(ticket => ticket.event_id === +eventId.id)
-    const availableTickets = userTicketsForEvent.tickets_available;
+    const ticketArray = allTickets?.filter(ticket => ticket.event_id === +eventId.id);
+    // const availableTickets = ticketsForEvent.tickets_available;
 
-    useEffect(() => {
-        console.log('all tickets for event: ',ticketArray)
-    }, [dispatch])
+    // useEffect(() => {
+    //     console.log('all tickets for event: ',ticketArray)
+    // }, [dispatch])
 
     const handlePurchase = async e =>{
         e.preventDefault();
         const totalTickets = 0;
-        ticketArray.map(ticket => totalTickets += ticket.tickets_sold);
+        ticketArray?.map(ticket => totalTickets += ticket.tickets_sold);
 
         const tickets_available = selectedEvent[0].capacity - totalTickets
 
@@ -56,7 +56,7 @@ const TicketsForm = () =>{
 
     return(
         <form onSubmit={handlePurchase}>
-            <h5>Tickets available: {availableTickets}</h5>
+            {/* <h5>Tickets available: {availableTickets ? availableTickets:selectedEvent[0].capacity}</h5> */}
 
             <label>How many tickets? : </label>
             <input
@@ -104,7 +104,7 @@ const TicketsForm = () =>{
              />
 
              <span>
-                <button type='submit' disabled={userTicketsForEvent === 10}>Purchase Tickets</button>
+                <button type='submit' disabled={userTicketsForEvent.tickets_sold === 10}>Purchase Tickets</button>
              </span>
              <span>
                 <button onClick={() => history.push(`/tickets`)}>Cancel</button>

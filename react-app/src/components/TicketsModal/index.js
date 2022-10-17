@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Modal } from '../../context/Modal';
 import TicketsForm from './TicketsForm';
+import './index.css';
 
 
 const TicketsModal = () =>{
@@ -8,7 +9,7 @@ const TicketsModal = () =>{
 
     return(
         <>
-            <button onClick={() => setShowModal(true)}>Tickets</button>
+            <button className='tickets-btn-on-reg-pg' onClick={() => setShowModal(true)}>Tickets</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <TicketsForm />
