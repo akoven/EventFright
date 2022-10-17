@@ -5,15 +5,15 @@ import { addTicketsThunk } from "../../store/tickets";
 
 const TicketsForm = () =>{
 
-    const currentUser = useSelector(state => state.user.session)
-    const allEvents = useSelector(state => Object.values(state.event))
-    const allTickets = useSelector(state => Object.values(state.ticket))
-    const selectedEvent = allEvents.filter(event => event.id === +eventId.id)
-    const userTicketsForEvent = allTickets?.filter(ticket => ticket.event_id === +eventId.id && ticket.user_id === currentUser.id);
     const eventId = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
 
+    const currentUser = useSelector(state => state.session.user)
+    const allEvents = useSelector(state => Object.values(state.event))
+    const allTickets = useSelector(state => Object.values(state.ticket))
+    const selectedEvent = allEvents.filter(event => event.id === +eventId.id)
+    const userTicketsForEvent = allTickets?.filter(ticket => ticket.event_id === +eventId.id && ticket.user_id === currentUser.id);
 
     const [purchasedTickets, setPurchasedTickets] = useState(0)
     const [firstName, setFirstName] = useState('')
@@ -54,11 +54,11 @@ const TicketsForm = () =>{
         }
     }
 
+    // console.log('TESTING!!!!!!!!!!!!!!!!!')
     return(
         <form onSubmit={handlePurchase}>
             {/* <h5>Tickets available: {availableTickets ? availableTickets:selectedEvent[0].capacity}</h5> */}
-
-            <label>How many tickets? : </label>
+            {/* <label>How many tickets? : </label>
             <input
              type='number'
              value={purchasedTickets ? purchasedTickets:''}
@@ -66,8 +66,8 @@ const TicketsForm = () =>{
              placeholder='maximum tickets per customer is 10'
              min={1}
              max={10}
-             />
-
+             /> */}
+{/*
              <input
              type='string'
              value={firstName ? firstName:''}
@@ -101,19 +101,20 @@ const TicketsForm = () =>{
              value={zipCode ? zipCode:''}
              onChange={e => setZipCode(zipCode)}
              placeholder='5 digit zip code only'
-             />
+             /> */}
 
              <span>
-                <button type='submit' disabled={userTicketsForEvent.tickets_sold === 10}>Purchase Tickets</button>
+                <button type='submit'>Purchase Tickets</button>
              </span>
              <span>
                 <button onClick={() => history.push(`/tickets`)}>Cancel</button>
              </span>
              <span>
-                <button disabled>Return Tickets</button> {/*this will call the delete tickets thunk*/}
+                <button disabled>Return Tickets</button>
              </span>
         </form>
     )
 }
 
 export default TicketsForm
+// disabled={userTicketsForEvent.tickets_sold === 10}
