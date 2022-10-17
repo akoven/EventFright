@@ -25,12 +25,13 @@ const TicketsForm = () =>{
     const ticketArray = allTickets?.filter(ticket => ticket.event_id === +eventId.id);
     // const availableTickets = ticketsForEvent.tickets_available;
 
-    // useEffect(() => {
-    //     console.log('all tickets for event: ',ticketArray)
-    // }, [dispatch])
+    useEffect(() => {
+        console.log('all tickets for event: ',ticketArray)
+    }, [dispatch])
 
     const handlePurchase = async e =>{
         e.preventDefault();
+        alert('button clicked!')
         const totalTickets = 0;
         ticketArray?.map(ticket => totalTickets += ticket.tickets_sold);
 
@@ -54,54 +55,61 @@ const TicketsForm = () =>{
         }
     }
 
-    // console.log('TESTING!!!!!!!!!!!!!!!!!')
     return(
         <form onSubmit={handlePurchase}>
+            {/* {console.log('TESTING!!!!!!!!!!!!!!!!!')} */}
             {/* <h5>Tickets available: {availableTickets ? availableTickets:selectedEvent[0].capacity}</h5> */}
-            {/* <label>How many tickets? : </label>
-            <input
-             type='number'
-             value={purchasedTickets ? purchasedTickets:''}
-             onChange={e => setPurchasedTickets(purchasedTickets)}
-             placeholder='maximum tickets per customer is 10'
-             min={1}
-             max={10}
-             /> */}
-{/*
-             <input
-             type='string'
-             value={firstName ? firstName:''}
-             onChange={e => setFirstName(firstName)}
-             placeholder='first name'
-             />
+            <div>
+                <label>How many tickets? : </label>
+                <input
+                type='number'
+                value={purchasedTickets ? purchasedTickets:''}
+                onChange={e => setPurchasedTickets(purchasedTickets)}
+                placeholder='maximum tickets per customer is 10'
+                min={1}
+                max={10}
+                />
+            </div>
 
-             <input
-             type="string"
-             value={lastName ? lastName:''}
-             onChange={e => setLastName(lastName)}
-             placeholder='last name'
-             />
+                <input
+                type='string'
+                value={firstName ? firstName:''}
+                onChange={e => setFirstName(firstName)}
+                placeholder='first name'
+                />
+            <div>
+                <input
+                type="string"
+                value={lastName ? lastName:''}
+                onChange={e => setLastName(lastName)}
+                placeholder='last name'
+                />
+            </div>
+            <div>
+                <input
+                type="string"
+                value={cardNumber ? cardNumber:''}
+                onChange={e => setCardNumber(cardNumber)}
+                placeholder='16 digit credit card number'
+                />
+            </div>
+            <div>
+                <input
+                type="string"
+                value={csv ? csv:''}
+                onChange={e => setCsv(csv)}
+                placeholder='csv'
+                />
+            </div>
+            <div>
+                <input
+                type='string'
+                value={zipCode ? zipCode:''}
+                onChange={e => setZipCode(zipCode)}
+                placeholder='5 digit zip code only'
+                />
+            </div>
 
-             <input
-             type="string"
-             value={cardNumber ? cardNumber:''}
-             onChange={e => setCardNumber(cardNumber)}
-             placeholder='16 digit credit card number'
-             />
-
-             <input
-             type="string"
-             value={csv ? csv:''}
-             onChange={e => setCsv(csv)}
-             placeholder='csv'
-             />
-
-             <input
-             type='string'
-             value={zipCode ? zipCode:''}
-             onChange={e => setZipCode(zipCode)}
-             placeholder='5 digit zip code only'
-             /> */}
 
              <span>
                 <button type='submit'>Purchase Tickets</button>
