@@ -58,7 +58,7 @@ const TicketsForm = () =>{
     return(
         <form onSubmit={handlePurchase}>
             {/* {console.log('TESTING!!!!!!!!!!!!!!!!!')} */}
-            {/* <h5>Tickets available: {availableTickets ? availableTickets:selectedEvent[0].capacity}</h5> */}
+            {/* <h5>Tickets available: {availableTickets ? selectedEvent[0].capacity}</h5> */}
             <div>
                 <label>How many tickets? : </label>
                 <input
