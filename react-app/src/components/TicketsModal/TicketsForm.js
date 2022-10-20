@@ -119,7 +119,7 @@ const TicketsForm = () =>{
     return(
         <form onSubmit={handlePurchase}>
             {/* {console.log('TESTING!!!!!!!!!!!!!!!!!')} */}
-            <h5>Tickets available: {selectedEvent[0].capacity - totalTickets}</h5>
+            <h4>Tickets available: {selectedEvent[0].capacity - totalTickets}</h4>
                 <ul>
                     {errorValidation.map(error => <li className="tickets-error-msgs">{error}</li>)}
                 </ul>
