@@ -146,9 +146,6 @@ const TicketsForm = () =>{
              <span>
                 <button onClick={() => history.push(`/tickets`)}>Cancel</button>
              </span>
-             <span>
-                <button disabled>Return Tickets</button>
-             </span>
         </form>
     )
 }

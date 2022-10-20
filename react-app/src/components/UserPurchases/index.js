@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, NavLink } from 'react-router-dom';
 import { getTicketsThunk } from '../../store/ticket';
+import { removeRegistrationThunk } from '../../store/ticket';
 import './index.css';
 
 
@@ -20,6 +21,9 @@ const UserPurchases = () =>{
 
     }, [dispatch]);
 
+    const handleCancellation = async (ticketId) =>{
+        await dispatch(removeRegistrationThunk(ticketId))
+    };
 
     return(
         <div className='user-purchases-pg'>
@@ -42,7 +46,7 @@ const UserPurchases = () =>{
                 <h4>Where: {ticket.event.venue?.address} {ticket.event.venue.city}, {ticket.event.venue.state}</h4>
                 <h4>Price per guest: {'$ '+ticket.event.price+'.00'}</h4>
                 <h4>Tickets purchased: {ticket.tickets_sold}</h4>
-                <span><button>Cancel Registration</button></span>
+                <span><button onClick={() => handleCancellation(ticket.id)}>Cancel Registration</button></span>
             </div>)}
         </div>
     );
