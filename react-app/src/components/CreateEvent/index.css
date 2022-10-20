@@ -29,7 +29,7 @@
     padding-top: 10px;
 }
 
-.event-name,.event-img,.description,.category,.venue,.capacity,.date,.submit-cancel{
+.event-name,.event-img,.description,.category,.venue,.capacity,.date,.submit-cancel,.price{
     color: red;
 }
 
@@ -38,6 +38,17 @@
     padding-left: 5px;
     font-family: 'Shadows Into Light', cursive;
     font-size: 18px;
+}
+
+.event-price-label{
+    padding-right: 15px;
+    padding-left: 15px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 18px;
+}
+
+.price{
+    padding-top: 15px;
 }
 
 .event-date-label{

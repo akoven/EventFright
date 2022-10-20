@@ -1,65 +1,22 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, {useState} from 'react';
+import { Modal } from '../../context/Modal';
+import TicketsForm from './TicketsForm';
+import './index.css';
+
 
 const TicketsModal = () =>{
-
-    const currentUser = useSelector(state => state.user.session)
-    const allEvents = useSelector(state => Object.values(state.event))
-    const allTickets = useSelector(state => Object.values(state.ticket))
-    const selectedEvent = allEvents.filter(event => event.id === +eventId.id)
-    const eventId = useParams();
-    const history = useHistory();
-    const dispatch = useDispatch();
-
-
-    const [purchasedTickets, setPurchasedTickets] = useState(0)
-    const ticketArray = allTickets.filter(ticket => ticket.event_id === +eventId.id)
-    const availableTickets = selectedEvent[0].capacity - purchasedTickets;
-
-    useEffect(() => {
-        console.log('all event ids: ',eventArray)
-    }, [dispatch])
-
-    const handlePurchase = async e =>{
-        e.preventDefault();
-        const totalTickets = 0;
-        for(ticket in ticketArray){
-            totalTickets += ticket.tickets_sold
-        }
-
-        const tickets_available = selectedEvent[0].capacity - totalTickets
-
-        const payload={
-            event_id: +eventId.id,
-            user_id: currentUser.id,
-            tickets_sold: purchasedTickets,
-            tickets_available: tickets_available
-        }
-    }
-
+    const [showModal, setShowModal] = useState(false);
+    console.log('SHOW MODAL VALUE!!!!!!!!!!!!!!!',showModal)
     return(
-        <form onSubmit={handlePurchase}>
-            <h5>Tickets available: {availableTickets}</h5>
-            <input
-             type='number'
-             value={purchasedTickets ? purchasedTickets:''}
-             onChange={e => setPurchasedTickets(purchasedTickets)}
-             placeholder='maximum tickets per customer is 10'
-             min={1}
-             max={10}
-             />
-             <span>
-                <button type='submit'>Purchase Tickets</button>
-             </span>
-             <span>
-                <button onClick={() => history.push(`/tickets`)}>Cancel</button>
-             </span>
-             <span>
-                <button disabled>Return Tickets</button> {/*this will call the delete tickets thunk*/}
-             </span>
-        </form>
-    )
+        <>
+            <button className='tickets-btn-on-reg-pg' onClick={() => setShowModal(true)}>Tickets</button>
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <TicketsForm />
+                </Modal>
+            )}
+        </>
+    );
 }
 
-export default TicketsModal
+export default TicketsModal;

@@ -158,7 +158,7 @@ const CreateVenue = () =>{
                     <div className="zip-div">
                         <label className="zip-label">Zip Code *</label>
                         <input
-                            type="integer"
+                            type="string"
                             placeholder="5 digit zip codes only"
                             value={zipCode ? zipCode:''}
                             onChange ={e => setZipCode(e.target.value)}

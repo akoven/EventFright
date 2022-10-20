@@ -12,11 +12,12 @@ class Events(db.Model):
     event_image = db.Column(db.String, nullable=False)
     date = db.Column(db.String, nullable=False)
     capacity = db.Column(db.Integer, nullable=False)
+    price_per_guest = db.Column(db.Float)
 
     user = db.relationship('User', back_populates='events')
     venue = db.relationship('Venues', back_populates='events')
     category = db.relationship('Categories', back_populates='events')
-    tickets = db.relationship('Tickets', back_populates='events')
+    ticket = db.relationship('Tickets', back_populates='events')
 
     def to_dict(self):
         return{
@@ -28,7 +29,8 @@ class Events(db.Model):
             'event_image':self.event_image,
             'date':self.date,
             'capacity':self.capacity,
+            'price':self.price_per_guest,
             'user':self.user.to_dict(),
-            'tickets':[ticket.to_dict() for ticket in self.tickets]
         }
+            # 'tickets':[ticket.to_dict() for ticket in self.ticket]
 # 'tickets':[ticket.to_dict() for ticket in self.tickets]

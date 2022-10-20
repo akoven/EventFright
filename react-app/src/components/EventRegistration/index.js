@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { getEventThunk } from '../../store/event';
+import TicketsModal from "../TicketsModal";
 
 import './index.css';
 
@@ -19,12 +20,16 @@ const EventRegistration = () =>{
         console.log('ALL EVENTS: ', allEvents)
         // console.log('event id type: ', typeof(eventId.id))
         console.log('SELECTED EVENT: ', selectedEvent[0])
-    }, [dispatch])
+        console.log('PRICE PER GUEST: ', selectedEvent[0].price)
+    }, [dispatch, eventId])
 
     return(
         <div className='registration-pg'>
             <div className='registration-div'>
-                <header className='registration-header'><NavLink to={'/'} className='registration-homepage-link'>Event Fright</NavLink></header>
+                <header className='registration-header'>
+                    <NavLink to={'/'} className='registration-homepage-link'>Event Fright</NavLink>
+                    <NavLink to={'/tickets'}>{'<< Back to Tickets page'}</NavLink>
+                </header>
                 <div className='event-info-ticket-div'>
                     <div className='event-info-div'>
                         <img className='selected-img' src={selectedEvent[0].event_image}/>
@@ -34,13 +39,14 @@ const EventRegistration = () =>{
                         <p className='selected-event-description'>{selectedEvent[0].description}</p>
                     </div>
                     <div className='registration-tickets-span'>
-                        <h4>price shows here</h4>
-                        <button className='tickets-btn-on-reg-pg' onClick={() => history.push(`/purchase-tickets/${selectedEvent[0].id}`)}>Tickets</button>
+                        <h4>Price per guest: {'$ ' + selectedEvent[0].price + '.00'}</h4>
+                        <TicketsModal />
                     </div>
                 </div>
             </div>
         </div>
     )
 }
+// onClick={() => history.push(`/purchase-tickets/${selectedEvent[0].id}`)}
 
 export default EventRegistration;
