@@ -28,3 +28,8 @@
 .num-of-tickets-input{
     width: 40px
 }
+
+.tickets-per-customer{
+    list-style: none;
+    font-weight: bold;
+}

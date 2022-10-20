@@ -90,7 +90,7 @@ const CreateEvent = () =>{
             errors.push('You must provide an image url')
         }
 
-        if(!eventImage.includes('.jpg','.jpeg','.png')){//separate .includes statements
+        if(!eventImage.includes('.jpg') && !eventImage.includes('.jpeg') && !eventImage.includes('.png')){
             errors.push('Your image must be in .jpg, .jpeg, or .png formats')
         }
 
