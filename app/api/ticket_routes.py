@@ -53,3 +53,14 @@ def add_ticket():
         # print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
         print('********************************VALIDATION ERRORS*********************',validation_errors_to_error_messages(new_ticket.errors))
         return {'errors': validation_errors_to_error_messages(new_ticket.errors)}, 401
+
+@ticket_routes.route('/<ticket_id>', methods=['DELETE'])
+def delete_tickets(ticket_id):
+    ticket = Tickets.query.get(ticket_id)
+    if not ticket:
+        return "Error 404: The registrations you're looking for could not be found"
+
+    db.session.delete(ticket)
+    db.session.commit()
+
+    return 'registration has been canceled'

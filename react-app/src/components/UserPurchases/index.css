@@ -8,6 +8,7 @@
     display: inline-flex;
     flex-direction: column;
     flex-wrap: wrap;
+    padding-top: 10px;
     padding-left: 15px;
     padding-right: 20px;
     padding-bottom: 20px;
@@ -19,4 +20,24 @@
 
 .user-purchases-pg{
     color: white
+}
+
+.registration-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.back-to-tickets-div{
+    padding-right: 10px;
+}
+
+.cancel-reg-btn:hover{
+    background-color: red;
+    border-color: red;
+}
+
+.back-to-tickets-btn:hover{
+    background-color: blue;
+    border-color: blue;
 }

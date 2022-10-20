@@ -23,13 +23,18 @@ const TicketsForm = () =>{
     const [cardNumber, setCardNumber] = useState('')
     const [csv, setCsv] = useState('')
     const [zipCode, setZipCode] = useState('')
+    const [errorValidation, setErrorValidation] = useState([])
 
     const ticketArray = allTickets.filter(ticket => ticket.event.id === +eventId.id);
     const userEventTicketArray = userTicketsForEvent.map(ticket => ticket.tickets_sold);
     const allTicketsForEventArray  = allTicketsForEvent.map(ticket => ticket.tickets_sold);
     // const userEventTicketArray = allTickets.map(ticket => ticket.tickets_sold);
-
     // const totalTickets = userEventTicketArray.map(ticket => initialTickets += ticket)
+    const zipCodeValidator = /^\d{5}$/;
+    const creditCardValidator = /^\d{16}$/;
+    const csvValidator = /^\d{3}$/;
+
+    let errors = [];
 
     let userTickets = 0;
     for(const num of userEventTicketArray){
@@ -39,7 +44,7 @@ const TicketsForm = () =>{
     let totalTickets = 0;
     for(const num of allTicketsForEventArray){
         totalTickets += num;
-    }
+    };
 
     useEffect(() => {
         dispatch(getTicketsThunk());
@@ -48,7 +53,7 @@ const TicketsForm = () =>{
         console.log('purchased tickets: ',userEventTicketArray)
         // console.log('total tickets: ', initialTickets)
 
-    }, [dispatch])
+    }, [dispatch]);
 
     const handlePurchase = async e =>{
         e.preventDefault();
@@ -71,23 +76,53 @@ const TicketsForm = () =>{
             zip_code: zipCode
         };
 
-        console.log('payload for user ticket: ',payload)
+        const cardNumberArr = allTicketsForEvent.map(ticket => ticket.card_number)
 
-        const newPurchase = await dispatch(addTicketsThunk(payload))
-        console.log('response: ',newPurchase)
-        if(newPurchase){
-            alert('Purchase made!')
-            history.push('/tickets')
+        // if(firstName.length === 0){
+        //     errors.push('First name is mandatory')
+        // };
+
+        // if(lastName.length === 0){
+        //     errors.push('Last name is mandatory')
+        // };
+
+        if(!creditCardValidator.test(cardNumber) || cardNumber.length === 0){
+            errors.push('Please provide a valid credit card number without dashes')
+        };
+
+        if(!zipCodeValidator.test(zipCode)){
+            errors.push('The zip code must be a 5 digit number')
+        };
+
+        if(cardNumberArr.includes(cardNumber)){
+            errors.push('User already made a purchase for this event')
+        };
+
+        if(!csvValidator.test(csv) || csvValidator.length === 0){
+            errors.push('Please provide a valid csv number')
+        };
+
+        setErrorValidation(errors)
+        // console.log('payload for user ticket: ',payload)
+
+        if(errors.length === 0){
+            const newPurchase = await dispatch(addTicketsThunk(payload));
+            // console.log('response: ',newPurchase)
+            if(newPurchase){
+                alert('Purchase made!');
+                history.push('/tickets');
+            }
         }
-        alert('something went wrong')
     }
 
     return(
         <form onSubmit={handlePurchase}>
             {/* {console.log('TESTING!!!!!!!!!!!!!!!!!')} */}
             <h5>Tickets available: {selectedEvent[0].capacity - totalTickets}</h5>
-            {/* <h6>{availableTickets}</h6> */}
-            {}
+                <ul>
+                    {errorValidation.map(error => <li className="tickets-error-msgs">{error}</li>)}
+                </ul>
+
             {<li>Tickets per customer: 10</li>}
             <div className="ticket-amount">
                 <label className="tickets-label">How many tickets? : </label>
@@ -95,6 +130,7 @@ const TicketsForm = () =>{
                 type='number'
                 value={purchasedTickets ? purchasedTickets:''}
                 onChange={e => setPurchasedTickets(e.target.value)}
+                required
                 min={1}
                 max={10}
                 />
@@ -105,6 +141,7 @@ const TicketsForm = () =>{
                 value={firstName ? firstName:''}
                 onChange={e => setFirstName(e.target.value)}
                 placeholder='first name'
+                required
                 />
             </div>
             <div>
@@ -113,6 +150,7 @@ const TicketsForm = () =>{
                 value={lastName ? lastName:''}
                 onChange={e => setLastName(e.target.value)}
                 placeholder='last name'
+                required
                 />
             </div>
             <div>
@@ -145,9 +183,6 @@ const TicketsForm = () =>{
              </span>
              <span>
                 <button onClick={() => history.push(`/tickets`)}>Cancel</button>
-             </span>
-             <span>
-                <button disabled>Return Tickets</button>
              </span>
         </form>
     )

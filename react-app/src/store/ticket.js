@@ -16,6 +16,13 @@ const addTicketsAction = (ticket) =>{
     }
 };
 
+const deleteTicketsAction = (ticketId) =>{
+    return{
+        type: DELETE_TICKETS,
+        ticketId
+    }
+}
+
 export const getTicketsThunk = () => async dispatch =>{
     const response = await fetch('/api/tickets/')
 
@@ -45,6 +52,15 @@ export const addTicketsThunk = (ticket) => async dispatch =>{
     return null;
 }
 
+export const removeRegistrationThunk = (ticketId) => async dispatch =>{
+    const response = await fetch(`/api/tickets/${ticketId}`, {method:'DELETE'});
+
+    if(response.ok){
+        dispatch(deleteTicketsAction(ticketId));
+    }
+    return null;
+}
+
 
 const ticketsReducer = (state = {}, action) =>{
     let newState = {};
@@ -56,6 +72,10 @@ const ticketsReducer = (state = {}, action) =>{
         case ADD_TICKETS:
             newState = {...state};
             newState[action.ticket.id] = action.ticket;
+            return newState;
+        case DELETE_TICKETS:
+            newState = {...state};
+            delete newState[action.ticketId];
             return newState;
         default:
             return state;

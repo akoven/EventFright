@@ -71,7 +71,7 @@ const CreateVenue = () =>{
 
         if(!regex.test(zipCode)){
             errors.push('The zip code must be a 5 digit number')
-        }
+        };
 
         setValidationErrors(errors);
 
