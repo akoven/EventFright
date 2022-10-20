@@ -38,6 +38,7 @@ const CreateEvent = () =>{
     const [eventImage, setEventImage] = useState('')
     const [eventDate,setEventDate] = useState(new Date())
     const [eventCapacity,setEventCapacity] = useState(0)
+    const [price, setPrice] = useState(0.00)
     const [validationErrors, setValidationErrors] = useState([])
 
     // console.log('current user: ',currentUser.id)
@@ -73,7 +74,8 @@ const CreateEvent = () =>{
             description: eventDescription,
             event_image: eventImage,
             date: eventDate.toLocaleString('en-US'),
-            capacity: +eventCapacity
+            capacity: +eventCapacity,
+            price_per_guest: price
         };
 
         if(eventName.length === 0 && eventName.length <= 50){
@@ -210,6 +212,15 @@ const CreateEvent = () =>{
                             placeholder='required'
                             min={1}
                             max={300}
+                        />
+                    </div>
+                    <div className="price">
+                        <label className="event-price-label">Price</label>
+                        <input
+                            type="decimal"
+                            value = {price ? price:''}
+                            onChange={e => setPrice(e.target.value)}
+                            placeholder={price + '.00'}
                         />
                     </div>
                     <div className="date">

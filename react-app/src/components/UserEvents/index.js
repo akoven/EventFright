@@ -38,7 +38,7 @@ const UserEvents = () =>{
 
     const handleDelete = async (eventId) =>{
        await dispatch(removeEventThunk(eventId))
-    }
+    };
 
     return(
         <div className='user-events-pg'>

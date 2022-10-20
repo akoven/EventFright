@@ -80,7 +80,7 @@ const CreateVenue = () =>{
 
         if(!regex.test(zipCode)){
             errors.push('The zip code must be a 5 digit number')
-        }
+        };
 
         setValidationErrors(errors);
 
@@ -167,7 +167,7 @@ const CreateVenue = () =>{
                     <div className="zip-div">
                         <label className="zip-label">Zip Code *</label>
                         <input
-                            type="integer"
+                            type="string"
                             placeholder="5 digit zip codes only"
                             value={zipCode ? zipCode:''}
                             onChange ={e => setZipCode(e.target.value)}

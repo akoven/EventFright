@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: a5219a6e6e8e
+Revision ID: 5c8b3def4f7b
 Revises: 
-Create Date: 2022-10-02 21:51:59.493400
+Create Date: 2022-10-14 15:17:38.949946
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a5219a6e6e8e'
+revision = '5c8b3def4f7b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,7 +41,7 @@ def upgrade():
     sa.Column('address', sa.String(), nullable=False),
     sa.Column('city', sa.String(), nullable=False),
     sa.Column('state', sa.String(), nullable=False),
-    sa.Column('zip_code', sa.Integer(), nullable=False),
+    sa.Column('zip_code', sa.String(), nullable=False),
     sa.Column('latitude', sa.Integer(), nullable=True),
     sa.Column('longitude', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
@@ -57,6 +57,7 @@ def upgrade():
     sa.Column('event_image', sa.String(), nullable=False),
     sa.Column('date', sa.String(), nullable=False),
     sa.Column('capacity', sa.Integer(), nullable=False),
+    sa.Column('price_per_guest', sa.Float(), nullable=True),
     sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
     sa.ForeignKeyConstraint(['host_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['venue_id'], ['venues.id'], ),
@@ -66,6 +67,13 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('event_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('tickets_sold', sa.Integer(), nullable=True),
+    sa.Column('tickets_available', sa.Integer(), nullable=True),
+    sa.Column('first_name', sa.String(), nullable=False),
+    sa.Column('last_name', sa.String(), nullable=False),
+    sa.Column('card_number', sa.String(), nullable=False),
+    sa.Column('csv', sa.String(), nullable=False),
+    sa.Column('zip_code', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['event_id'], ['events.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
