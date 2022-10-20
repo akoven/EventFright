@@ -35,14 +35,16 @@ const CreateCategory = () =>{
         if(type.length > 100){
             errors.push('category type needs to be 100 characters long or less')
         }
-        setValidationErrors(errors);
 
+        setValidationErrors(errors);
+        console.log('ERRORS: ',errors);
         if(errors.length === 0){
             const newCategory = await dispatch(addCategoryThunk(payload))
             if(newCategory){
                 alert('successfully created a new category')
                 history.push(`/create-category/${currentUser.id}`)
             }
+
         }
     };
 

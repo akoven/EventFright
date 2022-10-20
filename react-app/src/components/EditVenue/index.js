@@ -43,15 +43,17 @@ const EditVenue = () =>{
             zip_code: zipCode,
             latitude,
             longitude
-        }
+        };
 
         if(name.length === 0){
             errors.push('You must provide a name for your venue')
+        }else if(name.length > 50){
+            errors.push('Your venues name needs to be 50 characters or less')
         };
 
         if(address.length === 0){
             errors.push('You must provide an address for your venue')
-        }
+        };
 
         if(city.length === 0){
             errors.push('You must provide a city')
@@ -74,7 +76,9 @@ const EditVenue = () =>{
                 history.push(`/create-venue/${currentUser.id}`)
                 // console.log('validation error length: ', errors)
             };
-        }
+        };
+
+
     };
 
 

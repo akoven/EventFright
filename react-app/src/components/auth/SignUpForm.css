@@ -49,9 +49,9 @@ height: 1000px;
     font-weight: bold;
 }
 
-.cancel-signup-btn:hover{
-    border-color: red;
-    background-color: red;
+.back-to-login:hover{
+    border-color: rgb(6,160,19);
+    background-color: rgb(6, 160, 19);
     font-weight: bold;
 }
 

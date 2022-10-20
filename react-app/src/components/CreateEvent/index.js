@@ -211,6 +211,7 @@ const CreateEvent = () =>{
                             onChange={e => setEventCapacity(e.target.value)}
                             placeholder='required'
                             min={1}
+                            max={300}
                         />
                     </div>
                     <div className="price">

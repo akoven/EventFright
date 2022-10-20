@@ -52,9 +52,18 @@ const CreateVenue = () =>{
             longitude: longitude
         }
         // console.log('payload being passed to add venue thunk ',payload)
+        // setVenueName('')
+        // setVenueAdress('')
+        // setCity('')
+        // setState('')
+        // setZipCode('')
+        // setLatitude(0)
+        // setLongitude(0)
 
         if(venueName.length === 0){
             errors.push('You must provide a name for your venue')
+        }else if(venueName.length > 50){
+            errors.push('Your venues name needs to be 50 characters or less')
         };
 
         if(venueAddress.length === 0){
