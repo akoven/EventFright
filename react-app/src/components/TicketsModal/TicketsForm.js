@@ -124,10 +124,11 @@ const TicketsForm = () =>{
                     {errorValidation.map(error => <li className="tickets-error-msgs">{error}</li>)}
                 </ul>
 
-            {<li>Tickets per customer: 10</li>}
+            {<li className="tickets-per-customer">Tickets per customer: 10</li>}
             <div className="ticket-amount">
                 <label className="tickets-label">How many tickets? : </label>
                 <input
+                className="num-of-tickets-input"
                 type='number'
                 value={purchasedTickets ? purchasedTickets:''}
                 onChange={e => setPurchasedTickets(e.target.value)}

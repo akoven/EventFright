@@ -1,3 +1,8 @@
+.user-purchases-pg{
+    color: white;
+    height: 3000px
+}
+
 .images-on-purchases-pg{
     width: 550px;
     height: 300px;
@@ -18,9 +23,6 @@
     color: white
 }
 
-.user-purchases-pg{
-    color: white
-}
 
 .registration-header{
     display: flex;
@@ -43,4 +45,8 @@
     border-color: blue;
     font-weight: bold;
 
+}
+
+.user-purchases-pg > h2, .user-purchases-pg > h1{
+    padding-left: 5px;
 }

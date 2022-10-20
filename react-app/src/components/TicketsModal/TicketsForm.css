@@ -3,7 +3,8 @@
 }
 
 .tickets-error-msgs{
-    color: red
+    color: rgb(133, 7, 7);
+    font-weight: bold
 }
 
 .first-name-div, .last-name-div, .card-number-div, .csv-div, .zip-code-div, .buttons-div{
@@ -20,6 +21,10 @@
 }
 
 .purchase-tickets-btn:hover{
-    background-color: green;
-    border: green;
+    background-color: rgb(22, 168, 22);;
+    border-color: rgb(22, 168, 22);
+}
+
+.num-of-tickets-input{
+    width: 40px
 }

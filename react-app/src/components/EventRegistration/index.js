@@ -28,7 +28,9 @@ const EventRegistration = () =>{
             <div className='registration-div'>
                 <header className='registration-header'>
                     <NavLink to={'/'} className='registration-homepage-link'>Event Fright</NavLink>
-                    <NavLink to={'/tickets'}>{'<< Back to Tickets page'}</NavLink>
+                    <span className='back-to-tickets-span'>
+                        <button className='back-to-tickets-btn' onClick={() => history.push('/tickets')}>Back to Tickets page</button>
+                    </span>
                 </header>
                 <div className='event-info-ticket-div'>
                     <div className='event-info-div'>
