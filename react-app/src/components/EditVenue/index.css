@@ -1,0 +1,86 @@
+.edit-venue-div{
+    height: 1200px;
+}
+
+.edit-venue-form-field{
+    border: 2px solid black;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 400px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-top: 50px;
+}
+
+.edit-venue-form-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.submit-cancel-span{
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.edit-venue-submit,.edit-venue-cancel{
+    margin-right: 20px;
+    background-color: blueviolet;
+    color: white;
+    border-radius: 5px;
+}
+
+.edit-venue-submit:hover{
+    border-color: rgb(6, 160, 19);
+    background-color: rgb(6, 160, 19);
+    color: black;
+}
+
+.edit-venue-cancel:hover{
+    border-color: red;
+    background-color: red;
+    color:black
+}
+
+.edit-venue-label{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.edit-venue-nav-link{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.edit-venue-header{
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.edit-venue-name-div,.edit-venue-address-div,.edit-venue-city-div,.edit-venue-state-div,.edit-venue-zip-div,.edit-venue-lat-div,.edit-venue-lon-div{
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.edit-venue-name-label, .edit-venue-address-label, .edit-venue-city-label, .edit-venue-state-label, .edit-venue-zip-label{
+    color: red;
+    padding-right: 10px;
+}
+
+.edit-venue-lat-label, .edit-venue-lon-label{
+    color: white;
+    padding-right: 10px;
+}
+
+.edit-venue-required-field{
+    color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

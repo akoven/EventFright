@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    color: black;
 }
 
 .form-field{
-
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-top: 100px;
+    padding-top: 60px;
 }
 
 .form-body{
@@ -35,6 +35,69 @@
 }
 
 .edit-image{
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
+    border-radius: 2%;
+}
+
+.edit-event-pg{
+    height: 1000px;
+}
+
+.event-img-label,.description-label,.venue-label,.capacity-label,.date-time-label{
+    padding-right: 10px;
+    padding-left: 5px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 18px;
+}
+
+.error-msgs{
+    color: rgb(197, 9, 197);
+    font-size: large;
+    padding-right: 10px;
+}
+
+.edit-event-label{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.edit-event-submit-btn,.edit-event-cancel-btn{
+    background-color: blueviolet;
+    color: white;
+    border-radius: 5px;
+}
+
+.edit-event-submit-btn:hover{
+    background-color: rgb(6, 160, 19);
+    border-color: rgb(6, 160, 19);
+    color: black;
+}
+
+.edit-event-cancel-btn:hover{
+    background-color: red;
+    border-color: red;
+    color: black;
+}
+
+.see-category-btn,.see-venue-btn,.user-events-btn{
+    border-radius: 5px;
+}
+
+.category-venue-header{
+    padding-top: 10px;
+}
+
+.see-category-span{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.see-category-btn:hover,.see-venue-btn:hover,.user-events-btn:hover{
+    background-color: blueviolet;
+    border-color: blueviolet;
+    font-weight: bold;
+    color: black;
 }

@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getEventThunk } from '../../store/event';
 import { getCategoryThunk } from '../../store/category';
-import { getVenueThunk } from '../../store/venue';
+import defaultImage from '../../images/defaultImage.jpg';
+// import { getVenueThunk } from '../../store/venue';
 
 const SplashPage = () =>{
 
@@ -16,36 +17,41 @@ const SplashPage = () =>{
 
 
     useEffect(() =>{
-        dispatch(getEventThunk())
-
+        dispatch(getEventThunk());
+        dispatch(getCategoryThunk());
     }, [dispatch])
 
-    useEffect(() =>{
-        dispatch(getVenueThunk())
-    }, [dispatch])
+    // useEffect(() =>{
+    //     dispatch(getVenueThunk())
+    // }, [dispatch])
 
-    useEffect(() => {
-        dispatch(getCategoryThunk())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getCategoryThunk())
+    // }, [dispatch])
 
-    // console.log('ALL EVENTS: ',allEvents)
+    console.log('ALL EVENTS: ',allEvents)
     // console.log('ALL VENUES: ',allVenues)
     // console.log('Time: ', (new Date(allEvents[3].date) - new Date(allEvents[0].date))/86400000)
     return(
         <div className='main'>
             <div className='banner-div'>
-                <h1>Browse our events or post your own event!</h1>
+                <h1 className='splash-pg-header'>Browse our events or post your own event!</h1>
                 <div>
                     <img className='banner-img' src='https://i.pinimg.com/originals/8c/31/0d/8c310d583f66f16a80331c008068ecd6.jpg'/>
                 </div>
             </div>
-            <div>
+            <div className='splash-pg-div'>
 
                 <h3>Check out these categories</h3>
                 {allCategories.map(category =><div className='front-pg-category'>{category.type}</div>)}
                 <h3>Local Events</h3>
                 {allEvents.map(event => <div className='event-card'>
-                    <img className='image-div' src={event.event_image}/>
+                    <img className='image-div' src={event.event_image} onError={e =>{
+                        if(event.event_image){
+                            e.currentTarget.src='https://st.depositphotos.com/1026550/4380/i/600/depositphotos_43807431-stock-photo-halloween.jpg'
+                        }
+                    }}
+                    />
                     <h3>{event.event_name}</h3>
                     <p>{event.description}</p>
                     <p>Date and Time: {event.date}</p>

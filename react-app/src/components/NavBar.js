@@ -70,7 +70,7 @@ const NavBar = () => {
             <h1>Event Fright</h1>
             <div className='test-btn'>
               <button className='userBtn' onClick={userMenu}>
-                <i class="fa-solid fa-user" /> {currentUser.email}
+                <span className='user-email'><i class="fa-solid fa-user" /> {currentUser.email}</span>
               </button>
               {
                openMenu && (
@@ -81,13 +81,15 @@ const NavBar = () => {
                     </button>
                   </li>
                   <li>
-                    <NavLink className='userEventsBtn' to={`/events/${currentUser.id}`}>Check out your events</NavLink>
+                    <NavLink className='user-events-nav-bar-btn' to={`/events/${currentUser.id}`}>Check out your events</NavLink>
                   </li>
+                  <li><NavLink className='venue-btn' to={`/create-venue/${currentUser.id}`}>Add a venue</NavLink></li>
+                  <li><NavLink className='category-btn' to={`/create-category/${currentUser.id}`}>Add a category</NavLink></li>
                 </ul>
                 )
               }
               <NavLink className='createEvent' to={'/create-event'}>
-                <i class="fa-regular fa-plus" /> Create an event
+                <span className='create-event-link'><i class="fa-regular fa-plus" /> Create an event</span>
               </NavLink>
 
               <NavLink className='tickets' to={'/tickets'}>

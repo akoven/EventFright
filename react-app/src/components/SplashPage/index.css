@@ -1,5 +1,5 @@
 .banner-img{
-    width: 1897px;
+    width: 1905px;
     height: 800px;
 }
 
@@ -16,12 +16,14 @@
 
 .banner-div > h1{
     position: absolute;
-    font-size: 50px;
+    font-size: 60px;
     padding-left: 50px;
     padding-top: 100px;
+    color: rgb(207,7,7);
+    font-family: 'Caveat Brush', cursive;
 }
 
-h3,p{
+h3,p,.front-pg-category{
     color: white
 }
 
@@ -41,4 +43,16 @@ h3,p{
     padding-right: 25px;
     padding-top: 10px;
     padding-bottom: 30px;
+}
+
+body{
+    margin: 0px;
+}
+
+.splash-pg-div > h3{
+    padding-left: 10px;
+}
+
+.front-pg-category{
+    margin-left: 10px;
 }

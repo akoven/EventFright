@@ -38,10 +38,9 @@ def add_events():
     event_image = new_event.data['event_image']
     date = new_event.data['date']
     capacity = new_event.data['capacity']
-    print('!!!!!!!!!!!!!!!!!!!!!!NEW EVENT FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', new_event.data)
+    price = new_event.data['price_per_guest']
 
-
-    # print('REQUEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', new_event.data)
+    # print('!!!!!!!!!!!!!!!!!!!!!!NEW EVENT FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', new_event.data)
 
     if new_event.validate_on_submit():
         # data = new_event.data
@@ -53,7 +52,8 @@ def add_events():
             description = description,
             event_image = event_image,
             date = date,
-            capacity = capacity
+            capacity = capacity,
+            price_per_guest = price
         )
         # print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
         db.session.add(event)
@@ -99,6 +99,7 @@ def edit_event(event_id):
     event_image = data['event_image']
     date = data['date']
     capacity = data['capacity']
+    price_per_guest = data['price_per_guest']
 
 
 
@@ -117,6 +118,7 @@ def edit_event(event_id):
     event.event_image = event_image
     event.date = date
     event.capacity = capacity
+    event.price_per_guest = price_per_guest
 
     db.session.commit()
     # print('*************made it past session.commit***************************')

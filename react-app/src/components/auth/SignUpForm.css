@@ -1,0 +1,74 @@
+.sign-up-form-pg-div{
+height: 1000px;
+}
+
+.username-label,.sign-up-email-label,.sign-up-password-label,.repeat-password-label{
+    padding-right: 10px;
+    color: white;
+}
+
+.email-sign-up-div,.password-sign-up-div,.repeat-password-sign-up-div{
+    padding-top: 10px;
+}
+
+.sign-up-form-pg-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.sign-up-form-field{
+    border: 2px solid black;
+    width: fit-content;
+    height: fit-content;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 30px;
+    background-color: black;
+}
+
+.sign-up-form-field > h3{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sign-up-submit-cancel-btn{
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.sign-up-submit-btn{
+    margin-right: 50px;
+}
+
+.signup-btn:hover{
+    border-color: rgb(6, 160, 19);
+    background-color: rgb(6, 160, 19);
+    font-weight: bold;
+}
+
+.cancel-signup-btn:hover{
+    border-color: red;
+    background-color: red;
+    font-weight: bold;
+}
+
+.sign-up-header-div > h1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Creepster', cursive;
+    color: rgb(207,7,7);
+    font-size: 40px;
+}
+
+.sign-up-header-div > h2{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 30px;
+    font-family: 'Creepster', cursive;
+
+}

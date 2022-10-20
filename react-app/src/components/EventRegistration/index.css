@@ -1,0 +1,118 @@
+.selected-event-title{
+    color: white;
+    padding-left: 50px;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center; */
+}
+
+.registration-pg{
+    height: 1000px;
+}
+
+.registration-homepage-link{
+    text-decoration: none;
+    font-family: 'Creepster', cursive;
+    font-size: 27px;
+    color: red;
+}
+
+.registration-header{
+    padding-left: 10px;
+    padding-top: 7px;
+}
+
+.selected-img{
+    width: 600px;
+    height: 300px;
+    border-radius: 10%;
+    padding-left: 50px;
+    padding-top: 20px;
+
+}
+
+.event-info-div > h2, .event-info-div > h3{
+    padding-left: 50px;
+    color: white;
+}
+
+.event-info-div > h3{
+    font-size: 22px;
+}
+
+.event-info-div > p{
+    font-size: 18px;
+}
+
+.selected-event-description{
+    padding-left: 70px;
+}
+
+.event-registration-span{
+    color: white;
+    border: 4px yellow solid;
+    padding-left: 100px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.event-info-div{
+    /* border: 2px lime solid; */
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.registration-tickets-span{
+    border: solid 1px gray;
+    width: 330px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-left: 500px;
+    background-color: white;
+    border-radius: 3px;
+}
+
+.registration-tickets-span:hover{
+    box-shadow: 2px 2px 10px gray, -2px -2px 10px gray;
+}
+
+.event-info-ticket-div{
+    /* border: 2px red solid; */
+    display: inline-flex;
+}
+
+/* .tickets-btn-on-reg-pg{
+    background-color: orangered;
+    border: orangered;
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 14pt;
+    margin-left: 65px;
+} */
+
+.tickets-btn-on-reg-pg:hover{
+    background-color: rgb(224, 61, 1);
+    border: rgb(224, 61, 1);
+}
+
+.back-to-tickets-btn:hover{
+    background-color: blue;
+    border-color: blue;
+    font-weight: bold;
+}
+
+.back-to-tickets-span{
+    padding-right: 10px;
+}
+
+.registration-tickets-span > h4{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
