@@ -29,7 +29,7 @@ const UserPurchases = () =>{
         <div className='user-purchases-pg'>
             <header className='registration-header'>
                 <NavLink to={'/'} className='registration-homepage-link'>Event Fright</NavLink>
-                <NavLink to={'/tickets'}>{'<< Back to Tickets page'}</NavLink>
+                <div className='back-to-tickets-div'><button className='back-to-tickets-btn' onClick={() => history.push('/tickets')}>Back to Tickets page</button></div>
             </header>
             <h1>Your Purchases</h1>
             <h2>{allTickets.length === 0 ? 'No purchases have been made at this time':'Your purchases are listed below'}</h2>
@@ -46,7 +46,7 @@ const UserPurchases = () =>{
                 <h4>Where: {ticket.event.venue?.address} {ticket.event.venue.city}, {ticket.event.venue.state}</h4>
                 <h4>Price per guest: {'$ '+ticket.event.price+'.00'}</h4>
                 <h4>Tickets purchased: {ticket.tickets_sold}</h4>
-                <span><button onClick={() => handleCancellation(ticket.id)}>Cancel Registration</button></span>
+                <span><button className='cancel-reg-btn' onClick={() => handleCancellation(ticket.id)}>Cancel Registration</button></span>
             </div>)}
         </div>
     );
