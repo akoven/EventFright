@@ -1,0 +1,22 @@
+.images-on-purchases-pg{
+    width: 550px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.user-purchases-div{
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 15px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.user-purchases-div > h4{
+    color: white
+}
+
+.user-purchases-pg{
+    color: white
+}

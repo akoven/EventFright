@@ -17,6 +17,7 @@ import EditVenue from './components/EditVenue';
 import CreateCategory from './components/CreateCategory';
 import Tickets from './components/Tickets';
 import EventRegistration from './components/EventRegistration';
+import UserPurchases from './components/UserPurchases';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -75,6 +76,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/tickets/:id' exact={true} >
           <EventRegistration />
+        </ProtectedRoute>
+        <ProtectedRoute path='/tickets/:userId/purchases' exact={true} >
+          <UserPurchases />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

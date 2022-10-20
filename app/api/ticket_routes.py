@@ -24,7 +24,7 @@ def add_ticket():
     new_ticket['csrf_token'].data = request.cookies['csrf_token']
 
     event_id = new_ticket.data['event_id']
-    user_id = new_ticket.data['ticket_id']
+    user_id = new_ticket.data['user_id']
     tickets_sold = new_ticket.data['tickets_sold']
     tickets_available = new_ticket.data['tickets_available']
     first_name = new_ticket.data['first_name']

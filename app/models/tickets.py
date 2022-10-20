@@ -1,4 +1,3 @@
-from email.policy import default
 from .db import db
 
 class Tickets(db.Model):
@@ -7,7 +6,7 @@ class Tickets(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    tickets_sold = db.Column(db.Integer, default=0)
+    tickets_sold = db.Column(db.Integer)
     tickets_available = db.Column(db.Integer)
     first_name = db.Column(db.String, nullable=False)
     last_name = db.Column(db.String, nullable=False)
@@ -15,8 +14,8 @@ class Tickets(db.Model):
     csv = db.Column(db.String, nullable=False)
     zip_code= db.Column(db.String, nullable=False)
 
-    events = db.relationship('Events', back_populates='tickets')
-    user = db.relationship('User', back_populates='tickets')
+    events = db.relationship('Events', back_populates='ticket')
+    user = db.relationship('User', back_populates='ticket')
 
     def to_dict(self):
         return{

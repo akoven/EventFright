@@ -9,7 +9,8 @@ import './index.css';
 const Tickets = () =>{
 
     const dispatch = useDispatch();
-    const allEvents = useSelector(state => Object.values(state.event))
+    const allEvents = useSelector(state => Object.values(state.event));
+    const currentUser = useSelector(state => state.session.user);
     const history = useHistory();
 
     useEffect(() =>{
@@ -22,7 +23,7 @@ const Tickets = () =>{
             <header className="purchase-button">
                 <span className="registration-header-span">
                     <NavLink to={'/'} className='registration-pg-home-link'>Event Fright</NavLink>
-                    <span className="purchase-btn-span"><button className="purchase-btn" onClick={() => history.push('/tickets/new')}>See your purchases</button></span>
+                    <span className="purchase-btn-span"><button className="purchase-btn" onClick={() => history.push(`/tickets/${currentUser.id}/purchases`)}>See your purchases</button></span>
                 </span>
             </header>
             <h3 className="tickets-header">Upcoming Events</h3>

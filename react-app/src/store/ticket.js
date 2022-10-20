@@ -2,10 +2,10 @@ const GET_TICKETS = 'tickets/get_tickets'
 const ADD_TICKETS = 'tickets/add_tickets'
 const DELETE_TICKETS = 'tickets/delete_tickets'
 
-const getTicketsAction = (tickets) =>{
+const getTicketsAction = (ticket) =>{
     return{
         type: GET_TICKETS,
-        tickets
+        ticket
     }
 };
 
@@ -17,26 +17,26 @@ const addTicketsAction = (ticket) =>{
 };
 
 export const getTicketsThunk = () => async dispatch =>{
-    const response = await fetch('/api/tickets/') //finish building tickets route next
+    const response = await fetch('/api/tickets/')
 
     if(response.ok){
         const ticket = await response.json();
         dispatch(getTicketsAction(ticket));
-        const allTickets={};
-        ticket.tickets.forEach(ticket => (allTickets[ticket.id] = ticket));
-        return {...allTickets};
+
     };
+    return null;
 };
 
-export const addTicketsThunk = (tickets) => async dispatch =>{
-    const response = await('/api/tickets/',{
+export const addTicketsThunk = (ticket) => async dispatch =>{
+    console.log('MADE IT TO THUNK!!!!!!!!!!')
+    const response = await fetch('/api/tickets/',{
         method:'POST',
         headers:{
             'Content-Type':'application/json'
         },
-        body: JSON.stringify(tickets)
+        body: JSON.stringify(ticket)
     });
-
+    console.log('response from thunk: ', response)
     if(response.ok){
         const purchasedTicket = await response.json();
         dispatch(addTicketsAction(purchasedTicket));
