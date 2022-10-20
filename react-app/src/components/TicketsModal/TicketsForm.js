@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { addTicketsThunk, getTicketsThunk } from "../../store/ticket";
+import './TicketsForm.css'
 
 const TicketsForm = () =>{
 
@@ -135,7 +136,7 @@ const TicketsForm = () =>{
                 max={10}
                 />
             </div>
-            <div>
+            <div className="first-name-div">
                 <input
                 type='string'
                 value={firstName ? firstName:''}
@@ -144,7 +145,7 @@ const TicketsForm = () =>{
                 required
                 />
             </div>
-            <div>
+            <div className="last-name-div">
                 <input
                 type="string"
                 value={lastName ? lastName:''}
@@ -153,7 +154,7 @@ const TicketsForm = () =>{
                 required
                 />
             </div>
-            <div>
+            <div className="card-number-div">
                 <input
                 type="string"
                 value={cardNumber ? cardNumber:''}
@@ -161,7 +162,7 @@ const TicketsForm = () =>{
                 placeholder='16 digit credit card number'
                 />
             </div>
-            <div>
+            <div className="csv-div">
                 <input
                 type="string"
                 value={csv ? csv:''}
@@ -169,7 +170,7 @@ const TicketsForm = () =>{
                 placeholder='csv'
                 />
             </div>
-            <div>
+            <div className="zip-code-div">
                 <input
                 type='string'
                 value={zipCode ? zipCode:''}
@@ -177,13 +178,14 @@ const TicketsForm = () =>{
                 placeholder='5 digit zip code only'
                 />
             </div>
-
-             <span>
-                <button type='submit' disabled={userTickets == 10 || selectedEvent[0].capacity - totalTickets === 0}>Purchase Tickets</button>
-             </span>
-             <span>
-                <button onClick={() => history.push(`/tickets`)}>Cancel</button>
-             </span>
+            <div className="buttons-div">
+                <span className="purchase-tickets-btn-span">
+                    <button className='purchase-tickets-btn' type='submit' disabled={userTickets == 10 || selectedEvent[0].capacity - totalTickets === 0}>Purchase Tickets</button>
+                </span>
+                <span className="cancel-ticket-purchase-span">
+                    <button className='cancel-tickets-btn' onClick={() => history.push(`/tickets`)}>Cancel</button>
+                </span>
+            </div>
         </form>
     )
 }
