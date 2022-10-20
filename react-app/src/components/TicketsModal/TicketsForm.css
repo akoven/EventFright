@@ -1,0 +1,25 @@
+.ticket-amount{
+    padding-top: 10px;
+}
+
+.tickets-error-msgs{
+    color: red
+}
+
+.first-name-div, .last-name-div, .card-number-div, .csv-div, .zip-code-div, .buttons-div{
+    padding-top: 10px;
+}
+
+.purchase-tickets-btn-span{
+    padding-right: 10px
+}
+
+.cancel-tickets-btn:hover{
+    background-color: red;
+    border-color: red;
+}
+
+.purchase-tickets-btn:hover{
+    background-color: green;
+    border: green;
+}
