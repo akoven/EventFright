@@ -49,6 +49,7 @@ const EventRegistration = () =>{
         </div>
     )
 }
+
 // onClick={() => history.push(`/purchase-tickets/${selectedEvent[0].id}`)}
 
 export default EventRegistration;
