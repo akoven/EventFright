@@ -20,7 +20,7 @@
     /* justify-content: center; */
 }
 
-.event-name,.event-img,.description,.category,.venue,.capacity,.date,.submit-cancel{
+.price,.event-name,.event-img,.description,.category,.venue,.capacity,.date,.submit-cancel{
     padding-top: 20px;
     padding-left: 10px;
     padding-right: 10px;
@@ -44,7 +44,7 @@
     height: 1000px;
 }
 
-.event-img-label,.description-label,.venue-label,.capacity-label,.date-time-label{
+.event-price-label,.event-img-label,.description-label,.venue-label,.capacity-label,.date-time-label{
     padding-right: 10px;
     padding-left: 5px;
     font-family: 'Shadows Into Light', cursive;
@@ -100,4 +100,8 @@
     border-color: blueviolet;
     font-weight: bold;
     color: black;
+}
+
+.price-input-box{
+    width: 50px;
 }

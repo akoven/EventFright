@@ -99,7 +99,7 @@ def edit_event(event_id):
     event_image = data['event_image']
     date = data['date']
     capacity = data['capacity']
-    price_per_guest = data['price_per_guest']
+    price_per_guest = data['price']
 
 
 

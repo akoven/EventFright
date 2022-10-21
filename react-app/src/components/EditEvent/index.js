@@ -35,6 +35,7 @@ const EditEvent = () =>{
     const [eventVenue, setEventVenue] = useState('');
     const [eventCapacity, setEventCapacity] = useState(selectedEvent[id].capacity);
     const [eventDate, setEventDate] = useState(new Date());
+    const [price, setPrice] = useState(0.00)
     const [validationErrors, setValidationErrors] = useState([])
 
     const host_id = currentUser.id
@@ -63,7 +64,8 @@ const EditEvent = () =>{
             description,
             event_image,
             date,
-            capacity
+            capacity,
+            price
         }
         // console.log('payload being passed to thunk: ',payload)
         // console.log(typeof(+eventCapacity))
@@ -111,7 +113,7 @@ const EditEvent = () =>{
         if(errors.length === 0){
             const editedEvent = await dispatch(editEventThunk(payload, id));
             if(editedEvent){
-                alert('successfully created edited event')
+                alert('successfully edited event')
                 history.push(`/events/${currentUser.id}`)
             }
         }
@@ -185,6 +187,16 @@ const EditEvent = () =>{
                             onChange={e => setEventCapacity(e.target.value)}
                             min={1}
                             max={300}
+                        />
+                    </div>
+                    <div className="price">
+                        <label className="event-price-label">Price</label>
+                        <input
+                            type="decimal"
+                            className="price-input-box"
+                            value = {price ? price:''}
+                            onChange={e => setPrice(e.target.value)}
+                            placeholder={price + '.00'}
                         />
                     </div>
                     <div className="date">
