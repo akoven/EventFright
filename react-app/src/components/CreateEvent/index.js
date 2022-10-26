@@ -64,6 +64,13 @@ const CreateEvent = () =>{
         return isPast;
     };
 
+    // const updateImage = (e) =>{
+    //     e.stopPropagation();
+    //     const file = e.target.files[0];
+    //     setEventImage(file);
+    //     return
+    // }
+
     const handleSubmit= async e =>{
         e.preventDefault();
         const payload = {
@@ -162,15 +169,21 @@ const CreateEvent = () =>{
                     <div className="event-img">
                         <label className="event-image-label">Event Image *</label>
                         <input
-                            type="string"
+                            type="file"
                             placeholder="image formats .jpg, .jpeg, .png only"
                             value={eventImage ? eventImage:''}
-                            onChange={e => setEventImage(e.target.value)}
-                        />
+                            onChange={e =>{
+                                // updateImage(e)
+                                // setEventImage(URL.createObjectURL(e.target.files[0]))}
+                                setEventImage(e.target.value)
+
+                            }}/>
+
                     </div>
                     <div className="description">
                         <label className="event-description-label">Description *</label>
                         <textarea
+                            className="description-input"
                             type = "text"
                             placeholder="give a brief event description, 2000 characters or less"
                             value={eventDescription ? eventDescription:''}
@@ -217,6 +230,7 @@ const CreateEvent = () =>{
                     <div className="price">
                         <label className="event-price-label">Price</label>
                         <input
+                            className="price-input-box"
                             type="decimal"
                             value = {price ? price:''}
                             onChange={e => setPrice(e.target.value)}

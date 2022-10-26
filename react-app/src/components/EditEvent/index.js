@@ -156,6 +156,7 @@ const EditEvent = () =>{
                     <div className="description">
                         <label className="description-label">Description *</label>
                         <textarea
+                            className="description-input"
                             type = "text"
                             placeholder="give a brief event description, 2000 characters or less"
                             value={eventDescription ? eventDescription:''}
