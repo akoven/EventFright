@@ -102,6 +102,7 @@ const EditVenue = () =>{
                         value={name ? name:''}
                         onChange={e => setName(e.target.value)}
                         placeholder="required"/>
+                        <p className='edit-name-chars'>{name.length <= 50 || name.length === 0 ? 50-name.length:0}/50 chars left</p>
                     </div>
                     <div className='edit-venue-address-div'>
                         <label className='edit-venue-address-label'>Venue Address *</label>

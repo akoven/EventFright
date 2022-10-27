@@ -88,6 +88,7 @@ const CreateCategory = () =>{
                     />
                     <span className="create-category-sumbit-btn"><button type="submit" className="category-submit-btn">Submit</button></span>
                     <span><button className='category-cancel-btn' onClick={() => history.push('/')}>Cancel</button></span>
+                    <p className="cat-type-length">{type.length <= 100 || type.length === 0 ? 100-type.length:0}/100 chars left</p>
                 </div>
             </form>
         </div>

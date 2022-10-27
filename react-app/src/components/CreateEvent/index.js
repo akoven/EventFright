@@ -96,8 +96,8 @@ const CreateEvent = () =>{
 
         if(eventDescription.length === 0){
             errors.push('You must provide a brief description')
-        }else if(eventDescription.length > 2000){
-            errors.push('Your description should be 2000 characters or less')
+        }else if(eventDescription.length > 500){
+            errors.push('Your description should be 500 characters or less')
         }
 
 
@@ -158,6 +158,7 @@ const CreateEvent = () =>{
                             value={eventName ? eventName:''}
                             onChange={e => setEventName(e.target.value)}
                         />
+                        <p className="name-chars">{eventName.length <= 50 || eventName.length === 0 ? 50-eventName.length:0}/50 chars left</p>
                     </div>
                     <div className="event-img">
                         <label className="event-image-label">Event Image *</label>
@@ -172,10 +173,12 @@ const CreateEvent = () =>{
                         <label className="event-description-label">Description *</label>
                         <textarea
                             type = "text"
-                            placeholder="give a brief event description, 2000 characters or less"
+                            placeholder="give a brief event description, 500 characters or less"
                             value={eventDescription ? eventDescription:''}
                             onChange={e => setEventDescription(e.target.value)}
                         />
+                        <p className="description-chars">{eventDescription.length <= 500 || eventDescription.length === 0 ? 500-eventDescription.length:0}/500 chars left</p>
+
                     </div>
                     {/* <div>
                         <label>Orgainizer</label>
@@ -217,6 +220,7 @@ const CreateEvent = () =>{
                     <div className="price">
                         <label className="event-price-label">Price</label>
                         <input
+                            className="price-input-box"
                             type="decimal"
                             value = {price ? price:''}
                             onChange={e => setPrice(e.target.value)}

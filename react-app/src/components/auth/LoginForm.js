@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { login, demoUserLogin } from '../../store/session';
+import Login from '../login';
 import './LoginForm.css'
 
 const LoginForm = () => {
@@ -78,6 +79,7 @@ const LoginForm = () => {
               <div>
                 <button className='sign-up-btn' onClick={() => history.push('/sign-up')}>Sign Up</button>
               </div>
+              <div className='google-login'><Login /></div>
             </div>
           </div>
         </form>

@@ -142,6 +142,7 @@ const EditEvent = () =>{
                             onChange={e => setEventName(e.target.value)}
                             required
                         />
+                        <p className="name-chars">{eventName.length <= 50 || eventName.length === 0 ? 50-eventName.length:0}/50 chars left</p>
                     </div>
                     <div className="event-img">
                         <label className="event-img-label">Event Image *</label>
@@ -162,6 +163,8 @@ const EditEvent = () =>{
                             onChange={e => setEventDescription(e.target.value)}
                             required
                         />
+                        <p className="description-chars">{eventDescription.length <= 500 || eventDescription.length === 0 ? 500-eventDescription.length:0}/500 chars left</p>
+
                     </div>
                     <div className="category">
                         <label className="event-category-label">Category *</label>

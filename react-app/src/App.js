@@ -18,6 +18,9 @@ import CreateCategory from './components/CreateCategory';
 import Tickets from './components/Tickets';
 import EventRegistration from './components/EventRegistration';
 import UserPurchases from './components/UserPurchases';
+import {gapi} from 'gapi-script';
+
+const clientId = '657310180864-a0tkbu56qpf7c3hsm19vdushdi6egofv.apps.googleusercontent.com'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -28,11 +31,29 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
     })();
+    function start(){
+      gapi.client.init({
+        clientId: clientId,
+        scope: "https://www.googleapis.com/auth/cloud-platform.read-only"
+      })
+    };
+    gapi.load('client:auth2', start);
+    setLoaded(true);
   }, [dispatch]);
 
   if (!loaded) {
     return null;
   }
+
+  // useEffect=(() => {
+  //   function start(){
+  //     gapi.client.init({
+  //       clientId: clientId,
+  //       scope: ""
+  //     })
+  //   }
+  //   gapi.load('client:auth2', start)
+  // });
 
   return (
     <BrowserRouter>

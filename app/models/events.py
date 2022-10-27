@@ -8,7 +8,7 @@ class Events(db.Model):
     venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
     event_name = db.Column(db.String(50), nullable=False)
-    description = db.Column(db.String(2000), nullable=False)
+    description = db.Column(db.String(500), nullable=False)
     event_image = db.Column(db.String, nullable=False)
     date = db.Column(db.String, nullable=False)
     capacity = db.Column(db.Integer, nullable=False)

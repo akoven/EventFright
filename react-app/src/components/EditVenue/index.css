@@ -71,11 +71,14 @@
 .edit-venue-name-label, .edit-venue-address-label, .edit-venue-city-label, .edit-venue-state-label, .edit-venue-zip-label{
     color: red;
     padding-right: 10px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 18px;
 }
 
 .edit-venue-lat-label, .edit-venue-lon-label{
     color: white;
     padding-right: 10px;
+    font-family: 'Shadows Into Light', cursive;
 }
 
 .edit-venue-required-field{
@@ -83,4 +86,13 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.edit-name-chars{
+    font-size: 10pt;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    padding-right: 108px;
 }
