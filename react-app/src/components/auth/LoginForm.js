@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { login, demoUserLogin } from '../../store/session';
-import Login from '../login';
+import Login from '../Login';
 import './LoginForm.css'
 
 const LoginForm = () => {

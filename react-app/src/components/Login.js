@@ -22,7 +22,10 @@ const Login = () =>{
                 isSignedIn={true}
             />
         </div>
-    )
+        )
+    // window.open('https://event-fright.herokuapp.com/login/google','_self')
+    // window.open('http://localhost:3000/login/google','_self')
+
 };
 
 export default Login

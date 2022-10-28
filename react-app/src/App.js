@@ -38,7 +38,7 @@ function App() {
       })
     };
     gapi.load('client:auth2', start);
-    setLoaded(true);
+    // setLoaded(true);
   }, [dispatch]);
 
   if (!loaded) {
