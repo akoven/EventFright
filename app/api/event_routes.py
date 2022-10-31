@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+import os
 from app.models import Events, db
 from app.forms import EventForm
 from flask_login import current_user
@@ -15,7 +16,8 @@ def all_events():
         events = [event.to_dict() for event in all_events]
         print('*********************EVENTS FROM API BACKEND*********************************',events)
         response = {'events':events}
-        print('************************RESPONSE****************** ', response)
+        # print('************************RESPONSE****************** ', response)
+        # print('OS ENVIRON: ',os.environ)
         return response
     else:
         return '403: Unauthorized User'
