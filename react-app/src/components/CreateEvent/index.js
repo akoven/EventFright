@@ -64,12 +64,12 @@ const CreateEvent = () =>{
         return isPast;
     };
 
-    // const updateImage = (e) =>{
-    //     e.stopPropagation();
-    //     const file = e.target.files[0];
-    //     setEventImage(file);
-    //     return
-    // }
+    const updateImage = (e) =>{
+        e.stopPropagation();
+        const file = e.target.files[0];
+        setEventImage(file);
+        return
+    }
 
     const handleSubmit= async e =>{
         e.preventDefault();
@@ -171,13 +171,15 @@ const CreateEvent = () =>{
                         <input
                             type="file"
                             placeholder="image formats .jpg, .jpeg, .png only"
-                            value={eventImage ? eventImage:''}
+                            // value={eventImage ? eventImage:''}
                             onChange={e =>{
-                                // updateImage(e)
-                                // setEventImage(URL.createObjectURL(e.target.files[0]))}
-                                setEventImage(e.target.value)
+                                // console.log('changing image!!!!!!!!!!!!!!!', e.target.files[0])
+                                updateImage(e)
+                                setEventImage(URL.createObjectURL(e.target.files[0].name))
+                                // setEventImage(e.target.value)
+                            }}
 
-                            }}/>
+                            />
 
                     </div>
                     <div className="description">

@@ -1,5 +1,5 @@
 import boto3
-# import os
+import os
 import uuid
 
 
@@ -8,8 +8,8 @@ allowed_extension_file_types = {'jpg','jpeg','png'}
 S3_location = f'https://{BUCKET_NAME}.s3.amazonaws.com/'
 
 s3=boto3.client("s3",
-    aws_access_key_id = 'AKIAZMZCNF27MGM6VMM7',
-    aws_secret_access_key = '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'
+    aws_access_key_id = os.environ.get(""),
+    aws_secret_access_key = os.environ.get("")
 )
 
 def extensions(filename):
