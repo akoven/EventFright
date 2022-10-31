@@ -139,6 +139,7 @@ const CreateVenue = () =>{
                         value={venueName ? venueName:''}
                         onChange={e => setVenueName(e.target.value)}
                         placeholder="required"/>
+                        <p className="venue-name-chars">{venueName.length <= 50 || venueName.length === 0  ? 50-venueName.length:0}/50 chars left</p>
                     </div>
                     <div className="address-div">
                         <label className="address-label">Venue Address *</label>
