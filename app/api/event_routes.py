@@ -33,33 +33,33 @@ def add_events():
 
 
 
-    event_image.filename = get_unique_filename(event_image.filename)
+    # event_image.filename = get_unique_filename(event_image.filename)
+    print('***********************DATA*********************',new_event.data)
+    print('*******************FILE*************************',request.files)
 
     host_id = new_event.data['host_id']
     venue_id = new_event.data['venue_id']
     category_id = new_event.data['category_id']
     event_name = new_event.data['event_name']
     description = new_event.data['description']
-    # event_image = new_event.data['event_image']
-    event_image = request.files['event_image']
+    event_image = new_event.data['event_image']
+    # event_image = request.files['event_image']
     date = new_event.data['date']
     capacity = new_event.data['capacity']
     price = new_event.data['price_per_guest']
 
-    if not extensions(event_image.filename):
-        return {"errors":"file type is not permitted"}
-
-    event_image.filename = get_unique_filename(event_image.filename)
-
-    upload = upload_to_s3(event_image)
-    # print('!!!!!!!!!!!!!!!!!!!!!!NEW EVENT FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', new_event.data)
-    if "image_url" not in upload:
-        return upload, 400
-
-    image_url = upload["image_url"]
 
     if new_event.validate_on_submit():
+
+        if not extensions(event_image.filename):
+            return {"errors":"file type is not permitted"}
+        event_image.filename = get_unique_filename(event_image.filename)
+        upload = upload_to_s3(event_image)
+        # print('!!!!!!!!!!!!!!!!!!!!!!NEW EVENT FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', new_event.data)
+        if "url" not in upload:
+            return upload, 400
         # data = new_event.data
+        image_url = upload["url"]
         event=Events(
             host_id = host_id,
             venue_id = venue_id,
@@ -72,7 +72,7 @@ def add_events():
             capacity = capacity,
             price_per_guest = price
         )
-        # print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
+        print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
         db.session.add(event)
         db.session.commit()
         return event.to_dict()

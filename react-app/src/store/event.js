@@ -51,23 +51,43 @@ export const getEventThunk = () => async dispatch =>{
 
 export const addEventThunk = (event) => async dispatch =>{
     console.log('EVENT FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',event)
+    const formInfo = new FormData()
+    formInfo.append('host_id', event.host_id)
+    formInfo.append('venue_id', event.venue_id)
+    formInfo.append('category_id', event.category_id)
+    formInfo.append('event_name', event.event_name)
+    formInfo.append('description', event.description)
+    formInfo.append('event_image', event.event_image)
+    formInfo.append('date', event.date)
+    formInfo.append('capacity', event.capacity)
+    formInfo.append('price_per_guest', event.price_per_guest)
+
+    console.log('!!!!!!!!!!!!!!!FORM INFO!!!!!!!!!!!!!!!!!!!!!',formInfo.getAll)
+
     const response = await fetch (`/api/events/`, {
         method:'POST',
         headers:{
             'Content-Type':'application/json'
         },
-        body: JSON.stringify(event)
+        // body: JSON.stringify(event)
+        body: formInfo
     });
     console.log('RESPONSE FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
-
-    if (response.ok){
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!JSON event !!!!!!!!!!!!!!!!!!!!!!!!',JSON.stringify(event))
-        const newEvent = await response.json();
-        console.log('NEW EVENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',newEvent)
-        dispatch(addNewEvent(newEvent));
-        return newEvent;
+    if(response.ok){
+        const newForm = await response.json();
+        console.log('NEW EVENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',newForm)
+        dispatch(addNewEvent(newForm));
+        return newForm;
     }
     return null;
+
+    // if (response.ok){
+    //     console.log('!!!!!!!!!!!!!!!!!!!!!!!JSON event !!!!!!!!!!!!!!!!!!!!!!!!',JSON.stringify(event))
+    //     const newEvent = await response.json();
+    //     dispatch(addNewEvent(newEvent));
+    //     return newEvent;
+    // }
+    // return null;
 }
 
 export const editEventThunk = (payload, eventId) => async dispatch =>{

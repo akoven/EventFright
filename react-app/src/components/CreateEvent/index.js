@@ -36,6 +36,7 @@ const CreateEvent = () =>{
     const [eventCategory, setEventCategory] = useState('')
     const [eventDescription,setEventDescription] = useState('')
     const [eventImage, setEventImage] = useState('')
+    const [backendImg, setBackendImg] = useState(null)
     const [eventDate,setEventDate] = useState(new Date())
     const [eventCapacity,setEventCapacity] = useState(0)
     const [price, setPrice] = useState(0.00)
@@ -66,8 +67,7 @@ const CreateEvent = () =>{
 
     const updateImage = (e) =>{
         e.stopPropagation();
-        const file = e.target.files[0];
-        setEventImage(file);
+        setBackendImg(e.target.files[0]);
         return
     }
 
@@ -79,7 +79,7 @@ const CreateEvent = () =>{
             category_id: +eventCategory,
             event_name: eventName,
             description: eventDescription,
-            event_image: eventImage,
+            event_image: backendImg,
             date: eventDate.toLocaleString('en-US'),
             capacity: +eventCapacity,
             price_per_guest: price
@@ -96,10 +96,10 @@ const CreateEvent = () =>{
         if(eventImage.length === 0){
             errors.push('You must provide an image url')
         }
-
-        if(!eventImage.includes('.jpg') && !eventImage.includes('.jpeg') && !eventImage.includes('.png')){
-            errors.push('Your image must be in .jpg, .jpeg, or .png formats')
-        }
+        // console.log('EVENT Image', eventImage);
+        // if(!eventImage.includes('.jpg') || !eventImage.includes('.jpeg') || !eventImage.includes('.png')){
+        //     errors.push('Your image must be in .jpg, .jpeg, or .png formats')
+        // }
 
         if(eventDescription.length === 0){
             errors.push('You must provide a brief description')
@@ -175,7 +175,8 @@ const CreateEvent = () =>{
                             onChange={e =>{
                                 // console.log('changing image!!!!!!!!!!!!!!!', e.target.files[0])
                                 updateImage(e)
-                                setEventImage(URL.createObjectURL(e.target.files[0].name))
+                                // alert(URL.createObjectURL(e.target.files[0]))
+                                setEventImage(URL.createObjectURL(e.target.files[0]))
                                 // setEventImage(e.target.value)
                             }}
 
