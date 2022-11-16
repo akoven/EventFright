@@ -62,13 +62,13 @@ export const addEventThunk = (event) => async dispatch =>{
     formInfo.append('capacity', event.capacity)
     formInfo.append('price_per_guest', event.price_per_guest)
 
-    console.log('!!!!!!!!!!!!!!!FORM INFO!!!!!!!!!!!!!!!!!!!!!',formInfo.getAll)
+    console.log('!!!!!!!!!!!!!!!FORM INFO!!!!!!!!!!!!!!!!!!!!!',formInfo)
 
     const response = await fetch (`/api/events/`, {
         method:'POST',
-        headers:{
-            'Content-Type':'application/json'
-        },
+        // headers:{
+        //     'Content-Type':'application/json'
+        // },
         // body: JSON.stringify(event)
         body: formInfo
     });

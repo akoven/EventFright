@@ -48,6 +48,8 @@ def add_events():
     capacity = new_event.data['capacity']
     price = new_event.data['price_per_guest']
 
+    print('*******************AFTER FILE*************************',event_image)
+
 
     if new_event.validate_on_submit():
 
