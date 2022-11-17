@@ -49,9 +49,9 @@ const TicketsForm = () =>{
 
     useEffect(() => {
         dispatch(getTicketsThunk());
-        console.log('all tickets for user: ',allTickets)
-        console.log('user tickets for event: ',userTicketsForEvent)
-        console.log('purchased tickets: ',userEventTicketArray)
+        // console.log('all tickets for user: ',allTickets)
+        // console.log('user tickets for event: ',userTicketsForEvent)
+        // console.log('purchased tickets: ',userEventTicketArray)
         // console.log('total tickets: ', initialTickets)
 
     }, [dispatch]);

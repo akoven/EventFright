@@ -35,10 +35,10 @@ const deleteEvent = (eventId) =>{
 export const getEventThunk = () => async dispatch =>{
     const response = await fetch('/api/events/')
 
-    console.log('******************RESPONSE********************** ', response)
+    // console.log('******************RESPONSE********************** ', response)
     if (response.ok){
         const event = await response.json();
-        console.log('******************************EVENT************************',event)
+        // console.log('******************************EVENT************************',event)
         dispatch(getAllEvents(event));
         // const allEvents = {};
         // event.events.forEach((event) => (allEvents[event.id] = event))
@@ -50,7 +50,7 @@ export const getEventThunk = () => async dispatch =>{
 }
 
 export const addEventThunk = (event) => async dispatch =>{
-    console.log('EVENT FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',event)
+    // console.log('EVENT FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',event)
     const response = await fetch (`/api/events/`, {
         method:'POST',
         headers:{
@@ -58,12 +58,12 @@ export const addEventThunk = (event) => async dispatch =>{
         },
         body: JSON.stringify(event)
     });
-    console.log('RESPONSE FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
+    // console.log('RESPONSE FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
 
     if (response.ok){
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!JSON event !!!!!!!!!!!!!!!!!!!!!!!!',JSON.stringify(event))
+        // console.log('!!!!!!!!!!!!!!!!!!!!!!!JSON event !!!!!!!!!!!!!!!!!!!!!!!!',JSON.stringify(event))
         const newEvent = await response.json();
-        console.log('NEW EVENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',newEvent)
+        // console.log('NEW EVENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',newEvent)
         dispatch(addNewEvent(newEvent));
         return newEvent;
     }
@@ -80,10 +80,10 @@ export const editEventThunk = (payload, eventId) => async dispatch =>{
     });
     // console.log('event id ',eventId)
     // console.log(typeof(eventId)); number type
-    console.log('PAYLOAD FROM EDIT EVENT THUNK: ', payload)
-    console.log('EVENT ID: ',eventId)
-    console.log('event id datatype: ',typeof(eventId))
-    console.log('RESPONSE FROM EDIT EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
+    // console.log('PAYLOAD FROM EDIT EVENT THUNK: ', payload)
+    // console.log('EVENT ID: ',eventId)
+    // console.log('event id datatype: ',typeof(eventId))
+    // console.log('RESPONSE FROM EDIT EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
     if (response.ok){
         const event = await response.json();
         dispatch(updateEvent(event));

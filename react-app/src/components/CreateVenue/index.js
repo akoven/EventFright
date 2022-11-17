@@ -22,7 +22,7 @@ const CreateVenue = () =>{
     useEffect(() =>{
         dispatch(getVenueThunk())
         // console.log(regex.test(zipCode)) true
-        console.log('custom venues ', customVenues)
+        // console.log('custom venues ', customVenues)
         // console.log('user id ',userId.id)
     },[dispatch])
 

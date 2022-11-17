@@ -51,7 +51,7 @@ def add_ticket():
         return ticket.to_dict()
     else:
         # print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
-        print('********************************VALIDATION ERRORS*********************',validation_errors_to_error_messages(new_ticket.errors))
+        # print('********************************VALIDATION ERRORS*********************',validation_errors_to_error_messages(new_ticket.errors))
         return {'errors': validation_errors_to_error_messages(new_ticket.errors)}, 401
 
 @ticket_routes.route('/<ticket_id>', methods=['DELETE'])

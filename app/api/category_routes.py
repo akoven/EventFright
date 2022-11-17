@@ -9,7 +9,7 @@ category_routes = Blueprint('category_routes', __name__)
 def all_categories():
     if current_user:
         all_categories = Categories.query.all()
-        print('*********************ALL CATEGORIES***********************',all_categories)
+        # print('*********************ALL CATEGORIES***********************',all_categories)
         categories = [category.to_dict() for category in all_categories]
         response = {'categories':categories}
         return response

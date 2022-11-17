@@ -13,7 +13,7 @@ const AllVenues = () =>{
 
     useEffect(() =>{
         dispatch(getVenueThunk())
-        console.log('ALL VENUES: ',allVenues)
+        // console.log('ALL VENUES: ',allVenues)
     },[dispatch])
 
     const handleDelete = async (venueId) =>{
