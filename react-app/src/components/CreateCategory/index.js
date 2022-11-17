@@ -18,8 +18,8 @@ const CreateCategory = () =>{
 
     useEffect(() =>{
         dispatch(getCategoryThunk())
-        console.log('ALL CATEGORIES: ', allCategories)
-    },[dispatch]);
+        // console.log('ALL CATEGORIES: ', allCategories)
+    },[dispatch, allCategories]);
 
     const errors = [];
 
@@ -37,7 +37,7 @@ const CreateCategory = () =>{
         }
 
         setValidationErrors(errors);
-        console.log('ERRORS: ',errors);
+        // console.log('ERRORS: ',errors);
         if(errors.length === 0){
             const newCategory = await dispatch(addCategoryThunk(payload))
             if(newCategory){
