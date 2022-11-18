@@ -79,8 +79,13 @@ def run_migrations_online():
                 logger.info('No changes in schema detected.')
 
     # connectable = current_app.extensions['migrate'].db.get_engine()
+
+    config_section = config.get_section(config.config_ini_section)
+    config_section['sqlalchemy.url'] = os.getenv('DATABASE_URL')
+
     connectable = engine_from_config(
-        config.get_section(config.config_ini_section),
+        # config.get_section(config.config_ini_section),
+        config_section,
         prefix='sqlalchemy. ',
         poolclass=pool.NullPool,
     )
