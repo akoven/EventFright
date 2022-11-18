@@ -73,13 +73,11 @@ export const addEventThunk = (event) => async dispatch =>{
         body: formInfo
     });
     console.log('RESPONSE FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
-    if(response.ok){
-        const newForm = await response.json();
-        console.log('NEW EVENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',newForm)
-        dispatch(addNewEvent(newForm));
-        return newForm;
-    }
-    return null;
+    const newEvent = await response.json()
+    dispatch(addNewEvent(newEvent))
+    console.log('NEW EVENT: ', newEvent)
+    return newEvent
+
 
     // if (response.ok){
     //     console.log('!!!!!!!!!!!!!!!!!!!!!!!JSON event !!!!!!!!!!!!!!!!!!!!!!!!',JSON.stringify(event))
