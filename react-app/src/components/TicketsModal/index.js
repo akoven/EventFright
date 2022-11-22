@@ -6,7 +6,7 @@ import './index.css';
 
 const TicketsModal = () =>{
     const [showModal, setShowModal] = useState(false);
-    console.log('SHOW MODAL VALUE!!!!!!!!!!!!!!!',showModal)
+    // console.log('SHOW MODAL VALUE!!!!!!!!!!!!!!!',showModal)
     return(
         <>
             <button className='tickets-btn-on-reg-pg' onClick={() => setShowModal(true)}>Tickets</button>

@@ -35,10 +35,10 @@ const deleteEvent = (eventId) =>{
 export const getEventThunk = () => async dispatch =>{
     const response = await fetch('/api/events/')
 
-    console.log('******************RESPONSE********************** ', response)
+    // console.log('******************RESPONSE********************** ', response)
     if (response.ok){
         const event = await response.json();
-        console.log('******************************EVENT************************',event)
+        // console.log('******************************EVENT************************',event)
         dispatch(getAllEvents(event));
         // const allEvents = {};
         // event.events.forEach((event) => (allEvents[event.id] = event))
@@ -98,10 +98,10 @@ export const editEventThunk = (payload, eventId) => async dispatch =>{
     });
     // console.log('event id ',eventId)
     // console.log(typeof(eventId)); number type
-    console.log('PAYLOAD FROM EDIT EVENT THUNK: ', payload)
-    console.log('EVENT ID: ',eventId)
-    console.log('event id datatype: ',typeof(eventId))
-    console.log('RESPONSE FROM EDIT EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
+    // console.log('PAYLOAD FROM EDIT EVENT THUNK: ', payload)
+    // console.log('EVENT ID: ',eventId)
+    // console.log('event id datatype: ',typeof(eventId))
+    // console.log('RESPONSE FROM EDIT EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
     if (response.ok){
         const event = await response.json();
         dispatch(updateEvent(event));

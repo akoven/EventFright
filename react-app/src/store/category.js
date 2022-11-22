@@ -52,7 +52,7 @@ export const addCategoryThunk = (category) => async dispatch =>{
         body: JSON.stringify(category)
     });
 
-    console.log('!!!!!!!!!!!!PAYLOAD FROM ADD CATEGORY!!!!!!!!!!!!!!!!!!! ',category)
+    // console.log('!!!!!!!!!!!!PAYLOAD FROM ADD CATEGORY!!!!!!!!!!!!!!!!!!! ',category)
 
     if (response.ok){
         const newCategory = await response.json();

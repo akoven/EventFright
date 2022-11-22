@@ -47,7 +47,7 @@ def add_new_venue():
         db.session.commit()
         return venue.to_dict()
     else:
-        print('********************************VALIDATION ERRORS*********************',validation_errors_to_error_messages(new_venue.errors))
+        # print('********************************VALIDATION ERRORS*********************',validation_errors_to_error_messages(new_venue.errors))
         return {'errors': validation_errors_to_error_messages(new_venue.errors)}, 401
 
 @venue_routes.route('/<venue_id>', methods=['PUT'])
@@ -82,7 +82,7 @@ def edit_venue(venue_id):
 @venue_routes.route('/<venue_id>', methods=['DELETE'])
 def delete_venues(venue_id):
     venue = Venues.query.get(venue_id)
-    print('*************************VENUE TO BE DELETED***************************: ', venue.name)
+    # print('*************************VENUE TO BE DELETED***************************: ', venue.name)
 
     if not venue:
         return "Error 404: The venue you're looking for couldn't be found"

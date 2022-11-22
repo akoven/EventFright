@@ -67,8 +67,8 @@ export const editVenueThunk = (payload, venueId) => async dispatch =>{
         body: JSON.stringify(payload)
     });
 
-    console.log('PAYLOAD FROM EDIT VENUE THUNK: ', payload)
-    console.log('CURRENT VENUE ID: ', venueId)
+    // console.log('PAYLOAD FROM EDIT VENUE THUNK: ', payload)
+    // console.log('CURRENT VENUE ID: ', venueId)
 
     if (response.ok){
         const venue = await response.json();

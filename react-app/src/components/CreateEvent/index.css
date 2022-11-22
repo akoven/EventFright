@@ -158,4 +158,23 @@
 .description-input{
     width: 200px;
     height: 60px;
+    
+.name-chars{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin: 0px;
+    padding-right: 80px;
+    padding-bottom: 0px;
+    font-size: 10pt;
+}
+
+.description-chars{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin: 0px;
+    padding-right: 90px;
+    padding-bottom: 0px;
+    font-size: 10pt;
 }

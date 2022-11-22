@@ -1,5 +1,6 @@
 import re
 from flask import Blueprint, request
+import os
 from app.models import Events, db
 from app.forms import EventForm
 from flask_login import current_user
@@ -10,13 +11,14 @@ event_routes = Blueprint("event_routes", __name__)
 
 @event_routes.route("/")
 def all_events():
-    print('***************CURRENT USER******************** ',current_user)
+    # print('***************CURRENT USER******************** ',current_user)
     if current_user:
         all_events = Events.query.all()
         events = [event.to_dict() for event in all_events]
-        print('*********************EVENTS FROM API BACKEND*********************************',events)
+        # print('*********************EVENTS FROM API BACKEND*********************************',events)
         response = {'events':events}
-        print('************************RESPONSE****************** ', response)
+        # print('************************RESPONSE****************** ', response)
+        # print('OS ENVIRON: ',os.environ)
         return response
     else:
         return '403: Unauthorized User'
@@ -80,7 +82,7 @@ def add_events():
         return event.to_dict()
     else:
         # print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
-        print('********************************VALIDATION ERRORS*********************',validation_errors_to_error_messages(new_event.errors))
+        # print('********************************VALIDATION ERRORS*********************',validation_errors_to_error_messages(new_event.errors))
         return {'errors': validation_errors_to_error_messages(new_event.errors)}, 401
 
 

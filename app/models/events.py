@@ -1,12 +1,15 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Events(db.Model):
     __tablename__ = 'events'
 
+    if environment == "production":
+        __table_args__ = {'schema':SCHEMA}
+
     id = db.Column(db.Integer, primary_key = True)
-    host_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'), nullable=False)
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
+    host_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    venue_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('venues.id')), nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('categories.id')), nullable=False)
     event_name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(2000), nullable=False)
     event_image = db.Column(db.String, nullable=False)

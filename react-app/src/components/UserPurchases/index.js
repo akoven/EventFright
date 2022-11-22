@@ -17,7 +17,7 @@ const UserPurchases = () =>{
 
     useEffect(() =>{
         dispatch(getTicketsThunk());
-        console.log('all user tickets: ', allTickets)
+        // console.log('all user tickets: ', allTickets)
 
     }, [dispatch]);
 

@@ -35,7 +35,7 @@ export const getTicketsThunk = () => async dispatch =>{
 };
 
 export const addTicketsThunk = (ticket) => async dispatch =>{
-    console.log('MADE IT TO THUNK!!!!!!!!!!')
+    // console.log('MADE IT TO THUNK!!!!!!!!!!')
     const response = await fetch('/api/tickets/',{
         method:'POST',
         headers:{
@@ -43,7 +43,7 @@ export const addTicketsThunk = (ticket) => async dispatch =>{
         },
         body: JSON.stringify(ticket)
     });
-    console.log('response from thunk: ', response)
+    // console.log('response from thunk: ', response)
     if(response.ok){
         const purchasedTicket = await response.json();
         dispatch(addTicketsAction(purchasedTicket));

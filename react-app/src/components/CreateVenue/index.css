@@ -143,3 +143,12 @@
     background-color: red;
     color: black;
 }
+
+.venue-name-chars{
+    font-size: 10pt;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    padding-right: 24px;
+}

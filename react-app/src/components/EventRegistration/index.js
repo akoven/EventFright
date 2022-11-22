@@ -17,10 +17,10 @@ const EventRegistration = () =>{
 
     useEffect(() =>{
         dispatch(getEventThunk());
-        console.log('ALL EVENTS: ', allEvents)
+        // console.log('ALL EVENTS: ', allEvents)
         // console.log('event id type: ', typeof(eventId.id))
-        console.log('SELECTED EVENT: ', selectedEvent[0])
-        console.log('PRICE PER GUEST: ', selectedEvent[0].price)
+        // console.log('SELECTED EVENT: ', selectedEvent[0])
+        // console.log('PRICE PER GUEST: ', selectedEvent[0].price)
     }, [dispatch, eventId])
 
     return(
