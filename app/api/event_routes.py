@@ -1,10 +1,11 @@
+import re
 from flask import Blueprint, request
 import os
 from app.models import Events, db
 from app.forms import EventForm
 from flask_login import current_user
 from app.api.auth_routes import validation_errors_to_error_messages
-
+from app.s3 import (get_unique_filename,upload_to_s3,extensions)
 
 event_routes = Blueprint("event_routes", __name__)
 
@@ -32,32 +33,50 @@ def add_events():
 
     # print('**********************************',new_event['csrf_token'].data)
 
+
+
+    # event_image.filename = get_unique_filename(event_image.filename)
+    print('***********************DATA*********************',new_event.data)
+    print('*******************FILE*************************',request.files)
+
     host_id = new_event.data['host_id']
     venue_id = new_event.data['venue_id']
     category_id = new_event.data['category_id']
     event_name = new_event.data['event_name']
     description = new_event.data['description']
-    event_image = new_event.data['event_image']
+    # event_image = new_event.data['event_image']
+    event_image = request.files['event_image']
     date = new_event.data['date']
     capacity = new_event.data['capacity']
     price = new_event.data['price_per_guest']
 
-    # print('!!!!!!!!!!!!!!!!!!!!!!NEW EVENT FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', new_event.data)
+    print('*******************AFTER FILE*************************',event_image.filename)
+    print(new_event.data['event_image'].filename)
 
     if new_event.validate_on_submit():
+
+        if not extensions(event_image.filename):
+            return {"errors":"file type is not permitted"}
+        event_image.filename = get_unique_filename(event_image.filename)
+        upload = upload_to_s3(event_image)
+        # print('!!!!!!!!!!!!!!!!!!!!!!NEW EVENT FROM BACKEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', new_event.data)
+        if "url" not in upload:
+            return upload, 400
         # data = new_event.data
+        image_url = upload["url"]
         event=Events(
             host_id = host_id,
             venue_id = venue_id,
             category_id = category_id,
             event_name = event_name,
             description = description,
-            event_image = event_image,
+            # event_image = event_image,
+            event_image = image_url,
             date = date,
             capacity = capacity,
             price_per_guest = price
         )
-        # print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
+        print('BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT',new_event,'BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT BACKEND EVENT')
         db.session.add(event)
         db.session.commit()
         return event.to_dict()

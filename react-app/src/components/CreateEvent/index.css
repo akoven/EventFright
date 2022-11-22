@@ -40,6 +40,11 @@
     font-size: 18px;
 }
 
+.description{
+    display: inline-flex;
+    flex-direction: row;
+}
+
 .event-price-label{
     padding-right: 15px;
     padding-left: 15px;
@@ -150,6 +155,10 @@
     color: red;
 }
 
+.description-input{
+    width: 200px;
+    height: 60px;
+    
 .name-chars{
     display: flex;
     flex-direction: row;

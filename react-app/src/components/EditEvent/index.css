@@ -105,3 +105,13 @@
 .price-input-box{
     width: 50px;
 }
+
+.description-input{
+    width: 200px;
+    height: 60px;
+}
+
+.description{
+    display: inline-flex;
+    flex-direction: row;
+}
