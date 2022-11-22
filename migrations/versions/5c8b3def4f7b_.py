@@ -32,8 +32,8 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
 
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+    # if environment == "production":
+    #     op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
     op.create_table('categories',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -43,8 +43,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "production":
-        op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
+    # if environment == "production":
+    #     op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
 
     op.create_table('venues',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -60,8 +60,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "production":
-        op.execute(f"ALTER TABLE venues SET SCHEMA {SCHEMA};")
+    # if environment == "production":
+    #     op.execute(f"ALTER TABLE venues SET SCHEMA {SCHEMA};")
 
     op.create_table('events',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -80,8 +80,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "production":
-        op.execute(f"ALTER TABLE events SET SCHEMA {SCHEMA};")
+    # if environment == "production":
+    #     op.execute(f"ALTER TABLE events SET SCHEMA {SCHEMA};")
 
     op.create_table('tickets',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -100,6 +100,10 @@ def upgrade():
     )
 
     if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE venues SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE events SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE tickets SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
