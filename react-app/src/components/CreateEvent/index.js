@@ -66,9 +66,9 @@ const CreateEvent = () =>{
     };
 
     const updateImage = (e) =>{
-        e.stopPropagation();
+        // e.stopPropagation();
         setBackendImg(e.target.files[0]);
-        return
+        // return
     }
 
     const handleSubmit= async e =>{
@@ -172,6 +172,7 @@ const CreateEvent = () =>{
                             type="file"
                             placeholder="image formats .jpg, .jpeg, .png only"
                             // value={eventImage ? eventImage:''}
+                            accept="backendImg/*"
                             onChange={e =>{
                                 // console.log('changing image!!!!!!!!!!!!!!!', e.target.files[0])
                                 updateImage(e)

@@ -1,4 +1,5 @@
 import boto3
+import botocore
 import os
 import uuid
 
@@ -21,11 +22,11 @@ def get_unique_filename(filename):
     unique_filename = uuid.uuid4().hex
     return f"{unique_filename}.{ext}"
 
-def upload_to_s3(file):
+def upload_to_s3(file, acl="public-read"):
     try:
         s3.upload_fileobj(
             file, BUCKET_NAME,file.filename,ExtraArgs = {
-                "ACL":"public-read",
+                "ACL":acl,
                 "ContentType": file.content_type
             }
         )
