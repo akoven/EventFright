@@ -13,7 +13,7 @@ from alembic import context
 import os
 
 environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
+SCHEMA = os.environ.get('SCHEMA')
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -84,9 +84,9 @@ def run_migrations_online():
     config_section['sqlalchemy.url'] = os.getenv('DATABASE_URL')
 
     connectable = engine_from_config(
-        # config.get_section(config.config_ini_section),
-        config_section,
-        prefix='sqlalchemy. ',
+        config.get_section(config.config_ini_section),
+        # config_section,
+        prefix='sqlalchemy.',
         poolclass=pool.NullPool,
     )
 
