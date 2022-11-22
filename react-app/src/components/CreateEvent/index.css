@@ -158,7 +158,8 @@
 .description-input{
     width: 200px;
     height: 60px;
-    
+}
+
 .name-chars{
     display: flex;
     flex-direction: row;

@@ -50,7 +50,7 @@ export const getEventThunk = () => async dispatch =>{
 }
 
 export const addEventThunk = (event) => async dispatch =>{
-    console.log('EVENT FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',event)
+    // console.log('EVENT FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',event)
     const formInfo = new FormData()
     formInfo.append('host_id', event.host_id)
     formInfo.append('venue_id', event.venue_id)
@@ -62,7 +62,7 @@ export const addEventThunk = (event) => async dispatch =>{
     formInfo.append('capacity', event.capacity)
     formInfo.append('price_per_guest', event.price_per_guest)
 
-    console.log('!!!!!!!!!!!!!!!FORM INFO!!!!!!!!!!!!!!!!!!!!!',formInfo)
+    // console.log('!!!!!!!!!!!!!!!FORM INFO!!!!!!!!!!!!!!!!!!!!!',formInfo)
 
     const response = await fetch (`/api/events/`, {
         method:'POST',
@@ -72,10 +72,10 @@ export const addEventThunk = (event) => async dispatch =>{
         // body: JSON.stringify(event)
         body: formInfo
     });
-    console.log('RESPONSE FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
+    // console.log('RESPONSE FROM ADD EVENT THUNK!!!!!!!!!!!!!!!!!!!!!!!!! ', response)
     const newEvent = await response.json()
     dispatch(addNewEvent(newEvent))
-    console.log('NEW EVENT: ', newEvent)
+    // console.log('NEW EVENT: ', newEvent)
     return newEvent
 
 
